@@ -1,0 +1,7 @@
+.dropdown-toggle::after { 
+    content: none; 
+}
+.img-circle{
+	margin: 2px 7px 0px;
+	width: 35px;
+} 

@@ -1,0 +1,178 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Location;
+use App\Property;
+use App\Type;
+use App\Status;
+use App\User;
+use App\Post;
+use App\Comment;
+use App\CommentReply;
+use App\Feature;
+use Auth;
+use Illuminate\Support\Facades\View;
+
+use Illuminate\Support\Facades\DB;
+
+class FrontendController extends Controller
+{
+    public function __construct()
+      {
+        //its just a dummy data object.
+        $types = type::all();
+
+        // Sharing is caring
+        View::share('types', $types);
+      }
+    public function index($value='')
+    {
+        /*$locations = Location::with(['property' => function ($query) {
+            $query->where('property_status', '=', 1);
+        }])->get();*/
+        $properties = Property::where('property_status',1)->get();
+        $types = Type::all();
+        $statuses = Status::all();
+        $recent_properties = Property::orderBy('id', 'desc')->take(5)->get();
+        $listing_houses = 0; $listing_apartments = 0; $listing_offices = 0; $listing_villas = 0;
+        foreach ($types as $type) {
+            $type_name = $type->type;
+            $type_id = $type->id;
+            if ($type_name == "House") {
+                $listing_houses = Property::where('type_id', $type_id)->count();
+            }
+            if ($type_name == "Apartment") {
+                $listing_apartments = Property::where('type_id', $type_id)->count();
+            }
+            if ($type_name == "Office") {
+                $listing_offices = Property::where('type_id', $type_id)->count();
+            }
+            if ($type_name == "Villa") {
+                $listing_villas = Property::where('type_id', $type_id)->count();
+            }      
+        }
+        $listing_sale = 0; $listing_rent = 0; $agent = 0;
+        foreach ($statuses as  $status) {
+            $status_name = $status->status;
+            $status_id = $status->id;
+            if ($status_name == "For Sale") {
+                $listing_sale = Property::where('status_id', $status_id)->count();
+            }
+            if ($status_name == "For Rent") {
+                $listing_rent = Property::where('status_id', $status_id)->count();
+            }
+        }
+        $agent_properties = User::orderBy('id', 'desc')->take(3)->get();
+        $agents = User::where('id','!=',1)->get();
+        $agent = count($agents);
+        $posts = Post::orderBy('id', 'desc')->take(3)->get();
+    	return view('frontend.index',compact('properties','types','statuses','recent_properties','listing_houses','listing_apartments','listing_offices','listing_villas','listing_sale','listing_rent','agent','agent_properties','posts'));
+    }
+    public function property($value='')
+    {
+    	$properties = Property::all();
+        $types = Type::all();
+        return view('frontend.property' ,compact('properties',['types' => 'types'] ));
+    }
+    public function propertyDetail($id)
+    {   
+        $feature = Feature::all();
+        $property = Property::find($id);
+        return view('frontend.property_detail',compact('property','feature'));
+    }
+    public function agent($value='')
+    {
+        $agents = User::where('id','!=',1)->get();
+    	return view('frontend.agent', compact('agents'));
+    }
+    public function blog($value='')
+    {
+        $posts = Post::all();
+    	return view('frontend.blog', compact('posts'));
+    }
+    public function blogDetail($id)
+    {
+        $post = Post::find($id);
+        return view('frontend.blog_detail', compact('post'));
+    }
+    public function Comment(Request $request)
+    {
+        Comment::create([
+            'post_id' => $request->post_id,
+            'user_id' => Auth::user()->id,
+            'comment' => $request->comment,
+        ]);
+        return response()->json(['success'=>'Commented Successfully.']);
+    }
+    public function commentReply(Request $request)
+    {
+        CommentReply::create([
+            'comment_id' => $request->comment_id,
+            'user_id' => Auth::user()->id,
+            'comment' => $request->comment,
+        ]);
+        return response()->json(['success'=>'Commented Successfully.']);
+    }
+    public function getComment($id)
+    {
+        $comments = DB::table('comments')
+        ->join('users','users.id','=','comments.user_id')
+        ->select('comments.*','users.*','users.id as u_id','comments.id as c_id')
+        ->where('comments.post_id','=', $id)
+        ->get();
+        $reply_comments = DB::table('comment_replies')
+        ->join('users','users.id','=','comment_replies.user_id')
+        ->join('comments','comments.id','=','comment_replies.comment_id')
+        ->select('comment_replies.*','users.*','comments.id as c_id')
+        ->orderBy('comment_replies.id','desc')
+        ->where('comments.post_id','=', $id)
+        ->get();
+        return response()->json([
+            'comments'=>$comments,
+            'reply_comments'=>$reply_comments,
+        ]);
+    }
+    public function homeSearch(Request $request)
+    {
+        $status = $request->status;
+        $type = $request->type;
+        $bedroom = $request->bedroom;
+        $bathroom = $request->bathroom;
+        $keyword = $request->keyword;
+
+        $search_properties = DB::table('properties')
+        ->join('statuses','statuses.id','=','properties.status_id')
+        ->join('types','types.id','=','properties.type_id')
+        ->join('users','users.id','=','properties.agent_id')
+        ->join('locations','locations.property_id','=','properties.id')
+        ->join('galleries','galleries.property_id','=','properties.id')
+        ->where([
+            ['status_id', '=', $status],
+            ['type_id', '=', $type],
+            ['bedroom', '=', $bedroom],
+            ['bathroom', '=', $bathroom],
+            ['keyword', 'like', "%$keyword%"],
+        ])->orWhere([
+            ['status_id', '=', $status],
+            ['type_id', '=', $type],
+            ['bedroom', '=', $bedroom],
+            ['keyword', 'like', "%$keyword%"],
+        ])->orWhere([
+            ['status_id', '=', $status],
+            ['type_id', '=', $type],
+            ['bathroom', '=', $bathroom],
+            ['keyword', 'like', "%$keyword%"],
+        ])
+        ->select('properties.*','properties.id as p_id','locations.*','galleries.*','statuses.*','types.*','users.*')
+        ->get();
+        return $search_properties;
+    }
+    public function getDate($id)
+    {
+        /*dd($id);*/
+        $property = Property::find($id);
+        return view('frontend.blog_detail', compact('post'));
+    }
+}

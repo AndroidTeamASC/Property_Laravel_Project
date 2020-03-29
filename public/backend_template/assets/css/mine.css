@@ -1,0 +1,90 @@
+/*for doctor image*/
+
+#profileImg{
+	position: relative !important;
+}
+
+
+
+#profileImg .Text {
+ position: absolute;
+ top: 0;
+ height: 100%;
+ width: 100%;
+ opacity: 0;
+ /*transition: .5s ease;*/
+ /*transform: scale(1,1);*/
+ transition: width 2s linear 1s;
+ text-align: center;
+
+ 
+}
+
+#profileImg:hover .Text {
+ opacity: 1;
+ background-color: #fff;
+
+}
+
+#profileImg:hover img{
+	opacity: 0.3;
+
+}
+
+.property-card{
+	/* background: linear-gradient(87deg, #5e72e4 0, #825ee4 100%) !important; */
+	color: #5e72e4;
+	padding: 0.8em 0.5em !important;
+	font-weight: bold;
+	font-size: 20px;
+}
+.call-us{
+	font-size: 22px;
+    text-transform: uppercase;
+}
+.transportation_type{
+	color: #fff;
+    background-color: #111;
+    border-color: #111;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+}
+.current_transportation_type{
+	color: #fff;
+    background-color: #111;
+    border-color: #111;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.edit-image{
+	width: 70px;
+	height: 70px;
+}
+/* .form-control{
+	height: calc(2.60rem)!important;
+} */
+.focused .text-area {
+    border-color: rgba(50, 151, 211, 0.25);
+}
+textarea.text-area {
+    height: auto;
+}
+.text-area{
+	display: block;
+    width: 100%;
+    height: calc(2.75rem + 2px);
+    padding: 0.625rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #8898aa;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #cad1d7;
+    border-radius: 0.375rem;
+    box-shadow: none;
+    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.neighborhood-type{
+ margin-top: 10px
+}
