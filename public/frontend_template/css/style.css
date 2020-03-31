@@ -2951,7 +2951,7 @@ input[type="checkbox"]:checked + label::before {
     position: relative;
     float: left;
     width: 94%;
-    margin: -80px 3% 30px 3%;
+    margin: -50px 3% 30px 3%;
     background: #fff;
     box-shadow: 0 0 35px rgba(0, 0, 0, 0.1);
     z-index: 4;
@@ -3973,12 +3973,13 @@ footer {
 .counters-2 {
     padding: 100px 0 60px;
     text-align: center;
-    background: url(http://placehold.it/1920x363);
+    background: url(http://127.0.0.1:8000/frontend_template/img/counters-3.jpg);
     z-index: 0;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    background-color: black;
 }
 
 .counters-2 .counter-box .icon {

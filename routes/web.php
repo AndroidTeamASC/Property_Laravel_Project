@@ -68,7 +68,7 @@ Route::get('/blog', 'FrontendController@blog')->name('blog');
 Route::get('/blog_detail/{id}', 'FrontendController@blogDetail')->name('blog_detail');
 Route::post('/comment', 'FrontendController@Comment')->name('comment.store');
 Route::post('/comment_reply', 'FrontendController@commentReply')->name('comment_reply.store');
-Route::get('/get_comment/{id}', 'FrontendController@getComment')->name('get_comment');
+Route::get('/get_comment', 'FrontendController@getComment')->name('get_comment');
 Route::post('/home_search', 'FrontendController@homeSearch')->name('home_search');
-Route::get('/get_date/{id}', 'FrontendController@getDate')->name('get_date');
+Route::post('/blog_search', 'FrontendController@blogSearch')->name('blog_search');
 

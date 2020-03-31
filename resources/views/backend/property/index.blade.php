@@ -17,7 +17,6 @@
                       <th>Type</th>
                       <th>Bedroom</th>
                       <th>Bathroom</th>
-                      <th>Land Area</th>
                       <th>Building Area</th>
                       <th>Price</th>
                       <th>Action</th>
@@ -32,17 +31,16 @@
                         <td>{{$property->type->type}}</td>
                         <td>{{$property->bedroom}}</td>
                         <td>{{$property->bathroom}}</td>
-                        <td>{{$property->land_area}}</td>
                         <td>{{$property->building_area}}</td>
                         <td>{{$property->price}}</td>
-                        <td><a href="{{route('agent.property.edit',$property->id)}}"><i class="btn fas fa-edit text-white"  style="background-color: #5e72e4"></i></a>
-                      
-
+                        <td>
+                          <a href="{{route('agent.property.show',$property->id)}}"><i class="btn-sm ni ni-archive-2 text-white bg-success"></i></a>
+                          <a href="{{route('agent.property.edit',$property->id)}}"><i class="btn-sm fas fa-edit text-white"  style="background-color: #5e72e4"></i></a>
                           <form method="post" action="{{route('agent.property.destroy',$property->id)}}" class="d-inline-block">
 
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn" style="background-color: #5e72e4"><i class="fas fa-trash text-white" ></i></button>
+                            <button type="submit" class="btn btn-danger btn-sm d-inline-block "><i class="ni ni-fat-delete" ></i></button>
                           </form>
                         </td>
 

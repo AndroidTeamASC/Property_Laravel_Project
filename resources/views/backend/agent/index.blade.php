@@ -223,7 +223,7 @@
                         <td>${v.address}</td>
                         <td><img src="{{asset('${v.image}')}}" class="img-fluid" style="width:50px;height:50px" alt="No Profile Picture"></td>
                         <td>
-                          <button class="btn btn-primary btn-sm d-inline-block editAgent" data-id="${v.id}"><i class="ni ni-settings"></i></button>
+                          <button class="btn btn-primary btn-sm d-inline-block editAgent" data-id="${v.id}"><i class="fas fa-edit text-white"></i></button>
                           <button class="btn btn-danger btn-sm d-inline-block deleteAgent" data-id="${v.id}"> <i class="ni ni-fat-delete"></i></button>    
                         </td>
                       </tr>`;

@@ -152,7 +152,7 @@ unset($__errorArgs, $__bag); ?>
                         <td>${v.tag}</td>
                         
                         <td>
-                          <button class="btn btn-primary btn-sm d-inline-block editTag " data-id="${v.id}"><i class="ni ni-settings"></i></button>
+                          <button class="btn btn-primary btn-sm d-inline-block editTag " data-id="${v.id}"><i class="fas fa-edit text-white"></i></button>
                           <button class="btn btn-danger btn-sm d-inline-block deleteTag " data-id="${v.id}"> <i class="ni ni-fat-delete"></i></button>    
                         </td>
                       </tr>`;

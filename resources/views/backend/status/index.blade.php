@@ -31,14 +31,14 @@
                     <tr>
                         <td>{{$i++}}</td>
                         <td>{{$status->status}}</td>
-                        <td><a href="{{route('admin.status.edit',$status->id)}}"><i class="btn fas fa-edit text-white"  style="background-color: #5e72e4"></i></a>
+                        <td><a href="{{route('admin.status.edit',$status->id)}}"><i class="btn-sm fas fa-edit text-white"  style="background-color: #5e72e4"></i></a>
                       
 
                           <form method="post" action="{{route('admin.status.destroy',$status->id)}}" class="d-inline-block">
 
                             @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn" style="background-color: #5e72e4"><i class="fas fa-trash text-white" ></i></button>
+                            @method('DELETE')  
+                            <button type="submit" class="btn btn-danger btn-sm d-inline-block" ><i class="ni ni-fat-delete" ></i></button>
                           </form>
                         </td>
 

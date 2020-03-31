@@ -57,7 +57,7 @@
                         <a href="<?php echo e(route('register')); ?>" class="link-btn btn-2 active-bg">Register</a>
                     </div>
                     <div class="clearfix"></div>
-                    <form action="<?php echo e(route('register')); ?>" method="POST">
+                    <form action="<?php echo e(route('register')); ?>" method="POST" enctype="multipart/form-data">
                         <?php echo csrf_field(); ?>
                         <input type="hidden" name="role" value="user">
                         <div class="form-group form-box">

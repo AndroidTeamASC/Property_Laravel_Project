@@ -8,7 +8,7 @@ class Post extends Model
 {
     //
     protected $fillable = [
-        'user_id','title','context','image',
+        'user_id', 'type_id','title','context','image',
     ];
     public function user()
     {
@@ -17,6 +17,10 @@ class Post extends Model
     public function comments()
     {
         return $this->hasMany('App\Comment');
+    }
+    public function type()
+    {
+        return $this->belongsTo('App\Type');
     }
 }
 

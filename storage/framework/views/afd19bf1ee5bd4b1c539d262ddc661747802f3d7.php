@@ -31,14 +31,14 @@
                     <tr>
                         <td><?php echo e($i++); ?></td>
                         <td><?php echo e($status->status); ?></td>
-                        <td><a href="<?php echo e(route('admin.status.edit',$status->id)); ?>"><i class="btn fas fa-edit text-white"  style="background-color: #5e72e4"></i></a>
+                        <td><a href="<?php echo e(route('admin.status.edit',$status->id)); ?>"><i class="btn-sm fas fa-edit text-white"  style="background-color: #5e72e4"></i></a>
                       
 
                           <form method="post" action="<?php echo e(route('admin.status.destroy',$status->id)); ?>" class="d-inline-block">
 
                             <?php echo csrf_field(); ?>
-                            <?php echo method_field('DELETE'); ?>
-                            <button type="submit" class="btn" style="background-color: #5e72e4"><i class="fas fa-trash text-white" ></i></button>
+                            <?php echo method_field('DELETE'); ?>  
+                            <button type="submit" class="btn btn-danger btn-sm d-inline-block" ><i class="ni ni-fat-delete" ></i></button>
                           </form>
                         </td>
 

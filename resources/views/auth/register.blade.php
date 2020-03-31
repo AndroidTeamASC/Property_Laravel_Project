@@ -57,7 +57,7 @@
                         <a href="{{route('register')}}" class="link-btn btn-2 active-bg">Register</a>
                     </div>
                     <div class="clearfix"></div>
-                    <form action="{{route('register')}}" method="POST">
+                    <form action="{{route('register')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="role" value="user">
                         <div class="form-group form-box">

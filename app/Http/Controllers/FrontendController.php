@@ -29,9 +29,7 @@ class FrontendController extends Controller
       }
     public function index($value='')
     {
-        /*$locations = Location::with(['property' => function ($query) {
-            $query->where('property_status', '=', 1);
-        }])->get();*/
+        
         $properties = Property::where('property_status',1)->get();
         $types = Type::all();
         $statuses = Status::all();
@@ -64,11 +62,11 @@ class FrontendController extends Controller
                 $listing_rent = Property::where('status_id', $status_id)->count();
             }
         }
-        $agent_properties = User::orderBy('id', 'desc')->take(3)->get();
+        $our_agents = User::where('id','!=',1)->get();
         $agents = User::where('id','!=',1)->get();
         $agent = count($agents);
         $posts = Post::orderBy('id', 'desc')->take(3)->get();
-    	return view('frontend.index',compact('properties','types','statuses','recent_properties','listing_houses','listing_apartments','listing_offices','listing_villas','listing_sale','listing_rent','agent','agent_properties','posts'));
+    	return view('frontend.index',compact('properties','types','statuses','recent_properties','listing_houses','listing_apartments','listing_offices','listing_villas','listing_sale','listing_rent','agent','our_agents','posts'));
     }
     public function property($value='')
     {
@@ -87,23 +85,37 @@ class FrontendController extends Controller
         $agents = User::where('id','!=',1)->get();
     	return view('frontend.agent', compact('agents'));
     }
-    public function blog($value='')
+    public function blog(Request $request)
     {
-        $posts = Post::all();
-    	return view('frontend.blog', compact('posts'));
+        if ($request->type_id) {
+            $posts = Post::where('type_id',$request->type_id)->get();
+        }else{
+            $posts = Post::all();
+        }
+        $popular_posts = Post::orderBy('id', 'desc')->take(3)->get();
+    	return view('frontend.blog', compact('posts','popular_posts'));
     }
     public function blogDetail($id)
     {
         $post = Post::find($id);
-        return view('frontend.blog_detail', compact('post'));
+        $popular_posts = Post::orderBy('id', 'desc')->take(3)->get();
+        return view('frontend.blog_detail', compact('post','popular_posts'));
     }
     public function Comment(Request $request)
     {
-        Comment::create([
+        if ($request->property_id) {       
+            Comment::create([
+            'property_id' => $request->property_id,
+            'user_id' => Auth::user()->id,
+            'comment' => $request->comment,
+            ]);
+        }elseif ($request->post_id) {
+            Comment::create([
             'post_id' => $request->post_id,
             'user_id' => Auth::user()->id,
             'comment' => $request->comment,
-        ]);
+            ]);
+        }
         return response()->json(['success'=>'Commented Successfully.']);
     }
     public function commentReply(Request $request)
@@ -115,20 +127,37 @@ class FrontendController extends Controller
         ]);
         return response()->json(['success'=>'Commented Successfully.']);
     }
-    public function getComment($id)
+    public function getComment(Request $request)
     {
-        $comments = DB::table('comments')
-        ->join('users','users.id','=','comments.user_id')
-        ->select('comments.*','users.*','users.id as u_id','comments.id as c_id')
-        ->where('comments.post_id','=', $id)
-        ->get();
-        $reply_comments = DB::table('comment_replies')
-        ->join('users','users.id','=','comment_replies.user_id')
-        ->join('comments','comments.id','=','comment_replies.comment_id')
-        ->select('comment_replies.*','users.*','comments.id as c_id')
-        ->orderBy('comment_replies.id','desc')
-        ->where('comments.post_id','=', $id)
-        ->get();
+        if ($request->property_id) {
+            $id = $request->property_id;
+            $comments = DB::table('comments')
+                ->join('users','users.id','=','comments.user_id')
+                ->select('comments.*','users.*','users.id as u_id','comments.id as c_id')
+                ->where('comments.property_id','=', $id)
+                ->get();
+                $reply_comments = DB::table('comment_replies')
+                ->join('users','users.id','=','comment_replies.user_id')
+                ->join('comments','comments.id','=','comment_replies.comment_id')
+                ->select('users.*','comment_replies.*','comments.id as c_id','comment_replies.id as c_reply_id')
+                ->orderBy('comment_replies.id','asc')
+                ->where('comments.property_id','=', $id)
+                ->get();
+        }elseif ($request->post_id) {
+            $id = $request->post_id;
+            $comments = DB::table('comments')
+                ->join('users','users.id','=','comments.user_id')
+                ->select('comments.*','users.*','users.id as u_id','comments.id as c_id')
+                ->where('comments.post_id','=', $id)
+                ->get();
+                $reply_comments = DB::table('comment_replies')
+                ->join('users','users.id','=','comment_replies.user_id')
+                ->join('comments','comments.id','=','comment_replies.comment_id')
+                ->select('users.*','comment_replies.*','comments.id as c_id','comment_replies.id as c_reply_id')
+                ->orderBy('comment_replies.id','asc')
+                ->where('comments.post_id','=', $id)
+                ->get();
+        }
         return response()->json([
             'comments'=>$comments,
             'reply_comments'=>$reply_comments,
@@ -158,21 +187,31 @@ class FrontendController extends Controller
             ['status_id', '=', $status],
             ['type_id', '=', $type],
             ['bedroom', '=', $bedroom],
-            ['keyword', 'like', "%$keyword%"],
         ])->orWhere([
             ['status_id', '=', $status],
             ['type_id', '=', $type],
             ['bathroom', '=', $bathroom],
+        ])->orWhere([
+            ['status_id', '=', $status],
+            ['type_id', '=', $type],
             ['keyword', 'like', "%$keyword%"],
-        ])
-        ->select('properties.*','properties.id as p_id','locations.*','galleries.*','statuses.*','types.*','users.*')
+        ])->select('properties.*','properties.id as p_id','locations.*','galleries.*','statuses.*','types.*','users.*')
         ->get();
         return $search_properties;
     }
-    public function getDate($id)
+    public function blogSearch(Request $request)
     {
-        /*dd($id);*/
-        $property = Property::find($id);
-        return view('frontend.blog_detail', compact('post'));
+        $keyword = $request->keyword;
+        $search_blogs = DB::table('posts')
+        ->join('types','types.id','=','posts.type_id')
+        ->join('users','users.id','=','posts.user_id')
+        ->where([
+            ['context', 'like', "%$keyword%"],
+        ])->orWhere([
+            ['title', 'like', "%$keyword%"],
+        ])
+        ->select('posts.*','posts.id as p_id','posts.image as p_image','types.*','users.*')
+        ->get();
+        return $search_blogs;
     }
 }

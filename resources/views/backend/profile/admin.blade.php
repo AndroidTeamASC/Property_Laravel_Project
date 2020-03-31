@@ -136,7 +136,7 @@
                     </div>
                   </div>
                 </div>
-                <input type="submit" id="saveButton" class="btn btn-primary mt-2 float-right" value="submit">
+                <input type="submit" id="saveButton" class="btn btn-primary mt-2 float-right" value="Update">
               </form>
             </div>
           </div>

@@ -43,6 +43,16 @@
   	        <div class="container-fluid">
   	          <div class="col-12 my-2">
                 <div class="form-group row">
+                  <label for="title" class="col-md-4 col-form-label text-md-right">Category</label>
+                  <div class="col-md-6">
+                    <select name="type"  id="type" class="form-control">
+                          
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 my-2">
+                <div class="form-group row">
                   <label for="title" class="col-md-4 col-form-label text-md-right">Title</label>
                   <div class="col-md-6">
                     <input type="text" class="form-control <?php $__errorArgs = ['title'];
@@ -207,13 +217,15 @@ unset($__errorArgs, $__bag); ?>" id="image" name="image" autofocus>
             var html='';
             $.each(data,function(i,v){
               console.log(data);
+              var context = v.context;
+              var new_context = context.substring(0, 50);
               html+=`<tr>
                         <td>${j++}</td>
                         <td><img src="<?php echo e(asset('${v.image}')); ?>" class="img-fluid" style="height: 100px; width:100px"/></td>
                         <td>${v.title}</td>
-                        <td>${v.context}</td>
+                        <td>${new_context} .....</td>
                         <td>
-                          <button class="btn btn-primary btn-sm d-inline-block editPost " data-id="${v.id}"><i class="ni ni-settings"></i></button>
+                          <button class="btn btn-primary btn-sm d-inline-block editPost " data-id="${v.id}"><i class="fas fa-edit text-white"></i></button>
                           <button class="btn btn-danger btn-sm d-inline-block deletePost" data-id="${v.id}"> <i class="ni ni-fat-delete"></i></button>    
                         </td>
                       </tr>`;
@@ -226,8 +238,31 @@ unset($__errorArgs, $__bag); ?>" id="image" name="image" autofocus>
       });  
     }
 
+    function getType(){
+      var url="<?php echo e(route('admin.get_type')); ?>";
+        $.ajax({
+          type:'get',
+          url: url,
+          processData: false,
+          contentType: false,
+          success: (data) => {
+            var j=1;
+            var html='';
+            $.each(data,function(i,v){
+              console.log(data);
+              html+=`<option value="${v.id}">${v.type}</option>`;
+            });
+            $('#type').html(html);
+          },
+          error: function(error){
+            console.log(error)
+          }
+      });  
+    }
+
     $('#createNewPost').click(function () {
         clearInterval(myStopTimer)
+        getType()
         $('#saveBtn').text("Save");
         $('#transportation_id').val('');
         document.getElementById("postForm").reset()

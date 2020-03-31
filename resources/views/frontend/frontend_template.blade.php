@@ -33,6 +33,8 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend_template/css/ie10-viewport-bug-workaround.css')}}">
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend_template/css/custom.css')}}">
+
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
     
@@ -208,39 +210,19 @@
                         <div class="s-border"></div>
                         <div class="m-border"></div>
                         <div class="popular-posts">
+                            @foreach($popular_posts as $popular_post)
                             <div class="media">
                                 <div class="media-left">
-                                    <img class="media-object" src="http://placehold.it/60x60" alt="sub-properties">
+                                    <img class="media-object" src="{{asset($popular_post->image)}}" alt="sub-properties">
                                 </div>
                                 <div class="media-body align-self-center">
                                     <h3 class="media-heading">
-                                        <a href="#">Real Eatate Expo 2019</a>
+                                        <a href="blog_detail/{{$popular_post->id}}">{{$popular_post->title}}</a>
                                     </h3>
-                                    <p>Feb 27, 2019 | $1045,000</p>
+                                    <p>{{$popular_post->created_at}} | {{$popular_post->type->type}}</p>
                                 </div>
                             </div>
-                            <div class="media">
-                                <div class="media-left">
-                                    <img class="media-object" src="http://placehold.it/60x60" alt="sub-properties">
-                                </div>
-                                <div class="media-body align-self-center">
-                                    <h3 class="media-heading">
-                                        <a href="#">Big Head House</a>
-                                    </h3>
-                                    <p>Apr 15, 2019 | $2041,000</p>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-left">
-                                    <img class="media-object" src="http://placehold.it/60x60" alt="sub-properties">
-                                </div>
-                                <div class="media-body align-self-center">
-                                    <h3 class="media-heading">
-                                        <a href="#">Villa in Coral Gables</a>
-                                    </h3>
-                                    <p>Apr 21, 2019 | $545,000</p>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -305,6 +287,8 @@
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{{ asset('frontend_template/js/ie10-viewport-bug-workaround.js')}}"></script>
+    <script src="{{ asset('frontend_template/js/jquery.timeago.js')}}" type="text/javascript"></script>
     @yield('script')
+    @yield('blog_detail_script')
 </body>
 </html>

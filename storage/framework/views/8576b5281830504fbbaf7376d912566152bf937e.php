@@ -508,94 +508,26 @@
                             
                         </div>
                     </div>
-                    <h3 class="heading-2">Comments Section</h3>
+                    <?php if(Auth::check()): ?>
+                    <h3 class="heading-2">Comments Here</h3>
+                    <div class="row clearfix">
+                        <div class="alert alert-primary alertMessage d-none float-left col-md-4 col-sm-2 offset-4">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <textarea type="text" class="text-area form-control" id="comment" name="comment" autofocus rows="5" data-id="<?php echo e($property->id); ?>">
+                            </textarea>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                    <h3 class="heading-2 mt-5">Comments Section</h3>
                     <!-- Comments start -->
-                    <ul class="comments">
-                        <li>
-                            <div class="comment">
-                                <div class="comment-author">
-                                    <a href="#">
-                                        <img src="http://placehold.it/60x60" alt="comments-user">
-                                    </a>
-                                </div>
-                                <div class="comment-content">
-                                    <div class="comment-meta">
-                                        <h3>
-                                            Maikel Alisa
-                                        </h3>
-                                        <div class="comment-meta">
-                                            6:42 PM 6/28/2019<a href="#">Reply</a>
-                                        </div>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus tincidunt aliquam. Aliquam gravida massa at sem vulputate interdum et vel eros. Maecenas eros enim.</p>
-                                </div>
-                            </div>
-                            <ul>
-                                <li>
-                                    <div class="comment">
-                                        <div class="comment-author">
-                                            <a href="#">
-                                                <img src="http://placehold.it/60x60" alt="comments-user">
-                                            </a>
-                                        </div>
-                                        <div class="comment-content">
-                                            <div class="comment-meta">
-                                                <h3>
-                                                    Karen Paran
-                                                </h3>
-                                                <div class="comment-meta">
-                                                    6:42 PM 6/28/2019<a href="#">Reply</a>
-                                                </div>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus tincidunt aliquam. Aliquam gravida massa at sem vulputate interdum et vel eros.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <div class="comment">
-                                <div class="comment-author">
-                                    <a href="#">
-                                        <img src="http://placehold.it/60x60" alt="comments-user">
-                                    </a>
-                                </div>
-                                <div class="comment-content">
-                                    <div class="comment-meta">
-                                        <h3>
-                                            Anne Brady
-                                        </h3>
-                                        <div class="comment-meta">
-                                            6:42 PM 6/28/2019<a href="#">Reply</a>
-                                        </div>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus tincidunt aliquam. Aliquam gravida massa at sem vulputate interdum et vel eros. Maecenas eros enim.</p>
-                                </div>
-                            </div>
-                            <ul>
-                                <li>
-                                    <div class="comment mb-0 mp-heden">
-                                        <div class="comment-author">
-                                            <a href="#">
-                                                <img src="http://placehold.it/60x60" alt="comments-user">
-                                            </a>
-                                        </div>
-                                        <div class="comment-content mpb-0 mrg-bdr">
-                                            <div class="comment-meta">
-                                                <h3>
-                                                    Jane Doe
-                                                </h3>
-                                                <div class="comment-meta">
-                                                    6:42 PM 6/28/2019<a href="#">Reply</a>
-                                                </div>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus tincidunt aliquam. Aliquam gravida massa at sem vulputate interdum et vel eros.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
+                    <ul class="comments" id="comments">
+                        
                     </ul>
+                    <br>
                     <!-- Contact 1 start -->
                     <div class="contact-1 mtb-50">
                         <h3 class="heading">Contact Form</h3>
@@ -643,6 +575,15 @@
 <script type="text/javascript">
   
   $(document).ready(function () {
+    getComment()
+    var myStopTimer = setInterval(Timer,3000)
+
+    $.ajaxSetup({
+      headers:{
+        'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+      }
+    })
+
     var property_id = $('#property_id').val()
      getMap();
     function getMap(){
@@ -758,6 +699,127 @@
           }
           });
     }
+
+    function Timer() {
+     $('.alertMessage').addClass('d-none');
+    }
+
+    function getComment(){
+        var property_id = $('#comment').data('id');
+        var url="<?php echo e(route('get_comment')); ?>";
+        $.ajax({
+          type:'get',
+          url: url,
+          data: {'property_id':property_id},
+          success: (data) => {
+            var j=1;
+            var html='';
+            console.log(data);
+            $.each(data.comments,function(i,v){
+              html+=`<li>
+                        <div class="comment">
+                            <div class="comment-author">
+                                <a href="#">
+                                    <img src="<?php echo e(asset('${v.image}')); ?>" alt="comments-user">
+                                </a>
+                            </div>
+                            <div class="comment-content" id="parent${v.c_id}">
+                                <div class="comment-meta" id="meta2">
+                                    <h3>
+                                        ${v.name}
+                                    </h3>
+                                    <div class="comment-meta" id="meta">
+                                        ${v.created_at}<a href="javascript:void(0)" class="comment_reply" data-id="${v.c_id}">Reply</a>
+                                    </div>
+                                </div>
+                                <p>${v.comment}</p>
+                            </div>
+                        </div>`;
+
+                        $.each(data.reply_comments,function (j,k) {
+                            console.log(j,k)
+                            if (v.c_id == k.comment_id) {
+                                html+= ` <ul>
+                            <li>
+                                <div class="comment">
+                                    <div class="comment-author">
+                                        <a href="#">
+                                            <img src="<?php echo e(asset('${k.image}')); ?>" alt="comments-user">
+                                        </a>
+                                    </div>
+                                    <div class="comment-content">
+                                        <div class="comment-meta">
+                                            <h3>
+                                                ${k.name}
+                                            </h3>
+                                            <div class="comment-meta">
+                                                ${k.created_at}
+                                            </div>
+                                        </div>
+                                        <p>${k.comment}</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>`
+                            }
+                        })
+                        
+                    html+= `</li>`;
+            });
+            $('#comments').html(html);
+          },
+          error: function(error){
+            console.log(error)
+          }
+      });  
+    } 
+    $('#comment').change(function () {
+        var comment = $(this).val();
+        var property_id = $('#comment').data('id');
+        $.ajax({
+          data: {'comment':comment, 'property_id':property_id},
+          url: "<?php echo e(route('comment.store')); ?>",
+          type: "POST",
+          success: function (data) {
+              console.log(data)
+              $('.alertMessage').removeClass('d-none');
+              $('.alertMessage').text(data.success);
+              getComment();
+              setInterval(Timer, 3000);
+              $('#comment').val('');
+          },
+          error: function (error) {
+          }
+      })
+    })
+     $('#comments').on('click','.comment_reply',function (argument) {
+        var comment_id = $(this).data('id')
+        var html = `<div class="row clearfix">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <textarea type="text" class="text-area form-control" id="comment${comment_id}" name="comment" autofocus rows="3" data-id="<?php echo e($property->id); ?>">
+                            </textarea>
+                        </div>
+                    </div>`
+        $("#parent"+comment_id).append(html)
+        $('#comments').on('change','#comment'+comment_id,function (argument) {
+        var comment = $(this).val();
+            $.ajax({
+              data: {'comment':comment, 'comment_id':comment_id},
+              url: "<?php echo e(route('comment_reply.store')); ?>",
+              type: "POST",
+              success: function (data) {
+                  console.log(data)
+                  $('.alertMessage').removeClass('d-none');
+                  $('.alertMessage').text(data.success);
+                  getComment();
+                  setInterval(Timer, 3000);
+                  $("#parent"+comment_id).hide()
+              },
+              error: function (error) {
+              }
+          })
+        })
+    }) 
   })
 </script>
 

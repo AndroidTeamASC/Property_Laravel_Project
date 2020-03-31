@@ -258,12 +258,12 @@
           </li>
           <li class="nav-item">
             <a class="nav-link " href="{{route('admin.agent.index')}}">
-              <i class="ni ni-delivery-fast text-blue"></i> Agent
+              <i class="ni ni-circle-08 text-blue"></i> Agent
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link " href="{{route('admin.post.index')}}">
-              <i class="ni ni-delivery-fast text-blue"></i> Blog Post
+              <i class="ni ni-archive-2 text-blue"></i> Blog Post
             </a>
           </li>
            @endrole

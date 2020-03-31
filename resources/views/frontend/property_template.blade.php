@@ -2,6 +2,7 @@
 <html lang="zxx">
 <head>
     <title>Housy - Real Estate HTML5 Template</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
 
@@ -334,39 +335,19 @@
                         <h3 class="sidebar-title">Popular Posts</h3>
                         <div class="s-border"></div>
                         <div class="m-border"></div>
-                        <div class="media">
-                            <div class="media-left">
-                                <img class="media-object" src="http://placehold.it/60x60" alt="sub-properties">
+                        @foreach($popular_posts as $popular_post)
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="media-object" src="{{asset($popular_post->image)}}" alt="sub-properties">
+                                </div>
+                                <div class="media-body align-self-center">
+                                    <h3 class="media-heading">
+                                        <a href="blog_detail/{{$popular_post->id}}">{{$popular_post->title}}</a>
+                                    </h3>
+                                    <p>{{$popular_post->created_at}} | {{$popular_post->type->type}}</p>
+                                </div>
                             </div>
-                            <div class="media-body align-self-center">
-                                <h3 class="media-heading">
-                                    <a href="#">Modern Design Building</a>
-                                </h3>
-                                <p>Apr 15, 2019 | $2041,000</p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <img class="media-object" src="http://placehold.it/60x60" alt="sub-properties">
-                            </div>
-                            <div class="media-body align-self-center">
-                                <h3 class="media-heading">
-                                    <a href="#">Real Eatate Expo 2018</a>
-                                </h3>
-                                <p>Feb 27, 2019 | $1045,000</p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <img class="media-object" src="http://placehold.it/60x60" alt="sub-properties">
-                            </div>
-                            <div class="media-body align-self-center">
-                                <h3 class="media-heading">
-                                    <a href="#">Villa in Coral Gables</a>
-                                </h3>
-                                <p>Apr 21, 2019 | $545,000</p>
-                            </div>
-                        </div>
+                            @endforeach
                     </div>
                     <!-- Posts by category start -->
                     <div class="posts-by-category widget">
@@ -374,12 +355,15 @@
                         <div class="s-border"></div>
                         <div class="m-border"></div>
                         <ul class="list-unstyled list-cat">
-                            <li><a href="#">Single Family <span>(45)</span></a></li>
-                            <li><a href="#">Apartment <span>(21)</span> </a></li>
-                            <li><a href="#">Condo <span>(23)</span></a></li>
-                            <li><a href="#">Multi Family <span>(19)</span></a></li>
-                            <li><a href="#">Villa <span>(19)</span></a> </li>
-                            <li><a href="#">Other <span>(22) </span></a></li>
+                            @foreach($types as $type)
+                                <li><a href="blog?type_id={{$type->id}}">{{$type->type}}<span>
+                                    @if($type->type =="House"){{$houses}}
+                                    @elseif($type->type =="Apartment"){{$apartments}}
+                                    @elseif($type->type =="Office"){{$offices}}
+                                    @elseif($type->type =="Villa"){{$villas}}
+                                    @endif
+                                </span></a></li>
+                                @endforeach
                         </ul>
                     </div>
                     <!-- Helping Center start -->
@@ -507,39 +491,19 @@
                         <div class="s-border"></div>
                         <div class="m-border"></div>
                         <div class="popular-posts">
+                            @foreach($popular_posts as $popular_post)
                             <div class="media">
                                 <div class="media-left">
-                                    <img class="media-object" src="http://placehold.it/60x60" alt="sub-properties">
+                                    <img class="media-object" src="{{asset($popular_post->image)}}" alt="sub-properties">
                                 </div>
                                 <div class="media-body align-self-center">
                                     <h3 class="media-heading">
-                                        <a href="#">Real Eatate Expo 2019</a>
+                                        <a href="blog_detail/{{$popular_post->id}}">{{$popular_post->title}}</a>
                                     </h3>
-                                    <p>Feb 27, 2019 | $1045,000</p>
+                                    <p>{{$popular_post->created_at}} | {{$popular_post->type->type}}</p>
                                 </div>
                             </div>
-                            <div class="media">
-                                <div class="media-left">
-                                    <img class="media-object" src="http://placehold.it/60x60" alt="sub-properties">
-                                </div>
-                                <div class="media-body align-self-center">
-                                    <h3 class="media-heading">
-                                        <a href="#">Big Head House</a>
-                                    </h3>
-                                    <p>Apr 15, 2019 | $2041,000</p>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-left">
-                                    <img class="media-object" src="http://placehold.it/60x60" alt="sub-properties">
-                                </div>
-                                <div class="media-body align-self-center">
-                                    <h3 class="media-heading">
-                                        <a href="#">Villa in Coral Gables</a>
-                                    </h3>
-                                    <p>Apr 21, 2019 | $545,000</p>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
