@@ -75,5 +75,7 @@ Route::get('/get_date/{id}', 'FrontendController@getDate')->name('get_date');
 Route::get('/types/{id}','FrontendController@types')->name('types');
 Route::post('/property_search', 'FrontendController@propertySearch')->name('property_search');
 Route::get('get_maps', 'FrontendController@getMaps')->name('get_maps');
+
 Route::post('/blog_search', 'FrontendController@blogSearch')->name('blog_search');
+
 
