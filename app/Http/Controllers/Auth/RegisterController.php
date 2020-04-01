@@ -84,7 +84,7 @@ class RegisterController extends Controller
             'image' => $path,
         ]);
 
-        $user->assignRole('user');
+        $user->assignRole('admin');
         return $user;
     }
     public function authenticated($request,$user){

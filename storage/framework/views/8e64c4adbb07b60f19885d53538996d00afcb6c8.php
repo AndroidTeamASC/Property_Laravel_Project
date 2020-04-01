@@ -1,7 +1,6 @@
-@extends('frontend/property_template')
-@section('property')
+<?php $__env->startSection('property'); ?>
 
-    <input type="hidden" name="property_id" id="property_id" value="{{$property->id}}">
+    <input type="hidden" name="property_id" id="property_id" value="<?php echo e($property->id); ?>">
     <div class="col-lg-8 col-md-12 col-xs-12">
                 <div class="properties-details-section">
                     <div id="propertiesDetailsSlider" class="carousel properties-details-sliders slide mb-40">
@@ -10,11 +9,11 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="pull-left">
-                                        <h3>{{$property->title}}</h3>
-                                        <p><i class="fa fa-map-marker"></i>{{$property->location->address }}</p>
+                                        <h3><?php echo e($property->title); ?></h3>
+                                        <p><i class="fa fa-map-marker"></i><?php echo e($property->location->address); ?></p>
                                     </div>
                                     <div class="pull-right">
-                                        <h3><span class="text-right">{{$property->price}}</span></h3>
+                                        <h3><span class="text-right"><?php echo e($property->price); ?></span></h3>
                                         <p><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></p>
                                     </div>
                                 </div>
@@ -22,43 +21,43 @@
                         </div>
                         <!-- main slider carousel items -->
                         <div class="carousel-inner">
-                            @foreach($property->galleries as $gallery)
-                                    @php
+                            <?php $__currentLoopData = $property->galleries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gallery): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php
                                       $galleries = json_decode($gallery->gallery_image);
                                       $key = 0;
-                                    @endphp
-                                  @endforeach
-                                  @if($galleries)
+                                    ?>
+                                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                  <?php if($galleries): ?>
                                   
-                            @foreach($galleries as $slider)
-                            <div class=" item carousel-item {{$key == 0 ? 'active' : '' }}" data-slide-number="{{$key }}">
-                                   <img src="{{asset($slider)}} " class="d-block w-100"  alt= "slider-properties"> 
+                            <?php $__currentLoopData = $galleries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $slider): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <div class=" item carousel-item <?php echo e($key == 0 ? 'active' : ''); ?>" data-slide-number="<?php echo e($key); ?>">
+                                   <img src="<?php echo e(asset($slider)); ?> " class="d-block w-100"  alt= "slider-properties"> 
                                   
                             </div>
-                              @php $key++; @endphp
-                                  @endforeach
-                                  @endif
+                              <?php $key++; ?>
+                                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                  <?php endif; ?>
                             
                         </div>
                         <!-- main slider carousel nav controls -->
                         <ul class="carousel-indicators smail-properties list-inline nav nav-justified">
-                              @foreach($property->galleries as $gallery)
-                                    @php
+                              <?php $__currentLoopData = $property->galleries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gallery): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php
                                       $galleries = json_decode($gallery->gallery_image);
                                       $key = 0;
-                                    @endphp
-                              @endforeach
-                              @if($galleries)
+                                    ?>
+                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                              <?php if($galleries): ?>
                                   
-                                @foreach($galleries as $slider)
-                                  <li class="list-inline-item {{$key == 0 ? 'active' : '' }}">
-                                    <a id="carousel-selector-0" class="selected" data-slide-to="{{$key}}" data-target="#propertiesDetailsSlider">
-                                         <img src="{{asset($slider)}} " class="img-fluid"  alt= "properties-small"> 
+                                <?php $__currentLoopData = $galleries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $slider): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                  <li class="list-inline-item <?php echo e($key == 0 ? 'active' : ''); ?>">
+                                    <a id="carousel-selector-0" class="selected" data-slide-to="<?php echo e($key); ?>" data-target="#propertiesDetailsSlider">
+                                         <img src="<?php echo e(asset($slider)); ?> " class="img-fluid"  alt= "properties-small"> 
                                     </a>
                                   </li>
-                                  @php $key++; @endphp
-                                @endforeach
-                              @endif
+                                  <?php $key++; ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                              <?php endif; ?>
                             
                         </ul>
                         <!-- main slider carousel items -->
@@ -193,7 +192,7 @@
                                     <h3 class="heading-2">
                                         Description
                                     </h3>
-                                    <p>{{$property->description}}</p>
+                                    <p><?php echo e($property->description); ?></p>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="two-tab">
@@ -214,16 +213,16 @@
                                         </tr>
                                         </tbody>
                                     </table>
-                                       @if($property->floors != "[]")
-                                    @foreach($property->floors as $floor)
-                                        @php
+                                       <?php if($property->floors != "[]"): ?>
+                                    <?php $__currentLoopData = $property->floors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $floor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php
                                           $floors = json_decode($floor->floor_image);
                                           
-                                        @endphp
-                                    @endforeach
+                                        ?>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     
-                                    <img src="{{asset($floors[0])}}" alt="floor-plans" class="img-fluid">
-                                    @endif
+                                    <img src="<?php echo e(asset($floors[0])); ?>" alt="floor-plans" class="img-fluid">
+                                    <?php endif; ?>
                                    
                                 </div>
                             </div>
@@ -237,16 +236,20 @@
                                                     <strong>Property Id:</strong>215
                                                 </li>
                                                 <li>
-                                                    <strong>Price:</strong>{{$property->price}}
+                                                    <strong>Price:</strong><?php echo e($property->price); ?>
+
                                                 </li>
                                                 <li>
-                                                    <strong>Property Type:</strong>{{$property->type->type}}
+                                                    <strong>Property Type:</strong><?php echo e($property->type->type); ?>
+
                                                 </li>
                                                 <li>
-                                                    <strong>Bathrooms:</strong>{{$property->bathroom}}
+                                                    <strong>Bathrooms:</strong><?php echo e($property->bathroom); ?>
+
                                                 </li>
                                                 <li>
-                                                    <strong>Bedrooms:</strong>{{$property->bedroom}}
+                                                    <strong>Bedrooms:</strong><?php echo e($property->bedroom); ?>
+
                                                 </li>
                                             </ul>
                                         </div>
@@ -256,23 +259,27 @@
                                                     <strong>Property Lot Size:</strong>800 ft2
                                                 </li>
                                                 <li>
-                                                    <strong>Land area:</strong>{{$property->land_area}}
+                                                    <strong>Land area:</strong><?php echo e($property->land_area); ?>
+
                                                 </li>
                                                 <li>
-                                                    <strong>Year Built:</strong>{{$property->build_year}}
+                                                    <strong>Year Built:</strong><?php echo e($property->build_year); ?>
+
                                                 </li>
                                                 <li>
                                                     <strong>Available From:</strong>2018
                                                 </li>
                                                 <li>
-                                                    <strong>Garages:</strong>{{$property->garage}}
+                                                    <strong>Garages:</strong><?php echo e($property->garage); ?>
+
                                                 </li>
                                             </ul>
                                         </div>
                                         <div class="col-md-4 col-sm-6">
                                             <ul>
                                                 <li>
-                                                    <strong>Property Status:</strong>{{$property->property_status}}
+                                                    <strong>Property Status:</strong><?php echo e($property->property_status); ?>
+
                                                 </li>
                                                 <li>
                                                     <strong>City:</strong>Usa
@@ -297,7 +304,8 @@
                                         Property Video
                                     </h3>
                                     
-                                      {!! $property->embed_code !!}
+                                      <?php echo $property->embed_code; ?>
+
                                      
                                 </div>
                             </div>
@@ -493,23 +501,23 @@
                             Features
                         </h3>
                         <div class="row">
-                             @if($property->feature_id != "null")
-                              @php
+                             <?php if($property->feature_id != "null"): ?>
+                              <?php
                                 $custom_features = json_decode($property->feature_id)
-                              @endphp
-                              @foreach($feature as $feature)
+                              ?>
+                              <?php $__currentLoopData = $feature; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $feature): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                   <ul class="amenities">
                                     
-                                    @if(in_array($feature->id, $custom_features))
+                                    <?php if(in_array($feature->id, $custom_features)): ?>
                                     <li>
-                                        @php echo $feature->feature; @endphp
+                                        <?php echo $feature->feature; ?>
                                     </li>
-                                    @endif
+                                    <?php endif; ?>
                                   </ul>
                                 </div>
-                              @endforeach 
-                        @endif 
+                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
+                        <?php endif; ?> 
                             
                         </div>
                     </div>
@@ -642,9 +650,9 @@
                 </div>
     </div>
  
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('script')
+<?php $__env->startSection('script'); ?>
 
 <script type="text/javascript">
     $(document).ready(function(){
@@ -653,7 +661,7 @@
     getMap();
     function getMap(){
        
-    var url="{{route('get_maps')}}";
+    var url="<?php echo e(route('get_maps')); ?>";
         $.ajax({
           type:'GET',
           url: url,
@@ -752,5 +760,7 @@
     })
 </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
+
+<?php echo $__env->make('frontend/property_template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Property_Laravel_Project\resources\views/frontend/property_detail.blade.php ENDPATH**/ ?>

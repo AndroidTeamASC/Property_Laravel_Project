@@ -21,17 +21,7 @@ $(function () {
             });
         }
 
-        if($("#map").length > 0) {
-            var latitude = 51.541216;
-            var longitude = -0.095678;
-            var layout = $('#map').attr('data-map');
-            var providerName = 'Hydda.Full';
-            generateMap(latitude, longitude, providerName, layout);
-        }
-
-        if($("#contactMap").length > 0) {
-            LoadMap('contactMap');
-        }
+       
     });
 
 

@@ -6,31 +6,31 @@
     <meta charset="utf-8">
 
     <!-- External CSS libraries -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend_template/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend_template/css/animate.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend_template/css/bootstrap-submenu.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend_template/css/bootstrap-select.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('frontend_template/css/leaflet.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('frontend_template/css/map.css" type="text/css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend_template/fonts/font-awesome/css/font-awesome.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend_template/fonts/flaticon/font/flaticon.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend_template/fonts/linearicons/style.css')}}">
-    <link rel="stylesheet" type="text/css"  href="{{ asset('frontend_template/css/jquery.mCustomScrollbar.css')}}">
-    <link rel="stylesheet" type="text/css"  href="{{ asset('frontend_template/css/dropzone.css')}}">
-    <link rel="stylesheet" type="text/css"  href="{{ asset('frontend_template/css/slick.css')}}">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('frontend_template/css/bootstrap.min.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('frontend_template/css/animate.min.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('frontend_template/css/bootstrap-submenu.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('frontend_template/css/bootstrap-select.min.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('frontend_template/css/leaflet.css')); ?>" type="text/css">
+    <link rel="stylesheet" href="<?php echo e(asset('frontend_template/css/map.css" type="text/css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('frontend_template/fonts/font-awesome/css/font-awesome.min.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('frontend_template/fonts/flaticon/font/flaticon.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('frontend_template/fonts/linearicons/style.css')); ?>">
+    <link rel="stylesheet" type="text/css"  href="<?php echo e(asset('frontend_template/css/jquery.mCustomScrollbar.css')); ?>">
+    <link rel="stylesheet" type="text/css"  href="<?php echo e(asset('frontend_template/css/dropzone.css')); ?>">
+    <link rel="stylesheet" type="text/css"  href="<?php echo e(asset('frontend_template/css/slick.css')); ?>">
 
     <!-- Custom stylesheet -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend_template/css/style.css')}}">
-    <link rel="stylesheet" type="text/css" id="style_sheet" href="{{ asset('frontend_template/css/skins/default.css')}}">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('frontend_template/css/style.css')); ?>">
+    <link rel="stylesheet" type="text/css" id="style_sheet" href="<?php echo e(asset('frontend_template/css/skins/default.css')); ?>">
 
     <!-- Favicon icon -->
-    <link rel="shortcut icon" href="{{ asset('frontend_template/img/favicon.ico')}}" type="image/x-icon" >
+    <link rel="shortcut icon" href="<?php echo e(asset('frontend_template/img/favicon.ico')); ?>" type="image/x-icon" >
 
     <!-- Google fonts -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700%7CRoboto:300,400,500,700&display=swap">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend_template/css/ie10-viewport-bug-workaround.css')}}">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('frontend_template/css/ie10-viewport-bug-workaround.css')); ?>">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -63,8 +63,8 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand logos" href="index.html">
-                    <img src="{{asset('frontend_template/img/logo.png')}}" alt="logo" class="logo-none-2">
-                    <img src="{{asset('frontend_template/img/logo.png')}}" alt="logo" class="logo-none">
+                    <img src="<?php echo e(asset('frontend_template/img/logo.png')); ?>" alt="logo" class="logo-none-2">
+                    <img src="<?php echo e(asset('frontend_template/img/logo.png')); ?>" alt="logo" class="logo-none">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -73,57 +73,59 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item  active">
-                            <a class="nav-link" href="{{route('main')}}" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link" href="<?php echo e(route('main')); ?>" aria-haspopup="true" aria-expanded="false">
                                 Home
                             </a>
                             
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('property')}}" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link" href="<?php echo e(route('property')); ?>" aria-haspopup="true" aria-expanded="false">
                                 Properties
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('agent')}}" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link" href="<?php echo e(route('agent')); ?>" aria-haspopup="true" aria-expanded="false">
                                 Agents
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('blog')}}" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link" href="<?php echo e(route('blog')); ?>" aria-haspopup="true" aria-expanded="false">
                                 Blog
                             </a>
                         </li>
-                        @guest
+                        <?php if(auth()->guard()->guest()): ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('login')}}" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link" href="<?php echo e(route('login')); ?>" aria-haspopup="true" aria-expanded="false">
                                     Login
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('register')}}" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link" href="<?php echo e(route('register')); ?>" aria-haspopup="true" aria-expanded="false">
                                     Register
                                 </a>
                             </li>
-                        @else
+                        <?php else: ?>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ Auth::user()->name }}
+                                    <?php echo e(Auth::user()->name); ?>
+
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                        <a class="dropdown-item" href="<?php echo e(route('logout')); ?>"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        <?php echo e(__('Logout')); ?>
+
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
+                                        <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
+                                            <?php echo csrf_field(); ?>
                                         </form>
                                     </li>
                                 </ul>
                             </li>
-                        @endguest
+                        <?php endif; ?>
                     </ul>
                 </div>
             </nav>
@@ -134,7 +136,7 @@
         <div id="bannerCarousole" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="{{asset('frontend_template/img/banner2.jpg')}}" alt="banner" style="height: 400px;">
+                    <img class="d-block w-100" src="<?php echo e(asset('frontend_template/img/banner2.jpg')); ?>" alt="banner" style="height: 400px;">
                     <div class="carousel-caption banner-slider-inner d-flex h-100 text-center">
                         <div class="sub-banner">
                                     <div class="container">
@@ -156,7 +158,7 @@
     <div class="properties-section-body content-area" >
         <div class="container">
             <div class="row">
-               @yield('property')
+               <?php echo $__env->yieldContent('property'); ?>
                 <div class="col-lg-4 col-md-12">
                     <div class="sidebar-right">
                         <!-- Advanced search start -->
@@ -164,22 +166,22 @@
                             <h3 class="sidebar-title">    Search Property </h3>
                             <div class="s-border"></div>
                             <div class="m-border"></div>
-                            <form method="post" action="{{route('property_search')}}">
-                                @csrf
+                            <form method="post" action="<?php echo e(route('property_search')); ?>">
+                                <?php echo csrf_field(); ?>
                                 <div class="form-group">
                                     <select class="selectpicker search-fields" name="status" id="status">
                                         <option>Property Status</option>
-                                        @foreach($statuses as $status )
-                                        <option value="{{$status->id}}" >{{$status->status}}</option>
-                                        @endforeach
+                                        <?php $__currentLoopData = $statuses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $status): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($status->id); ?>" ><?php echo e($status->status); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <select class="selectpicker search-fields" name="type" id="type">
                                         <option>Property Type</option>
-                                        @foreach($types as $type)
-                                        <option value="{{$type->id}}">{{$type->type}}</option>
-                                        @endforeach 
+                                        <?php $__currentLoopData = $types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($type->id); ?>"><?php echo e($type->type); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -372,9 +374,9 @@
                             <div class="s-border"></div>
                             <div class="m-border"></div>
                             <ul class="list-unstyled list-cat">
-                                @foreach($types as $type)
-                                <li><a href="{{route('types',$type->id)}}">{{$type->type}} <span>(45)</span></a></li>
-                                @endforeach
+                                <?php $__currentLoopData = $types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li><a href="<?php echo e(route('types',$type->id)); ?>"><?php echo e($type->type); ?> <span>(45)</span></a></li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                             </ul>
                         </div>
@@ -576,34 +578,34 @@
         </form>
     </div>
 
-    <script src="{{ asset('frontend_template/js/jquery-2.2.0.min.js')}}"></script>
-    <script src="{{ asset('frontend_template/js/popper.min.js')}}"></script>
-    <script src="{{ asset('frontend_template/js/bootstrap.min.js')}}"></script>
-    <script src="{{ asset('frontend_template/js/bootstrap-submenu.js')}}"></script>
-    <script src="{{ asset('frontend_template/js/rangeslider.js')}}"></script>
-    <script src="{{ asset('frontend_template/js/jquery.mb.YTPlayer.js')}}"></script>
-    <script src="{{ asset('frontend_template/js/wow.min.js')}}"></script>
-    <script src="{{ asset('frontend_template/js/bootstrap-select.min.js')}}"></script>
-    <script src="{{ asset('frontend_template/js/jquery.easing.1.3.js')}}"></script>
-    <script src="{{ asset('frontend_template/js/jquery.scrollUp.js')}}"></script>
-    <script src="{{ asset('frontend_template/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
-    <!-- <script src="{{ asset('frontend_template/js/leaflet.js')}}"></script> -->
-    <!-- <script src="{{ asset('frontend_template/js/leaflet-providers.js')}}"></script> -->
-    <script src="{{ asset('frontend_template/js/leaflet.markercluster.js')}}"></script>
-    <script src="{{ asset('frontend_template/js/dropzone.js')}}"></script>
-    <script src="{{ asset('frontend_template/js/slick.min.js')}}"></script>
-    <script src="{{ asset('frontend_template/js/jquery.filterizr.js')}}"></script>
-    <script src="{{ asset('frontend_template/js/jquery.magnific-popup.min.js')}}"></script>
-    <script src="{{ asset('frontend_template/js/jquery.countdown.js')}}"></script>
-    <script src="{{ asset('frontend_template/js/maps.js')}}"></script>
-    <script src="{{ asset('frontend_template/js/app.js')}}"></script>
+    <script src="<?php echo e(asset('frontend_template/js/jquery-2.2.0.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend_template/js/popper.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend_template/js/bootstrap.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend_template/js/bootstrap-submenu.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend_template/js/rangeslider.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend_template/js/jquery.mb.YTPlayer.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend_template/js/wow.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend_template/js/bootstrap-select.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend_template/js/jquery.easing.1.3.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend_template/js/jquery.scrollUp.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend_template/js/jquery.mCustomScrollbar.concat.min.js')); ?>"></script>
+    <!-- <script src="<?php echo e(asset('frontend_template/js/leaflet.js')); ?>"></script> -->
+    <!-- <script src="<?php echo e(asset('frontend_template/js/leaflet-providers.js')); ?>"></script> -->
+    <script src="<?php echo e(asset('frontend_template/js/leaflet.markercluster.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend_template/js/dropzone.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend_template/js/slick.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend_template/js/jquery.filterizr.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend_template/js/jquery.magnific-popup.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend_template/js/jquery.countdown.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend_template/js/maps.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend_template/js/app.js')); ?>"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsOqYd_VGRP2J8V2LJ9DC5wg6MDLYrcS4"></script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="{{ asset('frontend_template/js/ie10-viewport-bug-workaround.js')}}"></script>
-    @yield('script')
+    <script src="<?php echo e(asset('frontend_template/js/ie10-viewport-bug-workaround.js')); ?>"></script>
+    <?php echo $__env->yieldContent('script'); ?>
 
      
 
 </body>
-</html>
+</html><?php /**PATH C:\xampp\htdocs\Property_Laravel_Project\resources\views/frontend/property_template.blade.php ENDPATH**/ ?>

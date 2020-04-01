@@ -71,4 +71,7 @@ Route::post('/comment_reply', 'FrontendController@commentReply')->name('comment_
 Route::get('/get_comment/{id}', 'FrontendController@getComment')->name('get_comment');
 Route::post('/home_search', 'FrontendController@homeSearch')->name('home_search');
 Route::get('/get_date/{id}', 'FrontendController@getDate')->name('get_date');
+Route::get('/types/{id}','FrontendController@types')->name('types');
+Route::post('/property_search', 'FrontendController@propertySearch')->name('property_search');
+Route::get('get_maps', 'FrontendController@getMaps')->name('get_maps');
 

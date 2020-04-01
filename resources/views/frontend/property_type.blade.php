@@ -2,7 +2,7 @@
 @section('property')
 
 
-    <div class="col-lg-8 col-md-12" id="property">
+    <div class="col-lg-8 col-md-12">
                 <!-- Option bar start -->
              <!--    <div class="option-bar">
                     <div class="float-left">
@@ -27,8 +27,9 @@
                     </div>
                 </div> -->
                 <!-- Property section start -->
-                <div class="row property-section ">
+                <div class="row property-section">
                    @foreach($properties as $property)
+
                     <div class="col-lg-6 col-md-6 col-sm-12" >
                       
                         <div class="property-box">
@@ -49,13 +50,13 @@
                                             <i class="fa fa-star-o"></i>
                                         </div>
                                     </div>
-                                    <div class="listing-time opening">{{$property->status->status}}</div>
-                                    <img class="d-block w-100" src="@foreach($property->galleries as $gallery)
+                                    <div class="listing-time opening">{{$property->status}}</div>
+                                    <img class="d-block w-100" src=" 
                                        @php
-                                         $galleries = json_decode($gallery->gallery_image);
+                                         $galleries = json_decode($property->gallery_image);
                                        @endphp
-                                       @endforeach
-                                     {{  $galleries[0] }}" alt="properties">
+                                      
+                                     {{  asset($galleries[0]) }}" alt="properties">
                                 </a>
                             </div>
                             <div class="detail">
@@ -66,12 +67,12 @@
                                 </h1>
                                 <div class="location">
                                     <a href="properties-details.html">
-                                        <i class="fa fa-map-marker"></i>{{$property->location->address}}
+                                        <i class="fa fa-map-marker"></i>{{$property->address}}
                                     </a>
                                 </div>
                                 <ul class="facilities-list clearfix">
                                     <li>
-                                        <i class="flaticon-square"></i> {{$property->landarea}}
+                                        <i class="flaticon-square"></i> {{$property->land_area}}
                                     </li>
                                     <li>
                                         <i class="flaticon-furniture"></i> {{$property->bedroom}}
@@ -92,10 +93,10 @@
                             </div>
                             <div class="footer clearfix">
                                 <div class="pull-left days">
-                                    <a><i class="fa fa-user"></i> {{$property->agent->name}}</a>
+                                    <a><i class="fa fa-user"></i> {{$property->name}}</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a><i class="flaticon-time"></i> {{$property->created_at->diffForHumans()}}</a>
+                                    <a><i class="flaticon-time"></i> {{ \Carbon\Carbon::parse($property->created_at)->diffForHumans() }}</a>
                                 </div>
                             </div>
                         </div>
@@ -108,9 +109,14 @@
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
                             <li class="page-item">
-                                {!! $properties->render() !!}
+                                <a class="page-link" href="#"><i class="fa fa-angle-left"></i></a>
                             </li>
-                          
+                            <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="properties-grid-leftside.html">2</a></li>
+                            <li class="page-item"><a class="page-link" href="properties-grid-fullwidth.html">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="properties-grid-fullwidth.html"><i class="fa fa-angle-right"></i></a>
+                            </li>
                         </ul>
                     </nav>
                 </div>

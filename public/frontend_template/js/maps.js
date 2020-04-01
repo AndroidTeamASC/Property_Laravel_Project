@@ -617,7 +617,7 @@ function animatedMarkers(map, propertiesMarkers, properties, layout) {
 }
 
 function generateMap(latitude, longitude, mapProvider, layout) {
-
+    alert(latitude);
     var map = L.map('map', {
         center: [latitude, longitude],
         zoom: 14,

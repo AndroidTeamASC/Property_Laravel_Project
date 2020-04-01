@@ -1,5 +1,4 @@
-@extends('frontend/property_template')
-@section('property')
+<?php $__env->startSection('property'); ?>
 
 
     <div class="col-lg-8 col-md-12" id="property">
@@ -28,7 +27,7 @@
                 </div> -->
                 <!-- Property section start -->
                 <div class="row property-section ">
-                   @foreach($properties as $property)
+                   <?php $__currentLoopData = $properties; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $property): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-lg-6 col-md-6 col-sm-12" >
                       
                         <div class="property-box">
@@ -39,7 +38,8 @@
                                     </div>
                                     <div class="price-ratings-box">
                                         <p class="price">
-                                            {{$property->price}}
+                                            <?php echo e($property->price); ?>
+
                                         </p>
                                         <div class="ratings">
                                             <i class="fa fa-star"></i>
@@ -49,38 +49,44 @@
                                             <i class="fa fa-star-o"></i>
                                         </div>
                                     </div>
-                                    <div class="listing-time opening">{{$property->status->status}}</div>
-                                    <img class="d-block w-100" src="@foreach($property->galleries as $gallery)
-                                       @php
+                                    <div class="listing-time opening"><?php echo e($property->status->status); ?></div>
+                                    <img class="d-block w-100" src="<?php $__currentLoopData = $property->galleries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gallery): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                       <?php
                                          $galleries = json_decode($gallery->gallery_image);
-                                       @endphp
-                                       @endforeach
-                                     {{  $galleries[0] }}" alt="properties">
+                                       ?>
+                                       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                     <?php echo e($galleries[0]); ?>" alt="properties">
                                 </a>
                             </div>
                             <div class="detail">
                                 <h1 class="title">
-                                    <a href="{{route('property_detail',$property->id)}}"> 
-                                       {{$property->title}}
+                                    <a href="<?php echo e(route('property_detail',$property->id)); ?>"> 
+                                       <?php echo e($property->title); ?>
+
                                     </a>
                                 </h1>
                                 <div class="location">
                                     <a href="properties-details.html">
-                                        <i class="fa fa-map-marker"></i>{{$property->location->address}}
+                                        <i class="fa fa-map-marker"></i><?php echo e($property->location->address); ?>
+
                                     </a>
                                 </div>
                                 <ul class="facilities-list clearfix">
                                     <li>
-                                        <i class="flaticon-square"></i> {{$property->landarea}}
+                                        <i class="flaticon-square"></i> <?php echo e($property->landarea); ?>
+
                                     </li>
                                     <li>
-                                        <i class="flaticon-furniture"></i> {{$property->bedroom}}
+                                        <i class="flaticon-furniture"></i> <?php echo e($property->bedroom); ?>
+
                                     </li>
                                     <li>
-                                        <i class="flaticon-holidays"></i> {{$property->bathroom}}
+                                        <i class="flaticon-holidays"></i> <?php echo e($property->bathroom); ?>
+
                                     </li>
                                     <li>
-                                        <i class="flaticon-vehicle"></i> {{$property->garage}}
+                                        <i class="flaticon-vehicle"></i> <?php echo e($property->garage); ?>
+
                                     </li>
                                     <li>
                                         <i class="flaticon-window"></i> 3 Balcony
@@ -92,23 +98,24 @@
                             </div>
                             <div class="footer clearfix">
                                 <div class="pull-left days">
-                                    <a><i class="fa fa-user"></i> {{$property->agent->name}}</a>
+                                    <a><i class="fa fa-user"></i> <?php echo e($property->agent->name); ?></a>
                                 </div>
                                 <div class="pull-right">
-                                    <a><i class="flaticon-time"></i> {{$property->created_at->diffForHumans()}}</a>
+                                    <a><i class="flaticon-time"></i> <?php echo e($property->created_at->diffForHumans()); ?></a>
                                 </div>
                             </div>
                         </div>
                     
                     </div>
-                   @endforeach
+                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
                 <!-- Page navigation start -->
                 <div class="pagination-box hidden-mb-45 text-center">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
                             <li class="page-item">
-                                {!! $properties->render() !!}
+                                <?php echo $properties->render(); ?>
+
                             </li>
                           
                         </ul>
@@ -116,4 +123,5 @@
                 </div>
     </div>
     
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('frontend/property_template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Property_Laravel_Project\resources\views/frontend/property.blade.php ENDPATH**/ ?>

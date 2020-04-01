@@ -23,9 +23,13 @@ class FrontendController extends Controller
       {
         //its just a dummy data object.
         $types = type::all();
+        $statuses = Status::all();
+        $properties = Property::all();
 
         // Sharing is caring
         View::share('types', $types);
+        View::share('statuses', $statuses);
+         View::share('properties', $properties);
       }
     public function index($value='')
     {
@@ -72,9 +76,9 @@ class FrontendController extends Controller
     }
     public function property($value='')
     {
-    	$properties = Property::all();
-        $types = Type::all();
-        return view('frontend.property' ,compact('properties',['types' => 'types'] ));
+    	$properties = Property::paginate(2);
+    
+        return view('frontend.property' ,compact('properties'));
     }
     public function propertyDetail($id)
     {   
@@ -136,6 +140,7 @@ class FrontendController extends Controller
     }
     public function homeSearch(Request $request)
     {
+
         $status = $request->status;
         $type = $request->type;
         $bedroom = $request->bedroom;
@@ -175,4 +180,88 @@ class FrontendController extends Controller
         $property = Property::find($id);
         return view('frontend.blog_detail', compact('post'));
     }
+
+
+    public function types($id)
+    {   
+        if($type_id = $id){
+            $properties=DB::table('properties')
+            ->join('statuses','statuses.id','=','properties.status_id')
+            ->join('types','types.id','=','properties.type_id')
+            ->join('users','users.id','=','properties.agent_id')
+            ->join('locations','locations.property_id','=','properties.id')
+            ->join('galleries','galleries.property_id','=','properties.id')
+            ->where('properties.type_id','=',$type_id)
+            ->select('properties.*','properties.id as p_id','locations.*','galleries.*','statuses.*','types.*','users.*')
+            ->get();
+        }
+         // dd($properties);
+        return view('frontend.property_type' ,compact('properties'));
+    }
+
+
+    public function propertySearch(Request $request)
+    {
+        
+        // dd($request); 
+        $status = $request->status;
+        $type = $request->type;
+        $bedroom = $request->bedroom;
+        $bathroom = $request->bathroom;
+        $keyword = $request->keyword;
+        // echo $status."=>".$type."=>".$bedroom."=>".$bathroom."=>".$keyword;
+        // die();
+
+
+        $properties = DB::table('properties')
+        ->join('statuses','statuses.id','=','properties.status_id')
+        ->join('types','types.id','=','properties.type_id')
+        ->join('users','users.id','=','properties.agent_id')
+        ->join('locations','locations.property_id','=','properties.id')
+        ->join('galleries','galleries.property_id','=','properties.id')
+        ->where([
+            ['status_id', '=', $status],
+            ['type_id', '=', $type],
+            ['bedroom', '=', $bedroom],
+            ['bathroom', '=', $bathroom],
+                
+        ])->orWhere([
+            ['status_id', '=', $status],
+            ['type_id', '=', $type],
+            ['bedroom', '=', $bedroom],
+            ['bathroom', '=', $bathroom],
+             ['keyword', 'like', "%$keyword%"],    
+        ])->orWhere([
+            ['status_id', '=', $status],
+            ['type_id', '=', $type],
+            ['bedroom', '=', $bedroom],
+        ])->orWhere([
+            ['status_id', '=', $status],
+            ['type_id', '=', $type],
+            ['bedroom', '=', $bedroom],
+            ['keyword', 'like', "%$keyword%"],
+        ])->orWhere([
+            ['status_id', '=', $status],
+            ['type_id', '=', $type],
+            ['bathroom', '=', $bathroom],
+            ['keyword', 'like', "%$keyword%"],
+        ])->orWhere([
+            ['status_id', '=', $status],
+            ])
+
+        ->select('properties.*','properties.id as p_id','locations.*','galleries.*','statuses.*','types.*','users.*')
+        ->get();
+
+        // dd($properties);
+      
+        return view('frontend.property_type' ,compact('properties'));
+    }
+
+     public function getMaps()
+    {
+        $location= Location::all();
+        return $location;
+    }
+
+
 }

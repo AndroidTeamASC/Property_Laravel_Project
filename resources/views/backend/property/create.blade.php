@@ -594,7 +594,7 @@
 
     getMap();
    function getMap(){
-  var url="{{route('agent.get_map')}}";
+      var url="{{route('agent.get_map')}}";
         $.ajax({
           type:'get',
           url: url,
