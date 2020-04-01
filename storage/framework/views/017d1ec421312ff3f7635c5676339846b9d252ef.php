@@ -119,16 +119,21 @@
                                         </div>
                                     </div>
                                     <div class="listing-time opening"><?php echo e($property->status->status); ?> </div>
-                                    <?php
-                                        $gallery_images = json_decode($property->gallery->gallery_image);
-                                        $gallery_image = $gallery_images[0];
-                                    ?>
-                                    <img class="d-block w-100" src="<?php echo e($gallery_image); ?>" alt="properties" style="height: 350px">
+                                    
+                                    <img class="d-block w-100 image" src="<?php $__currentLoopData = $property->galleries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gallery): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                       <?php
+                                         $galleries = json_decode($gallery->gallery_image);
+                                       ?>
+                                       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                     <?php echo e($galleries[0]); ?>" alt="properties" style="height: 350px">
+                                     <h1 class="title overlay">
+                                    <a href="<?php echo e(route('property_detail',$property->id)); ?>" class="text"><?php echo e($property->title); ?></a>
+                                </h1>
                                 </a>
                             </div>
                             <div class="detail">
                                 <h1 class="title">
-                                    <a href="<?php echo e(route('property_detail',$property->id)); ?>"><?php echo e($property->title); ?></a>
+                                    <a href="<?php echo e(route('property_detail',$property->id)); ?>" class=""><?php echo e($property->title); ?></a>
                                 </h1>
                                 <div class="location">
                                     <a href="<?php echo e(route('property_detail',$property->id)); ?>">
@@ -243,18 +248,19 @@
                 <h1>Recently Properties</h1>
             </div>
             <div class="slick-slider-area">
-                <div class="row slick-carousel" data-slick='{"slidesToShow": 4, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
+                <div class="row slick-carousel" data-slick='{"slidesToShow": 3, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
                     <?php $__currentLoopData = $recent_properties; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $recent_property): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="slick-slide-item">
                         <div class="property-box-5">
                             <div class="property-photo">
                                 
-                                <img class="img-fluid" src="<?php $__currentLoopData = $recent_property->galleries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gallery): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <img class="img-fluid image" src="<?php $__currentLoopData = $recent_property->galleries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gallery): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                        <?php
                                          $galleries = json_decode($gallery->gallery_image);
                                        ?>
                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                      <?php echo e($galleries[0]); ?>" alt="properties" style="height: 300px">
+                                     
                                 <div class="date-box"><?php echo e($recent_property->status->status); ?></div>
                             </div>
                             <div class="detail">
@@ -404,7 +410,8 @@
                 </div>
                 <div class="slick-slider-area">
                     <div class="row slick-carousel" data-slick='{"slidesToShow": 2, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 1}}, {"breakpoint": 768,"settings":{"slidesToShow": 2}}]}'>
-                        <?php $__currentLoopData = $agent_properties; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $agent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php $__currentLoopData = $our_agents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $agent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php if($agent->hasRole('agent')): ?>
                         <div class="slick-slide-item">
                             <div class="row team-4">
                                 <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-pad ">
@@ -443,6 +450,7 @@
                                 </div>
                             </div>
                         </div>
+                        <?php endif; ?>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                     <div class="slick-prev slick-arrow-buton">
@@ -541,7 +549,7 @@
                     <?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="slick-slide-item">
                         <div class="row blog-2">
-                            <div class="col-lg-5 col-md-12 col-pad">
+                            <div class="col-lg-6 col-md-12 col-pad">
                                 <div class="photo">
                                     <img src="<?php echo e(asset($post->image)); ?>" alt="blog" class="img-fluid fit-cover" style="height: 350px">
                                     <div class="date-box">
@@ -550,7 +558,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-7 col-md-12 col-pad align-self-center">
+                            <div class="col-lg-6 col-md-12 col-pad align-self-center">
                                 <div class="detail">
                                     <h3>
                                         <a href="<?php echo e(route('blog_detail',$post->id)); ?>"><?php echo e($post->title); ?></a>
@@ -560,7 +568,7 @@
                                         <span><a href="#"><i class="fa fa-clock-o"></i>237</a></span>
                                         <span><a href="#"><i class="fa fa-heart-o"></i>548</a></span>
                                     </div>
-                                    <p><?php echo e($post->context); ?></p>
+                                    <p><?php echo e(Str::limit($post->context, 150)); ?></p>
                                 </div>
                             </div>
                         </div>
@@ -604,6 +612,7 @@
 <?php $__env->startSection('script'); ?>
     <script type="text/javascript">
         $(document).ready(function (argument) {
+            jQuery("time.timeago").timeago();
             $('#search_properties').hide()
             $.ajaxSetup({
               headers:{
@@ -637,8 +646,8 @@
                       if (build_year == null) {
                         build_year = '';
                       }
-                      getDate(v.p_id)
                       console.log(gallery_image)
+                      var date = jQuery.timeago(v.created_at); 
                       html+=`<div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="property-box">
                         <div class="property-thumbnail">
@@ -697,7 +706,7 @@
                                 <a><i class="fa fa-user"></i> ${v.name}</a>
                             </div>
                             <div class="pull-right">
-                                <a><i class="flaticon-time"></i> ${v.created_at}</a>
+                                <a><i class="flaticon-time"></i> ${date}</a>
                             </div>
                         </div>
                     </div>
@@ -710,22 +719,7 @@
                     console.log(error)
                   }
               })
-            })
-            function getDate($id){
-                var url="<?php echo e(route('get_date',':id')); ?>";
-                url=url.replace(':id',$id);
-                $.ajax({
-                  type:'get',
-                  url: url,
-                  processData: false,
-                  contentType: false,
-                  success: (data) => {
-                  },
-                  error: function(error){
-                    console.log(error)
-                  }
-              });  
-    } 
+            }) 
         })
     </script>
 <?php $__env->stopSection(); ?>

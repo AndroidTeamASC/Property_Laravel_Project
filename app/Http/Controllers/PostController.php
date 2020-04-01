@@ -25,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view("backend.type.create");
+        return view("backend.post.create");
     }
 
     /**
@@ -49,6 +49,7 @@ class PostController extends Controller
         }
         Post::Create([
             'user_id' => Auth::user()->id,
+            'type_id' => $request->type,
             'title' => $request->title,
             'context' => $request->context,
             'image' => $path,

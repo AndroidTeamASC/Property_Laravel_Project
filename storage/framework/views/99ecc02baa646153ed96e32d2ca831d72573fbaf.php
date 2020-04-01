@@ -521,7 +521,7 @@ unset($__errorArgs, $__bag); ?>
                   </nav>
                   <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-old-embed-code" role="tabpanel" aria-labelledby="nav-old-embed-code-tab">
-                      <input type="hidden" name="old-embed-code" value="<?php echo e($property->embed_code); ?>">
+                      <input type="hidden" name="old_embed_code" value="<?php echo e($property->embed_code); ?>">
                       <div class="row mt-3">
                         <?php if($property->embed_code): ?>
                           <div class="col-md-12 col-12 img-fluid" id="embed_code">

@@ -26,11 +26,6 @@ class Property extends Model
     {
         return $this->belongsTo('App\Location','id','property_id');
     }
-    public function gallery()
-    {
-        return $this->belongsTo('App\Gallery','id','property_id');
-    }
-
     public function galleries()
     {
         return $this->hasMany('App\Gallery');
@@ -39,5 +34,25 @@ class Property extends Model
     public function floors()
     {
         return $this->hasMany('App\Floor');
+    }
+    public function feature()
+    {
+        return $this->belongsTo('App\Feature');
+    }
+    public function attachments()
+    {
+        return $this->hasMany('App\Attachment');
+    }
+    public function neighborhoods()
+    {
+        return $this->hasMany('App\Neighborhood');
+    }
+    public function schools()
+    {
+        return $this->hasMany('App\School');
+    }
+    public function facts()
+    {
+        return $this->hasMany('App\Fact');
     }
 }

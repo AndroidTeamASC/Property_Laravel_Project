@@ -158,7 +158,7 @@ unset($__errorArgs, $__bag); ?>
                         <td>${v.type}</td>
                         
                         <td>
-                          <button class="btn btn-primary btn-sm d-inline-block editType " data-id="${v.id}"><i class="ni ni-settings"></i></button>
+                          <button class="btn btn-primary btn-sm d-inline-block editType " data-id="${v.id}"><i class="fas fa-edit text-white"></i></button>
                           <button class="btn btn-danger btn-sm d-inline-block deleteType " data-id="${v.id}"> <i class="ni ni-fat-delete"></i></button>    
                         </td>
                       </tr>`;

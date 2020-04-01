@@ -62,7 +62,7 @@ class PropertyController extends Controller
             "bathroom" => "required|min:1",
             "land_area" => "required|min:1|max:30",
             "building_area" => "required|min:1|max:30",
-            "address" => "required|min:5|max:30",
+            "address" => "required|min:5|max:100",
             "longitude" => "required|min:1|max:30",
             "latitude" => "required|min:1|max:30",
         ]);
@@ -197,6 +197,11 @@ class PropertyController extends Controller
     public function show($id)
     {
         //
+        $property = Property::find($id);
+        $features = Feature::all();
+        $tags = Tag::all();
+        $transportations = Transportation::all();
+        return view('backend.property.detail', compact('property','features','tags','transportations'));
     }
 
     /**
@@ -245,10 +250,15 @@ class PropertyController extends Controller
             "land_area" => "required|min:1|max:30",
             "building_area" => "required|min:1|max:30",
             "price" => "required",
-            "address" => "required|min:5|max:30",
+            "address" => "required|min:5|max:100",
             "longitude" => "required|min:1|max:30",
             "latitude" => "required|min:1|max:30",
         ]);
+        if ($request->embed_code) {
+            $embed_code = $request->embed_code;
+        }elseif ($request->old_embed_code) {
+            $embed_code = $request->old_embed_code;
+        }
 
         $property_id = $request->property_id;
         $property = Property::find($property_id);
@@ -266,7 +276,7 @@ class PropertyController extends Controller
         $property->build_year = $request->build_year;
         $property->description = $request->description;
         $property->keyword = $request->keyword;
-        $property->embed_code = $request->embed_code;
+        $property->embed_code = $embed_code;
         $property->save();
 
         /*$property_id = $property->id;*/
@@ -294,6 +304,10 @@ class PropertyController extends Controller
             }else{
                 $path = $request->old_floor;
             }
+            $floors = Floor::where('property_id', $property_id)->get();
+            foreach ($floors as $floor) {
+                $floor->delete();
+            }
             Floor::updateOrCreate([
                 "property_id" => $property_id ,
                 "floor_image" => $path,
@@ -316,6 +330,10 @@ class PropertyController extends Controller
             }else{
                 $path = $request->old_gallery;
             }
+            $galleries = Gallery::where('property_id', $property_id)->get();
+            foreach ($galleries as $gallery) {
+                $gallery->delete(); 
+            }
             Gallery::updateOrCreate([
                 "property_id" => $property_id ,
                 "gallery_image" => $path,
@@ -337,6 +355,10 @@ class PropertyController extends Controller
                 }
             }else{
                 $path = $request->old_attachment;
+            }
+            $attachments = Attachment::where('property_id', $property_id)->get();
+            foreach ($attachments as $attachment) {
+                $attachment->delete(); 
             }
             Attachment::updateOrCreate([
                 "property_id" => $property_id ,

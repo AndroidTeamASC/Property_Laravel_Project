@@ -66,15 +66,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        /*$image = $request->file('image');
-        if($image){
+        if ($data['image']) 
+        {
+            $image=$data['image'];
+            $upload_path=public_path().'/image/profile/';
             $name=uniqid().time().'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('image/profile'),$name);
-            $path='image/profile/'.$name;
-        }else{
-            $path = null;
-        }*/
-        $path = null;
+            $image->move($upload_path,$name);
+            $path='/image/profile/'.$name;
+        }else
+        {
+            $path="/image/profile/avatar.png";
+        }
         $user =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],

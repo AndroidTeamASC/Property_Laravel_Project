@@ -2,6 +2,7 @@
 <html lang="zxx">
 <head>
     <title>Housy - Real Estate HTML5 Template</title>
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
 
@@ -336,39 +337,19 @@
                         <h3 class="sidebar-title">Popular Posts</h3>
                         <div class="s-border"></div>
                         <div class="m-border"></div>
-                        <div class="media">
-                            <div class="media-left">
-                                <img class="media-object" src="http://placehold.it/60x60" alt="sub-properties">
+                        <?php $__currentLoopData = $popular_posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $popular_post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="media-object" src="<?php echo e(asset($popular_post->image)); ?>" alt="sub-properties">
+                                </div>
+                                <div class="media-body align-self-center">
+                                    <h3 class="media-heading">
+                                        <a href="blog_detail/<?php echo e($popular_post->id); ?>"><?php echo e($popular_post->title); ?></a>
+                                    </h3>
+                                    <p><?php echo e($popular_post->created_at); ?> | <?php echo e($popular_post->type->type); ?></p>
+                                </div>
                             </div>
-                            <div class="media-body align-self-center">
-                                <h3 class="media-heading">
-                                    <a href="#">Modern Design Building</a>
-                                </h3>
-                                <p>Apr 15, 2019 | $2041,000</p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <img class="media-object" src="http://placehold.it/60x60" alt="sub-properties">
-                            </div>
-                            <div class="media-body align-self-center">
-                                <h3 class="media-heading">
-                                    <a href="#">Real Eatate Expo 2018</a>
-                                </h3>
-                                <p>Feb 27, 2019 | $1045,000</p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <img class="media-object" src="http://placehold.it/60x60" alt="sub-properties">
-                            </div>
-                            <div class="media-body align-self-center">
-                                <h3 class="media-heading">
-                                    <a href="#">Villa in Coral Gables</a>
-                                </h3>
-                                <p>Apr 21, 2019 | $545,000</p>
-                            </div>
-                        </div>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                     <!-- Posts by category start -->
                     <div class="posts-by-category widget">
@@ -376,12 +357,19 @@
                         <div class="s-border"></div>
                         <div class="m-border"></div>
                         <ul class="list-unstyled list-cat">
-                            <li><a href="#">Single Family <span>(45)</span></a></li>
-                            <li><a href="#">Apartment <span>(21)</span> </a></li>
-                            <li><a href="#">Condo <span>(23)</span></a></li>
-                            <li><a href="#">Multi Family <span>(19)</span></a></li>
-                            <li><a href="#">Villa <span>(19)</span></a> </li>
-                            <li><a href="#">Other <span>(22) </span></a></li>
+                            <?php $__currentLoopData = $types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li><a href="blog?type_id=<?php echo e($type->id); ?>"><?php echo e($type->type); ?><span>
+                                    <?php if($type->type =="House"): ?><?php echo e($houses); ?>
+
+                                    <?php elseif($type->type =="Apartment"): ?><?php echo e($apartments); ?>
+
+                                    <?php elseif($type->type =="Office"): ?><?php echo e($offices); ?>
+
+                                    <?php elseif($type->type =="Villa"): ?><?php echo e($villas); ?>
+
+                                    <?php endif; ?>
+                                </span></a></li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </ul>
                     </div>
                     <!-- Helping Center start -->
@@ -509,39 +497,19 @@
                         <div class="s-border"></div>
                         <div class="m-border"></div>
                         <div class="popular-posts">
+                            <?php $__currentLoopData = $popular_posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $popular_post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="media">
                                 <div class="media-left">
-                                    <img class="media-object" src="http://placehold.it/60x60" alt="sub-properties">
+                                    <img class="media-object" src="<?php echo e(asset($popular_post->image)); ?>" alt="sub-properties">
                                 </div>
                                 <div class="media-body align-self-center">
                                     <h3 class="media-heading">
-                                        <a href="#">Real Eatate Expo 2019</a>
+                                        <a href="blog_detail/<?php echo e($popular_post->id); ?>"><?php echo e($popular_post->title); ?></a>
                                     </h3>
-                                    <p>Feb 27, 2019 | $1045,000</p>
+                                    <p><?php echo e($popular_post->created_at); ?> | <?php echo e($popular_post->type->type); ?></p>
                                 </div>
                             </div>
-                            <div class="media">
-                                <div class="media-left">
-                                    <img class="media-object" src="http://placehold.it/60x60" alt="sub-properties">
-                                </div>
-                                <div class="media-body align-self-center">
-                                    <h3 class="media-heading">
-                                        <a href="#">Big Head House</a>
-                                    </h3>
-                                    <p>Apr 15, 2019 | $2041,000</p>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-left">
-                                    <img class="media-object" src="http://placehold.it/60x60" alt="sub-properties">
-                                </div>
-                                <div class="media-body align-self-center">
-                                    <h3 class="media-heading">
-                                        <a href="#">Villa in Coral Gables</a>
-                                    </h3>
-                                    <p>Apr 21, 2019 | $545,000</p>
-                                </div>
-                            </div>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
                     </div>
                 </div>
