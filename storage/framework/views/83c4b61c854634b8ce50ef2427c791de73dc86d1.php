@@ -32,7 +32,7 @@
                       
                         <div class="property-box">
                             <div class="property-thumbnail">
-                                <a href="properties-details.html" class="property-img">
+                                <a href="<?php echo e(route('property_detail',$property->id)); ?>" class="property-img">
                                     <div class="listing-badges">
                                         <span class="featured">Featured</span>
                                     </div>
@@ -55,7 +55,8 @@
                                          $galleries = json_decode($gallery->gallery_image);
                                        ?>
                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                     <?php echo e($galleries[0]); ?>" alt="properties">
+                                     <?php echo e(asset($galleries[0])); ?>" alt="properties">
+                                     
                                 </a>
                             </div>
                             <div class="detail">

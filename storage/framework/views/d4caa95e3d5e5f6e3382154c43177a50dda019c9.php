@@ -1,17 +1,18 @@
 <?php $__env->startSection('content'); ?>
-  
+	
 <div class="row">
   <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <h3>Edit Property <a href="<?php echo e(route('agent.property.index')); ?>" class="float-right"><i class="fas fa-backward"></i> back</a></h3>
+        <h3>Create Property <a href="<?php echo e(route('agent.property.index')); ?>" class="float-right"><i class="fas fa-backward"></i> back</a></h3>
+      </div>
+      <div class="alert alert-primary alertMessage d-none float-left col-md-4 col-sm-2 offset-4">
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
 
       <div class="card-body">
-        <form method="post" id="updateButton" action="<?php echo e(route('agent.property.update',$property->id)); ?>" enctype="multipart/form-data">
+        <form method="post" action="<?php echo e(route('agent.property.store')); ?>" enctype="multipart/form-data" id="saveButton">
           <?php echo csrf_field(); ?>
-          <?php echo method_field('PUT'); ?>
-          <input type="hidden" name="property_id" id="property_id" value="<?php echo e($property->id); ?>">
           <div class="row">
             <div class="col-md-6 col-sm-12">
               <!-- Basic Detail -->
@@ -29,7 +30,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" id="title" name="title" autofocus value="<?php echo e($property->title); ?>">
+unset($__errorArgs, $__bag); ?>" id="title" name="title" autofocus>
 
                     <?php $__errorArgs = ['title'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -43,6 +44,7 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+                    <p class="error-message-title p-2 text-md-left text-danger"></p>
                   </div>
                              
                   <div class="form-group">
@@ -51,10 +53,7 @@ unset($__errorArgs, $__bag); ?>
                         <label for="status">Property Status</label><br>
                         <select name="status"  id="status" class="form-control">
                           <?php $__currentLoopData = $statuses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $status): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                              <option value="<?php echo e($status->id); ?>" 
-                                <?php if ($status->id == $property->status_id): echo "selected"; ?>
-                                <?php endif ?>
-                                ><?php echo e($status->status); ?></option>
+                              <option value="<?php echo e($status->id); ?>"><?php echo e($status->status); ?></option>
                           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                       </div>
@@ -62,10 +61,7 @@ unset($__errorArgs, $__bag); ?>
                         <label for="type">Property Type</label><br>
                         <select name="type"  id="type" class="form-control">
                           <?php $__currentLoopData = $types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                              <option value="<?php echo e($type->id); ?>" 
-                                <?php if ($type->id == $property->type_id): echo "selected"; ?>
-                                <?php endif ?>
-                                ><?php echo e($type->type); ?></option>
+                              <option value="<?php echo e($type->id); ?>"><?php echo e($type->type); ?></option>
                           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                       </div>  
@@ -83,7 +79,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" id="bedroom" name="bedroom" autofocus value="<?php echo e($property->bedroom); ?>">
+unset($__errorArgs, $__bag); ?>" id="bedroom" name="bedroom" autofocus>
 
                         <?php $__errorArgs = ['bedroom'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -97,6 +93,7 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+                        <p class="error-message-bedroom p-2 text-md-left text-danger"></p>
                       </div>
                       <div class="col-6">
                         <label for="bathroom">Bathroom</label>
@@ -107,7 +104,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" id="bathroom" name="bathroom" autofocus value="<?php echo e($property->bathroom); ?>">
+unset($__errorArgs, $__bag); ?>" id="bathroom" name="bathroom" autofocus>
 
                         <?php $__errorArgs = ['bathroom'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -121,6 +118,7 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+                        <p class="error-message-bathroom p-2 text-md-left text-danger"></p>
                       </div>  
                     </div>        
                   </div>
@@ -136,7 +134,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" id="garage" name="garage" autofocus value="<?php echo e($property->garage); ?>">
+unset($__errorArgs, $__bag); ?>" id="garage" name="garage" autofocus>
 
                         <?php $__errorArgs = ['garage'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -160,7 +158,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" id="build_year" name="build_year" autofocus value="<?php echo e($property->build_year); ?>">
+unset($__errorArgs, $__bag); ?>" id="build_year" name="build_year" autofocus>
 
                         <?php $__errorArgs = ['build_year'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -189,7 +187,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" id="land_area" name="land_area" autofocus value="<?php echo e($property->land_area); ?>">
+unset($__errorArgs, $__bag); ?>" id="land_area" name="land_area" autofocus>
 
                         <?php $__errorArgs = ['land_area'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -203,6 +201,7 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+                        <p class="error-message-land-area p-2 text-md-left text-danger"></p>
                       </div>
                       <div class="col-6">
                         <label for="building_area">Building Area</label>
@@ -213,7 +212,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" id="building_area" name="building_area" autofocus value="<?php echo e($property->building_area); ?>">
+unset($__errorArgs, $__bag); ?>" id="building_area" name="building_area" autofocus>
 
                         <?php $__errorArgs = ['building_area'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -227,21 +226,21 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+                        <p class="error-message-building-area p-2 text-md-left text-danger"></p>
                       </div>  
                     </div>        
                   </div>
 
                   <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea type="text" class="form-control <?php $__errorArgs = ['description'];
+                    <textarea type="text" class="text-area <?php $__errorArgs = ['description'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" id="description" name="description" autofocus rows="8"><?php echo e($property->description); ?>
-
+unset($__errorArgs, $__bag); ?>" id="description" name="description" autofocus rows="7">
                     </textarea>
                     <?php $__errorArgs = ['description'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -266,7 +265,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" id="keyword" name="keyword" autofocus placeholder="CSV Format" value="<?php echo e($property->keyword); ?>">
+unset($__errorArgs, $__bag); ?>" id="keyword" name="keyword" autofocus placeholder="CSV Format">
 
                     <?php $__errorArgs = ['keyword'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -305,7 +304,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" id="price" placeholder="Price" name="price" value="<?php echo e($property->price); ?>">
+unset($__errorArgs, $__bag); ?>" id="price" placeholder="Price" name="price">
                           <?php $__errorArgs = ['price'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -318,11 +317,14 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+                          
                         </div>
                       </div>
                     </div>
+                    <p class="error-message-price p-2 text-md-left text-danger ml-3"></p>
                     <div class="col-auto mt-2">
                       <a href="#" class="call-us text-primary d-none">Call Us</a>
+                      <input type="hidden" name="keep_price" class="call-us" id="keep_price">
                     </div>
                   </div>
                   <div class="col-auto my-1">
@@ -341,32 +343,14 @@ unset($__errorArgs, $__bag); ?>
                 </div>
                 <div class="card-body">
                   <div class="row">
-                    <?php if($property->feature_id != "null"): ?>
-                      <?php
-                        $custom_features = json_decode($property->feature_id)
-                      ?>
-                      <?php $__currentLoopData = $features; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $feature): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                      <div class="col-md-4 col-sm-6 my-1">
-                        <div class="custom-control custom-checkbox mr-sm-2">
-                          <input type="checkbox" class="custom-control-input" id="<?php echo e($feature->feature); ?>" name="feature[]" multiple="multiple" value="<?php echo e($feature->id); ?>"
-                          @<?php if (in_array($feature->id, $custom_features)): ?>
-                              <?php echo "checked" ?>
-                            <?php endif ?>
-                          >
-                          <label class="custom-control-label" for="<?php echo e($feature->feature); ?>"><?php echo e($feature->feature); ?></label>
-                        </div>
+                    <?php $__currentLoopData = $features; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $feature): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="col-md-4 col-sm-6 my-1">
+                      <div class="custom-control custom-checkbox mr-sm-2">
+                        <input type="checkbox" class="custom-control-input" id="<?php echo e($feature->feature); ?>" name="feature[]" multiple="multiple" value="<?php echo e($feature->id); ?>">
+                        <label class="custom-control-label" for="<?php echo e($feature->feature); ?>"><?php echo e($feature->feature); ?></label>
                       </div>
-                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                      <?php else: ?>
-                        <?php $__currentLoopData = $features; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $feature): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <div class="col-md-4 col-sm-6 my-1">
-                          <div class="custom-control custom-checkbox mr-sm-2">
-                            <input type="checkbox" class="custom-control-input" id="<?php echo e($feature->feature); ?>" name="feature[]" multiple="multiple" value="<?php echo e($feature->id); ?>">
-                            <label class="custom-control-label" for="<?php echo e($feature->feature); ?>"><?php echo e($feature->feature); ?></label>
-                          </div>
-                        </div>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    <?php endif; ?>
+                    </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   </div>
                 </div>
               </div>
@@ -378,38 +362,20 @@ unset($__errorArgs, $__bag); ?>
                 </div>
                 <div class="card-body">
                   <div class="row">
-                    <?php if($property->tag_id != "null"): ?>
-                    <?php
-                      $custom_tags = json_decode($property->tag_id)
-                    ?>
                     <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-
                     <div class="col-md-6 col-sm-12 my-1">
                       <div class="custom-control custom-checkbox mr-sm-2">
-                        <input type="checkbox" class="custom-control-input" id="<?php echo e($tag->tag); ?>" name="tag[]" multiple="multiple" value="<?php echo e($tag->id); ?>"
-                          @<?php if (in_array($tag->id, $custom_tags)): ?>
-                            <?php echo "checked" ?>
-                          <?php endif ?>
-                        >
+                        <input type="checkbox" class="custom-control-input" id="<?php echo e($tag->tag); ?>" name="tag[]" multiple="multiple" value="<?php echo e($tag->id); ?>">
                         <label class="custom-control-label" for="<?php echo e($tag->tag); ?>"><?php echo e($tag->tag); ?></label>
                       </div>
                     </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    <?php else: ?>
-                      <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                      <div class="col-md-6 col-sm-12 my-1">
-                        <div class="custom-control custom-checkbox mr-sm-2">
-                          <input type="checkbox" class="custom-control-input" id="<?php echo e($tag->tag); ?>" name="tag[]" multiple="multiple" value="<?php echo e($tag->id); ?>">
-                          <label class="custom-control-label" for="<?php echo e($tag->tag); ?>"><?php echo e($tag->tag); ?></label>
-                        </div>
-                      </div>
-                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    <?php endif; ?>
                   </div>
                 </div>
-              </div>  
+              </div>      
             </div>
 
+            
             <div class="col-md-6 col-sm-12">
               <!-- Location -->
               <div class="card">
@@ -426,7 +392,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" id="address" name="address" autofocus value="<?php echo e($location->address); ?>">
+unset($__errorArgs, $__bag); ?>" id="address" name="address" autofocus>
 
                       <?php $__errorArgs = ['address'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -440,9 +406,11 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+                      <p class="error-message-address p-2 text-md-left text-danger"></p>
                     </div>
                                
                     <div class="form-group">
+                      <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3851939.0559790777!2d94.47181513781126!3d19.470253532422557!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x305652a7714e2907%3A0xba7b0ee41c622b11!2sMyanmar%20(Burma)!5e0!3m2!1sen!2smm!4v1584077219243!5m2!1sen!2smm" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe> -->
                       <div class="row">
                         <div class="col-md-12 col-sm-12">
                           <div class="geocoder mb-3">
@@ -453,8 +421,11 @@ unset($__errorArgs, $__bag); ?>
                           <div id="map">
                             
                           </div>
-                        </div>                   
+                        </div>
+                        
                       </div>
+                    
+
                     </div>
 
                     <div class="form-group">
@@ -468,7 +439,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" id="lng" name="longitude" autofocus value="<?php echo e($location->longitude); ?>">
+unset($__errorArgs, $__bag); ?>" id="lng" name="longitude" autofocus>
 
                           <?php $__errorArgs = ['longitude'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -482,6 +453,7 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+                          <p class="error-message-longitude p-2 text-md-left text-danger"></p>
                         </div>
                         <div class="col-6">
                           <label for="lat">Latitude</label>
@@ -492,7 +464,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" id="lat" name="latitude" autofocus value="<?php echo e($location->latitude); ?>">
+unset($__errorArgs, $__bag); ?>" id="lat" name="latitude" autofocus>
 
                           <?php $__errorArgs = ['latitude'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -506,6 +478,7 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+                          <p class="error-message-latitude p-2 text-md-left text-danger"></p>
                         </div>  
                       </div>        
                     </div>
@@ -518,114 +491,42 @@ unset($__errorArgs, $__bag); ?>
                   Video
                 </div>
                 <div class="card-body m-0">
-                  <div class="card-body">
-                  <nav>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                      <a class="nav-item nav-link active" id="nav-old-embed-code-tab" data-toggle="tab" href="#nav-old-embed-code" role="tab" aria-controls="nav-old-embed-code" aria-selected="true">Old Video</a>
-                      <a class="nav-item nav-link" id="nav-new-embed-code-tab" data-toggle="tab" href="#nav-new-embed-code" role="tab" aria-controls="nav-new-embed-code" aria-selected="false">New Video</a>
-                    </div>
-                  </nav>
-                  <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-old-embed-code" role="tabpanel" aria-labelledby="nav-old-embed-code-tab">
-                      <input type="hidden" name="old-embed-code" value="<?php echo e($property->embed_code); ?>">
-                      <div class="row mt-3">
-                        <?php if($property->embed_code): ?>
-                          <div class="col-md-12 col-12 img-fluid" >
-                               
-                                <?php echo $property->embed_code; ?>
-
-                               
-                          </div>
-                        <?php else: ?>
-                          <div class="col-lg-8 col-md-8">
-                            <button type="button" class="btn-icon-clipboard" data-clipboard-text="active-40" title="Copy to clipboard">
-                              <div>
-                                <span>Upload Your House Floor Now!!</span>
-                                <i class="ni ni-active-40 ml-3"></i>
-                              </div>
-                            </button>
-                          </div>
-                        <?php endif; ?>
-                      </div>  
-                    </div>
-                    <div class="tab-pane fade" id="nav-new-embed-code" role="tabpanel" aria-labelledby="nav-new-embed-code-tab">
-                      <div class="form-group mt-3">
-                        <input type="text" class="form-control <?php $__errorArgs = ['embed_code'];
+                  <div class="form-group">
+                    <label for="embed_code">Embed Code</label>
+                    <input type="text" class="form-control <?php $__errorArgs = ['embed_code'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" id="embed_code" name="embed_code" autofocus value="" placeholder="Enter your Embed Code">
+unset($__errorArgs, $__bag); ?>" id="embed_code" name="embed_code" autofocus>
 
-                        <?php $__errorArgs = ['embed_code'];
+                    <?php $__errorArgs = ['embed_code'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                        <span class="invalid-feedback" role="alert">
-                            <strong><?php echo e($message); ?></strong>
-                        </span>
-                        <?php unset($message);
+                    <span class="invalid-feedback" role="alert">
+                        <strong><?php echo e($message); ?></strong>
+                    </span>
+                    <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                      </div>
-                    </div>
                   </div>
-                </div>
-                  
                 </div>
               </div>
 
-               <!-- Floor Plan -->
+              <!-- Floor Plan -->
               <div class="card mt-2">
                 <div class="card-header property-card">
                   Floor Plan
                 </div>
                 <div class="card-body">
-                  <nav>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                      <a class="nav-item nav-link active" id="nav-old-floor-tab" data-toggle="tab" href="#nav-old-floor" role="tab" aria-controls="nav-old-floor" aria-selected="true">Old Image</a>
-                      <a class="nav-item nav-link" id="nav-new-floor-tab" data-toggle="tab" href="#nav-new-floor" role="tab" aria-controls="nav-new-floor" aria-selected="false">New Image</a>
-                    </div>
-                  </nav>
-                  <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-old-floor" role="tabpanel" aria-labelledby="nav-old-floor-tab">
-                      <?php if($floors != "[]"): ?>
-                        <?php $__currentLoopData = $floors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $floor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                          <?php
-                            $floors = json_decode($floor->floor_image);
-                          ?>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                      <input type="hidden" name="old-floor" value="<?php echo e($floor->floor_image); ?>">
-                      <div class="row mt-3">
-                        <?php if($floors): ?>
-                          <?php $__currentLoopData = $floors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $floor_image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <div class="col-md-3 col-3">
-                              <img src="<?php echo e(asset($floor_image)); ?>" class="edit-image img-fluid">
-                            </div>
-                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <?php endif; ?>
-                      </div>
-                      <?php else: ?>
-                        <div class="col-lg-12 col-md-12">
-                            <button type="button" class="btn-icon-clipboard" data-clipboard-text="active-40" title="Copy to clipboard">
-                              <div>
-                                <span>Upload Your House Floor Now!!</span>
-                                <i class="ni ni-active-40 ml-3"></i>
-                              </div>
-                            </button>
-                          </div>
-                      <?php endif; ?>  
-                    </div>
-                    <div class="tab-pane fade" id="nav-new-floor" role="tabpanel" aria-labelledby="nav-new-floor-tab">
-                      <div class="form-group mt-3">
-                        <div class="input-group mb-2">
-                          <input type="file" class="form-control" id="inlineFormInputGroup" placeholder="" name="floor[]" multiple="multiple">
-                        </div>
-                    </div>
+                  <div class="form-group">
+                    <div class="input-group mb-2">
+                      <input type="file" class="form-control" id="inlineFormInputGroup" placeholder="" name="floor[]" multiple="multiple">
                     </div>
                   </div>
                 </div>
@@ -637,104 +538,29 @@ unset($__errorArgs, $__bag); ?>
                   Attachments
                 </div>
                 <div class="card-body">
-                  <nav>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                      <a class="nav-item nav-link active" id="nav-old-attachment-tab" data-toggle="tab" href="#nav-old-attachment" role="tab" aria-controls="nav-old-attachment" aria-selected="true">Old File</a>
-                      <a class="nav-item nav-link" id="nav-new-attachment-tab" data-toggle="tab" href="#nav-new-attachment" role="tab" aria-controls="nav-new-attachment" aria-selected="false">New File</a>
-                    </div>
-                  </nav>
-                  <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-old-attachment" role="tabpanel" aria-labelledby="nav-old-attachment-tab">
-                      <?php if($attachments != "[]"): ?>
-                        <?php $__currentLoopData = $attachments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $attachment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                          <?php
-                            $attachments = json_decode($attachment->file);
-                          ?>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                      <input type="hidden" name="old-attachment" value="<?php echo e($attachment->file); ?>">
-                      <div class="row mt-3">
-                        <?php if($attachments): ?>
-                          <?php $__currentLoopData = $attachments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $file): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <div class="col-md-3 col-3">
-                              <p class="text-primary"><?php echo e($file); ?></p>
-                            </div>
-                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <?php endif; ?>
-                      </div>
-                      <?php else: ?>
-                        <div class="col-lg-8 col-md-8">
-                            <button type="button" class="btn-icon-clipboard" data-clipboard-text="active-40" title="Copy to clipboard">
-                              <div>
-                                <span>Upload Your File Now!!</span>
-                                <i class="ni ni-active-40 ml-3"></i>
-                              </div>
-                            </button>
-                          </div>
-                      <?php endif; ?>  
-                    </div>
-                    <div class="tab-pane fade" id="nav-new-attachment" role="tabpanel" aria-labelledby="nav-new-attachment-tab">
-                      <div class="form-group mt-3">
-                        <div class="input-group mb-2">
-                          <input type="file" class="form-control" id="inlineFormInputGroup" placeholder="" name="attachment[]" multiple="multiple">
-                        </div>
-                    </div>
+                  <div class="form-group">
+                    <div class="input-group mb-2">
+                      <input type="file" class="form-control" id="inlineFormInputGroup" placeholder="" name="attachment[]" multiple="multiple">
                     </div>
                   </div>
                 </div>
               </div>
-
+              
               <!-- Gallery -->
               <div class="card mt-2">
-                <div class="card-header property-card bg-transparent">
+                <div class="card-header property-card">
                   Gallery
                 </div>
                 <div class="card-body">
-                  <nav>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                      <a class="nav-item nav-link active" id="nav-old-gallery-tab" data-toggle="tab" href="#nav-old-gallery" role="tab" aria-controls="nav-old-gallery" aria-selected="true">Old Gallery</a>
-                      <a class="nav-item nav-link" id="nav-new-gallery-tab" data-toggle="tab" href="#nav-new-gallery" role="tab" aria-controls="nav-new-gallery" aria-selected="false">New Gallery</a>
-                    </div>
-                  </nav>
-                  <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-old-gallery" role="tabpanel" aria-labelledby="nav-old-gallery-tab">
-                      <?php if($galleries != "[]"): ?>
-                        <?php $__currentLoopData = $galleries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gallery): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                          <?php
-                            $galleries = json_decode($gallery->gallery_image);
-                          ?>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                      <input type="hidden" name="old-gallery" value="<?php echo e($gallery->gallery_image); ?>">
-                      <div class="row mt-3 icon-examples">
-                        <?php if($galleries): ?>
-                          <?php $__currentLoopData = $galleries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gallery_image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <div class="col-md-2 col-3">
-                              <img src="<?php echo e(asset($gallery_image)); ?>" class="edit-image img-fluid">
-                            </div>
-                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <?php endif; ?>
-                      </div>
-                      <?php else: ?>
-                          <div class="col-lg-8 col-md-8">
-                            <button type="button" class="btn-icon-clipboard" data-clipboard-text="active-40" title="Copy to clipboard">
-                              <div>
-                                <span>Upload Your House Gallery Now!!</span>
-                                <i class="ni ni-active-40 ml-3"></i>
-                              </div>
-                            </button>
-                          </div> 
-                      <?php endif; ?> 
-                    </div>
-                    <div class="tab-pane fade" id="nav-new-gallery" role="tabpanel" aria-labelledby="nav-new-gallery-tab">
-                      <div class="form-group mt-3">
-                        <div class="input-group mb-2 col-md-8 col-8">
-                          <input type="file" class="form-control" id="inlineFormInputGroup" placeholder="" name="gallery[]" multiple="multiple">
-                        </div>
-                    </div>
+                  <div class="form-group">
+                    <div class="col-md-8 ofsset-2 input-group mb-2">
+                      <input type="file" class="form-control" id="inlineFormInputGroup" placeholder="" name="gallery[]" multiple="multiple">
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
             <!-- Neighborhood -->
             <div class="col-12">
               <!-- Neighborhood -->
@@ -830,41 +656,20 @@ unset($__errorArgs, $__bag); ?>
                      <button type="button" class="btn btn-primary btn-sm d-inline-block add-neighborhood float-right"><i class="fas fa-plus-circle"></i></button>
                    </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-6 col-6 col-lg-6" id="showOldNeighborhoodTable">
-                      <label>Old Neighborhood</label>
-                      <div class="table-responsive mt-3" >
-                        <table class="table table-bordered align-items-center table-white table-flush example" id="" width="100%" cellspacing="0">
-                                <thead class="thead-light">
-                                  <tr>
-                                    <th>Place</th>
-                                    <th>Duration</th>
-                                    <th>Type</th>
-                                    <th>Action</th>
-                                  </tr>
-                                </thead>
-                                <tbody id="showOldNeighborhoodTbody">
-                                </tbody>
-                        </table>
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-6 col-lg-6" id="showNewNeighborhoodTable">
-                      <label>New Neighborhood</label>
-                      <div class="table-responsive mt-3" >
-                        <table class="table table-bordered align-items-center table-white table-flush example" id="" width="100%" cellspacing="0">
-                                <thead class="thead-light">
-                                  <tr>
-                                    <th>Place</th>
-                                    <th>Duration</th>
-                                    <th>Type</th>
-                                    <th>Action</th>
-                                  </tr>
-                                </thead>
-                                <tbody id="showNewNeighborhoodTbody">
-                                </tbody>
-                        </table>
-                      </div>
-                    </div>
+                  <div class="table-responsive mt-3" id="showNeighborhoodTable">
+                    <table class="table table-bordered align-items-center table-white table-flush example" id="" width="100%" cellspacing="0">
+                            <thead class="thead-light">
+                              <tr>
+                                <th>No</th>
+                                <th>Place</th>
+                                <th>Duration</th>
+                                <th>Transportation</th>
+                                <th>Action</th>
+                              </tr>
+                            </thead>
+                            <tbody id="showNeighborhoodTbody">
+                            </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
@@ -984,46 +789,24 @@ unset($__errorArgs, $__bag); ?>
                   <p class="append-school d-inline d-none"></p>
                   <div class="row">
                     <div class="col-1 offset-11">
-                     <button type="button" class="btn btn-primary btn-sm d-inline-block add-new-school float-right"><i class="fas fa-plus-circle"></i></button>
+                     <button type="button" class="btn btn-primary btn-sm d-inline-block add-school float-right"><i class="fas fa-plus-circle"></i></button>
                    </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-6 col-lg-6 col-6" id="showOldSchoolTable">
-                      <label>Old Schools</label>
-                      <div class="table-responsive mt-3" >
-                        <table class="table table-bordered align-items-center table-white table-flush example" id="" width="100%" cellspacing="0">
-                                <thead class="thead-light">
-                                  <tr>
-                                    <th>Name</th>
-                                    <th>Rating</th>
-                                    <th>Grade</th>
-                                    <th>Distance</th>
-                                    <th>Action</th>
-                                  </tr>
-                                </thead>
-                                <tbody id="showOldSchoolTbody">
-                                </tbody>
-                        </table>
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-6" id="showNewSchoolTable">
-                      <label>New Schools</label>
-                      <div class="table-responsive mt-3" >
-                        <table class="table table-bordered align-items-center table-white table-flush example" id="" width="100%" cellspacing="0">
-                                <thead class="thead-light">
-                                  <tr>
-                                    <th>Name</th>
-                                    <th>Rating</th>
-                                    <th>Grade</th>
-                                    <th>Distance</th>
-                                    <th>Action</th>
-                                  </tr>
-                                </thead>
-                                <tbody id="showNewSchoolTbody">
-                                </tbody>
-                        </table>
-                      </div>
-                    </div>
+                  <div class="table-responsive mt-3" id="showSchoolTable">
+                    <table class="table table-bordered align-items-center table-white table-flush example" id="" width="100%" cellspacing="0">
+                            <thead class="thead-light">
+                              <tr>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th>Rating</th>
+                                <th>Grade</th>
+                                <th>Distance</th>
+                                <th>Action</th>
+                              </tr>
+                            </thead>
+                            <tbody id="showSchoolTbody">
+                            </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
@@ -1072,87 +855,49 @@ unset($__errorArgs, $__bag); ?>
                      <button type="button" class="btn btn-primary btn-sm d-inline-block add-fact float-right"><i class="fas fa-plus-circle"></i></button>
                    </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-6 col-lg-6 col-6" id="showOldFactTable">
-                      <label>Old Facts</label>
-                      <div class="table-responsive mt-3" >
-                        <table class="table table-bordered align-items-center table-white table-flush example" id="" width="100%" cellspacing="0">
-                          <thead class="thead-light">
-                            <tr>
-                              <th>Fact</th>
-                              <th>Action</th>
-                            </tr>
-                          </thead>
-                          <tbody id="showOldFactTbody">
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-6" id="showNewFactTable">
-                      <label>New Facts</label>
-                      <div class="table-responsive mt-3" >
-                        <table class="table table-bordered align-items-center table-white table-flush example" id="" width="100%" cellspacing="0">
-                                <thead class="thead-light">
-                                  <tr>
-                                    <th>Fact</th>
-                                    <th>Action</th>
-                                  </tr>
-                                </thead>
-                                <tbody id="showNewFactTbody">
-                                </tbody>
-                        </table>
-                      </div>
-                    </div>
+                  <div class="table-responsive mt-3" id="showFactTable">
+                    <table class="table table-bordered align-items-center table-white table-flush example" id="" width="100%" cellspacing="0">
+                            <thead class="thead-light">
+                              <tr>
+                                <th>No</th>
+                                <th>Fact</th>
+                                <th>Action</th>
+                              </tr>
+                            </thead>
+                            <tbody id="showFactTbody">
+                            </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <input type="submit" id="saveButton" class="btn btn-primary mt-2 float-right" value="submit">
+          <input type="submit" id="submitButton" class="btn btn-primary mt-2 float-right" value="submit">
         </form>
       </div>
     </div>
   </div>
-</div>               
+</div>                    
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('script'); ?>
+
 <script type="text/javascript">
   $(document).ready(function () {
-    $('#showOldNeighborhoodTable').hide()
-    $('#showNewNeighborhoodTable').hide()
-    $('#showOldSchoolTable').hide()
-    $('#showNewSchoolTable').hide()
-    $('#showOldFactTable').hide()
-    $('#showNewFactTable').hide()
-    $('.bicycle').addClass('current_type');
-
-    var property_id = $('#property_id').val()
-    getNeighborhood(property_id)
-    getSchool(property_id)
-    getFact(property_id)
-   
 
     getMap();
-    function getMap(){
-       
-    var url="<?php echo e(route('agent.get_map')); ?>";
+   function getMap(){
+      var url="<?php echo e(route('agent.get_map')); ?>";
         $.ajax({
-          type:'GET',
+          type:'get',
           url: url,
-          data: {'property_id':property_id},
-          // processData: false,
-          // contentType: false,
-           dataType: 'json',
+          processData: false,
+          contentType: false,
           success: (data) => {
 
             var saved_markers = data;
-            
-              var lat = saved_markers[0].latitude
-              var lng = saved_markers[0].longitude
-           
-        console.log("Map=> "+lat);
-        var user_location = [lng,lat];
+        console.log("Map=> "+saved_markers);
+        var user_location = [100.541802,13.745575];
         mapboxgl.accessToken ='pk.eyJ1IjoiZmFraHJhd3kiLCJhIjoiY2pscWs4OTNrMmd5ZTNra21iZmRvdTFkOCJ9.15TZ2NtGk_AtUvLd27-8xA';
         var map = new mapboxgl.Map({
             container: 'map',
@@ -1225,7 +970,21 @@ unset($__errorArgs, $__bag); ?>
             console.log('lng: ' + lngLat.lng + '<br />lat: ' + lngLat.lat);
         }
 
-        
+        $('#signupForm').submit(function(event){
+            event.preventDefault();
+            var lat = $('#lat').val();
+            var lng = $('#lng').val();
+            var url = 'locations_model.php?add_location&lat=' + lat + '&lng=' + lng;
+            $.ajax({
+                url: url,
+                method: 'GET',
+                dataType: 'json',
+                success: function(data){
+                    alert(data);
+                    location.reload();
+                }
+            });
+        });
 
         document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
 
@@ -1233,7 +992,10 @@ unset($__errorArgs, $__bag); ?>
           });
     }
 
-   
+    $('#showNeighborhoodTable').hide()
+    $('#showSchoolTable').hide()
+    $('#showFactTable').hide()
+    $('.bicycle').addClass('current_type');
 
     /*Neighborhood*/
     /*Remove Neighborhood*/
@@ -1241,66 +1003,9 @@ unset($__errorArgs, $__bag); ?>
       $('.container-neighborhood').hide()
     })
 
-    /*Get Old Neighborhood and Call ShowOldNeighborhoodTable*/
-    var oldNeighborhoodListObj=null;
-    function getNeighborhood(property_id) {
-      var url="<?php echo e(route('agent.get_neighborhood_by_id')); ?>";
-      $.ajax({
-        url: url,
-        type: "GET",
-        data: {'property_id':property_id},
-        dataType: 'json',
-        success: function (data) {
-            console.log(data)
-            var oldNeighborhoodListObjLength = Object.keys(data).length
-            console.log(oldNeighborhoodListObjLength)
-            if (oldNeighborhoodListObjLength > 0) {
-              oldNeighborhoodListObj = data
-              showOldNeighborhoodTable(oldNeighborhoodListObj)
-            }else{
-              oldNeighborhoodListObj = data
-            }
-        },
-        error: function (error) {
-        }
-      })
-    }
-      
-    /*Show Neighborhood Function*/
-    function showOldNeighborhoodTable(oldNeighborhoodListObj) {
-      var html = ''
-        var j = 1
-        $.each(oldNeighborhoodListObj,function (i,v) {
-          html += `<tr>
-                    <td>${v.place}</td>
-                    <td>${v.duration}</td>
-                    <td>${v.transportation_id}</td>
-                    <td><button type="button" class="btn btn-sm delete-neighborhood" style="background-color: #5e72e4" data-id=${i}><i class="fas fa-trash text-white" ></i></button>
-                  </td></tr>`
-        })
-        $('#showOldNeighborhoodTbody').html(html)
-      $('#showOldNeighborhoodTable').show()
-    }
-
-    /*Delete Neighborhood By Id*/
-    $('#showOldNeighborhoodTbody').on('click','.delete-neighborhood',function (argument) {
-      var neighborhood_id = $(this).data("id")
-      console.log(neighborhood_id)
-      oldNeighborhoodListObj.splice(neighborhood_id, 1)
-      var oldNeighborhoodListObjLength = Object.keys(oldNeighborhoodListObj).length
-      console.log(oldNeighborhoodListObjLength)
-      if(oldNeighborhoodListObjLength > 0){
-          showOldNeighborhoodTable(oldNeighborhoodListObj)
-      }
-      else{
-        console.log(oldNeighborhoodListObj)
-        $('#showOldNeighborhoodTable').hide()
-      }  
-    })
-
-    /*Add New Neighborhood and Call Show NewNeighborhoodTable*/
-    var newNeighborhoodListString='{"newNeighborhoodList":[]}';
-    var newNeighborhoodListObj=JSON.parse(newNeighborhoodListString);
+    /*Add Neighborhood and Call ShowNeighborhoodTable*/
+    var neighborhoodListString='{"neighborhoodList":[]}';
+    var neighborhoodListObj=JSON.parse(neighborhoodListString);
     $('.add-neighborhood').click(function (argument) {
       var neighborhood_item_array = []
       var place = $('.place').val()
@@ -1309,48 +1014,46 @@ unset($__errorArgs, $__bag); ?>
       var transportation_type = $('.current_type').data('type')
       console.log(place,min,transportation_type)
       if (place && min && transportation_type) {
-        var newNeighborhood={place:place,min:min,transportation_id:transportation_id,transportation_type:transportation_type};
-        newNeighborhoodListObj.newNeighborhoodList.push(newNeighborhood);
+        var neighborhood={place:place,min:min,transportation_id:transportation_id,transportation_type:transportation_type};
+        neighborhoodListObj.neighborhoodList.push(neighborhood);
         $('.container-neighborhood').show()
         $('.added-neighborhood').text("You added one neighborhoods")
         $('.place').val('')
         $('.min').val('')
-        showNewNeighborhoodTable(newNeighborhoodListObj)
+        showNeighborhoodTable(neighborhoodListObj)
       }
       else {
         $('.container-neighborhood').show()
         $('.added-neighborhood').text("Invalid Place or Duration or Transportation Type")
       }
     })
- 
+
+    
     /*Show Neighborhood Function*/
-    function showNewNeighborhoodTable(newNeighborhoodListObj) {
+    function showNeighborhoodTable(neighborhoodListObj) {
       var html = ''
         var j = 1
-        console.log(newNeighborhoodListObj)
-        var newNeighborhood_array=newNeighborhoodListObj.newNeighborhoodList;
-        $.each(newNeighborhood_array,function (i,v) {
+        console.log(neighborhoodListObj)
+        var neighborhood_array=neighborhoodListObj.neighborhoodList;
+        $.each(neighborhood_array,function (i,v) {
           html += `<tr>
+                    <td>${j++}</td>
                     <td>${v.place}</td>
                     <td>${v.min}</td>
                     <td>${v.transportation_type}</td>
-                    <td><button type="button" class="btn btn-sm delete-new-neighborhood" style="background-color: #5e72e4" data-id=${i}><i class="fas fa-trash text-white" ></i></button>
+                    <td><button type="button" class="btn btn-sm delete-neighborhood" style="background-color: #5e72e4" data-id=${i}><i class="fas fa-trash text-white" ></i></button>
                   </td></tr>`
         })
-        $('#showNewNeighborhoodTbody').html(html)
-      $('#showNewNeighborhoodTable').show()
+        $('#showNeighborhoodTbody').html(html)
+      $('#showNeighborhoodTable').show()
     }
 
     /*Delete Neighborhood By Id*/
-    $('#showNewNeighborhoodTbody').on('click','.delete-new-neighborhood',function (argument) {
-      var new_neighborhood_id = $(this).data("id")
-      console.log(new_neighborhood_id)
-      newNeighborhoodListObj.newNeighborhoodList.splice(new_neighborhood_id, 1)
-      var newNeighborhoodListObjLength = Object.keys(newNeighborhoodListObj.newNeighborhoodList).length
-      console.log(newNeighborhoodListObjLength)
-      if(newNeighborhoodListObjLength > 0){
-          showNewNeighborhoodTable(newNeighborhoodListObj)
-      }
+    $('#showNeighborhoodTbody').on('click','.delete-neighborhood',function (argument) {
+      var neighborhood_id = $(this).data("id")
+      console.log(neighborhood_id)
+      neighborhoodListObj.neighborhoodList.splice(neighborhood_id, 1)
+      showNeighborhoodTable(neighborhoodListObj)
     })
 
     /*School*/
@@ -1359,80 +1062,24 @@ unset($__errorArgs, $__bag); ?>
       $('.container-school').hide()
     })
 
-    /*Get Old School and Call ShowOldSchoolTable*/
-    var oldSchoolListObj=null;
-    function getSchool(property_id) {
-      var url="<?php echo e(route('agent.get_school_by_id')); ?>";
-      $.ajax({
-        url: url,
-        type: "GET",
-        data: {'property_id':property_id},
-        dataType: 'json',
-        success: function (data) {
-            console.log(data)
-            var oldSchoolListObjLength = Object.keys(data).length
-            console.log(oldSchoolListObjLength)
-            if (oldSchoolListObjLength > 0) {
-              oldSchoolListObj = data
-              showOldSchoolTable(oldSchoolListObj)
-            }else{
-              oldSchoolListObj = data
-            }
-        },
-        error: function (error) {
-        }
-      })
-    }
-
-    /*Show Old School Function*/
-    function showOldSchoolTable(schoolListObj) {
-      var html = ''
-      var j = 1
-      $.each(schoolListObj,function (i,v) {
-        html += `<tr>
-                  <td>${v.school_name}</td>
-                  <td>${v.rating}</td>
-                  <td>${v.grade}</td>
-                  <td>${v.distance}</td>
-                  <td><button type="button" class="btn btn-sm delete-old-school" style="background-color: #5e72e4" data-id=${i}><i class="fas fa-trash text-white" ></i></button>
-                </td></tr>`
-      })
-      $('#showOldSchoolTbody').html(html)
-      $('#showOldSchoolTable').show()
-    }
-
-    /*Delete Old School By Id*/
-    $('#showOldSchoolTbody').on('click','.delete-old-school',function (argument) {
-      var school_id = $(this).data("id")
-      oldSchoolListObj.splice(school_id, 1)
-      var oldSchoolListObjLength = Object.keys(oldSchoolListObj).length
-      console.log(oldSchoolListObjLength)
-      if(oldSchoolListObjLength > 0){
-          showOldSchoolTable(oldSchoolListObj)
-      }
-      else{
-        $('#showOldSchoolTable').hide()
-      }  
-    })
-
-    /*Add School and Call showOldSchoolTable*/
-    var newSchoolListString='{"newSchoolList":[]}';
-    var newSchoolListObj=JSON.parse(newSchoolListString);
-    $('.add-new-school').click(function (argument) { 
+    /*Add School and Call ShowSchoolTable*/
+    var schoolListString='{"schoolList":[]}';
+    var schoolListObj=JSON.parse(schoolListString);
+    $('.add-school').click(function (argument) {
       var rating = $('.rating').val()
       var name = $('.name').val()
       var grade = $('.grade').val()
       var distance = $('.distance').val()
       if (rating && name && grade && distance) {
         var school={rating:rating,name:name,grade:grade,distance:distance};
-        newSchoolListObj.newSchoolList.push(school);
+        schoolListObj.schoolList.push(school);
         $('.container-school').show()
         $('.added-school').text("You added one near school")
         $('.rating').val('')
         $('.name').val('')
         $('.grade').val('')
         $('.distance').val('')
-        showNewSchoolTable(newSchoolListObj)
+        showSchoolTable(schoolListObj)
       }
       else {
         $('.container-school').show()
@@ -1441,35 +1088,29 @@ unset($__errorArgs, $__bag); ?>
     })
 
     /*Show School Function*/
-    function showNewSchoolTable(newSchoolListObj) {
+    function showSchoolTable(schoolListObj) {
       var html = ''
       var j = 1
-      var school_array=newSchoolListObj.newSchoolList;
+      var school_array=schoolListObj.schoolList;
       $.each(school_array,function (i,v) {
         html += `<tr>
+                  <td>${j++}</td>
                   <td>${v.name}</td>
                   <td>${v.rating}</td>
                   <td>${v.grade}</td>
                   <td>${v.distance}</td>
-                  <td><button type="button" class="btn btn-sm delete-new-school" style="background-color: #5e72e4" data-id=${i}><i class="fas fa-trash text-white" ></i></button>
+                  <td><button type="button" class="btn btn-sm delete-school" style="background-color: #5e72e4" data-id=${i}><i class="fas fa-trash text-white" ></i></button>
                 </td></tr>`
       })
-      $('#showNewSchoolTbody').html(html)
-      $('#showNewSchoolTable').show()
+      $('#showSchoolTbody').html(html)
+      $('#showSchoolTable').show()
     }
 
-    /*Delete new school By Id*/
-    $('#showNewSchoolTbody').on('click','.delete-new-school',function (argument) {
+    /*Delete school By Id*/
+    $('#showSchoolTbody').on('click','.delete-school',function (argument) {
       var school_id = $(this).data("id")
-      newSchoolListObj.newSchoolList.splice(school_id, 1)
-      var newSchoolListObjLength = Object.keys(newSchoolListObj.newSchoolList).length
-      console.log(newSchoolListObjLength)
-      if(newSchoolListObjLength > 0){
-          showNewSchoolTable(newSchoolListObj)
-      }
-      else{
-        $('#showNewSchoolTable').hide()
-      }  
+      schoolListObj.schoolList.splice(school_id, 1)
+      showSchoolTable(schoolListObj)
     })
 
     /*Fact*/
@@ -1478,71 +1119,18 @@ unset($__errorArgs, $__bag); ?>
       $('.container-fact').hide()
     })
 
-    /*Get Old School and Call ShowOldSchoolTable*/
-    var oldFactListObj=null;
-    function getFact(property_id) {
-      var url="<?php echo e(route('agent.get_fact_by_id')); ?>";
-      $.ajax({
-        url: url,
-        type: "GET",
-        data: {'property_id':property_id},
-        dataType: 'json',
-        success: function (data) {
-            console.log(data)
-            var oldFactListObjLength = Object.keys(data).length
-            console.log(oldFactListObjLength)
-            if (oldFactListObjLength > 0) {
-              oldFactListObj = data
-              showOldFactTable(oldFactListObj)
-            }else{
-              oldFactListObj = data
-            }
-        },
-        error: function (error) {
-        }
-      })
-    }
-
-    /*Show Old Fact Function*/
-    function showOldFactTable(oldFactListObj) {
-      var html = ''
-      var j = 1
-      $.each(oldFactListObj,function (i,v) {
-        html += `<tr>
-                  <td>${v.fact}</td>
-                  <td><button type="button" class="btn btn-sm delete-old-fact" style="background-color: #5e72e4" data-id=${i}><i class="fas fa-trash text-white" ></i></button>
-                </td></tr>`
-      })
-      $('#showOldFactTbody').html(html)
-      $('#showOldFactTable').show()
-    }
-
-    /*Delete Old Fact By Id*/
-    $('#showOldFactTbody').on('click','.delete-old-fact',function (argument) {
-      var school_id = $(this).data("id")
-      oldFactListObj.splice(school_id, 1)
-      var oldFactListObjLength = Object.keys(oldFactListObj).length
-      console.log(oldFactListObjLength)
-      if(oldFactListObjLength > 0){
-          showOldFactTable(oldFactListObj)
-      }
-      else{
-        $('#showOldFactTable').hide()
-      }  
-    })
-
     /*Add Fact and Call ShowFactTable*/
-    var newFactString='{"newFactList":[]}';
-    var newFactListObj=JSON.parse(newFactString);
+    var factString='{"factList":[]}';
+    var factListObj=JSON.parse(factString);
     $('.add-fact').click(function (argument) {
       var fact = $('.fact').val()
       if (fact) {
         var fact={fact:fact};
-        newFactListObj.newFactList.push(fact);
+        factListObj.factList.push(fact);
         $('.container-fact').show()
         $('.fact').val('')
         $('.added-fact').text("You added one fact")
-        showNewFactTable(newFactListObj)
+        showFactTable(factListObj)
       }
       else {
         $('.container-fact').show()
@@ -1551,32 +1139,26 @@ unset($__errorArgs, $__bag); ?>
     })
 
     /*Show Fact Function*/
-    function showNewFactTable(newFactListObj) {
+    function showFactTable(fact_array) {
       var html = ''
         var j = 1
-        var new_fact_array=newFactListObj.newFactList;
-        $.each(new_fact_array,function (i,v) {
+        var fact_array=factListObj.factList;
+        $.each(fact_array,function (i,v) {
           html += `<tr>
+                  <td>${j++}</td>
                   <td>${v.fact}</td>
-                  <td><button type="button" class="btn btn-sm delete-new-fact" style="background-color: #5e72e4" data-id=${i}><i class="fas fa-trash text-white" ></i></button>
+                  <td><button type="button" class="btn btn-sm delete-fact" style="background-color: #5e72e4" data-id=${i}><i class="fas fa-trash text-white" ></i></button>
                   </td></tr>`
         })
-        $('#showNewFactTbody').html(html)
-      $('#showNewFactTable').show()
+        $('#showFactTbody').html(html)
+      $('#showFactTable').show()
     }
 
     /*Delete Fact By Id*/
-    $('#showNewFactTbody').on('click','.delete-new-fact',function (argument) {
+    $('#showFactTbody').on('click','.delete-fact',function (argument) {
       var fact_id = $(this).data("id")
-      newFactListObj.newFactList.splice(fact_id, 1)
-      var newFactListObjLength = Object.keys(newFactListObj.newFactList).length
-      console.log(newFactListObjLength)
-      if(newFactListObjLength > 0){
-          showNewFactTable(newFactListObj)
-      }
-      else{
-        $('#showNewFactTable').hide()
-      } 
+      factListObj.factList.splice(fact_id, 1)
+      showFactTable(factListObj)
     })
 
     $('.card-body').on('click', '.train', function (argument) {
@@ -1632,24 +1214,25 @@ unset($__errorArgs, $__bag); ?>
     })
 
     /*Save Property*/
-    $('#updateButton').submit(function (e) {
+    $('#saveButton').submit(function (e) {
       e.preventDefault()
       var formData = new FormData(this)
-      formData.append("old_neighborhood_array",JSON.stringify(oldNeighborhoodListObj))
-      formData.append("new_neighborhood_array",JSON.stringify(newNeighborhoodListObj))
-      formData.append("old_school_array",JSON.stringify(oldSchoolListObj))
-      formData.append("new_school_array",JSON.stringify(newSchoolListObj))
-      formData.append("old_fact_array",JSON.stringify(oldFactListObj))
-      formData.append("new_fact_array",JSON.stringify(newFactListObj))
+      var price=$('#price').val();
+      var keep_price = $('#keep_price').val()
+      if (price == '' && keep_price == '') {
+        $('.error-message-price').text("The price field is required")
+        $('#price').addClass('border border-danger')
+      }
+      formData.append("neighborhood_array",JSON.stringify(neighborhoodListObj))
+      formData.append("school_array",JSON.stringify(schoolListObj))
+      formData.append("fact_array",JSON.stringify(factListObj))
       for (var pair of formData.entries())
         {
          console.log(pair[0]+ ', '+ pair[1]); 
         }
-        var url="<?php echo e(route('agent.property.update',':id')); ?>";
-        url=url.replace(':id',property_id);
       $.ajax({
           data: formData,
-          url: url,
+          url: "<?php echo e(route('agent.property.store')); ?>",
           type: "POST",
           dataType:'json',
           cache:false,
@@ -1665,15 +1248,14 @@ unset($__errorArgs, $__bag); ?>
             var errors=error.responseJSON.errors;
               if(errors){
                 console.log(errors)
-                  var title=errors.title[0];
-                  var bedroom=errors.bedroom[0];
-                  var bathroom=errors.bathroom[0];
-                  var land_area=errors.land_area[0];
-                  var building_area=errors.building_area[0];
-                  var price=errors.price[0];
-                  var address=errors.address[0];
-                  var longitude=errors.longitude[0];
-                  var latitude=errors.latitude[0];
+                  var title=errors.title;
+                  var bedroom=errors.bedroom;
+                  var bathroom=errors.bathroom;
+                  var land_area=errors.land_area;
+                  var building_area=errors.building_area;
+                  var address=errors.address;
+                  var longitude=errors.longitude;
+                  var latitude=errors.latitude;
                   console.log(title)
                   $('.error-message-title').text(title)
                   $('#title').addClass('border border-danger')
@@ -1685,14 +1267,12 @@ unset($__errorArgs, $__bag); ?>
                   $('#land_area').addClass('border border-danger')
                   $('.error-message-building-area').text(building_area)
                   $('#building_area').addClass('border border-danger')
-                  $('.error-message-price').text(price)
-                  $('#price').addClass('border border-danger')
                   $('.error-message-address').text(address)
                   $('#address').addClass('border border-danger')
                   $('.error-message-longitude').text(longitude)
-                  $('#longitude').addClass('border border-danger')
+                  $('#lng').addClass('border border-danger')
                   $('.error-message-latitude').text(latitude)
-                  $('#latitude').addClass('border border-danger')
+                  $('#lat').addClass('border border-danger')
               }
           }
       })
@@ -1700,5 +1280,6 @@ unset($__errorArgs, $__bag); ?>
 
   })
 </script>
+
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('backend.backend_template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Property_Laravel_Project\resources\views/backend/property/edit.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('backend.backend_template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Property_Laravel_Project\resources\views/backend/property/create.blade.php ENDPATH**/ ?>

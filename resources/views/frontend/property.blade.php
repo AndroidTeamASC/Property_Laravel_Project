@@ -33,7 +33,7 @@
                       
                         <div class="property-box">
                             <div class="property-thumbnail">
-                                <a href="properties-details.html" class="property-img">
+                                <a href="{{route('property_detail',$property->id)}}" class="property-img">
                                     <div class="listing-badges">
                                         <span class="featured">Featured</span>
                                     </div>
@@ -55,7 +55,8 @@
                                          $galleries = json_decode($gallery->gallery_image);
                                        @endphp
                                        @endforeach
-                                     {{  $galleries[0] }}" alt="properties">
+                                     {{  asset($galleries[0]) }}" alt="properties">
+                                     
                                 </a>
                             </div>
                             <div class="detail">

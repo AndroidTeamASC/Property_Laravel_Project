@@ -130,7 +130,7 @@
                                        @endforeach
                                      {{  $galleries[0] }}" alt="properties" style="height: 350px">
                                      <h1 class="title overlay">
-                                    <a href="{{route('property_detail',$property->id)}}" class="text">{{$property->title}}</a>
+                                    <a href="{{route('property_detail',$property->id)}}" class="hover-text">{{$property->title}}</a>
                                 </h1>
                                 </a>
                             </div>

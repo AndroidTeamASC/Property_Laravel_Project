@@ -50,7 +50,7 @@
   <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
   <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css' type='text/css' />
   <style type="text/css">
-    #map { height:400px ;width:300; }
+    
       .geocoder {
             position:relative;
         }
@@ -258,12 +258,12 @@
           </li>
           <li class="nav-item">
             <a class="nav-link " href="<?php echo e(route('admin.agent.index')); ?>">
-              <i class="ni ni-delivery-fast text-blue"></i> Agent
+              <i class="ni ni-circle-08 text-blue"></i> Agent
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link " href="<?php echo e(route('admin.post.index')); ?>">
-              <i class="ni ni-delivery-fast text-blue"></i> Blog Post
+              <i class="ni ni-archive-2 text-blue"></i> Blog Post
             </a>
           </li>
            <?php endif; ?>
