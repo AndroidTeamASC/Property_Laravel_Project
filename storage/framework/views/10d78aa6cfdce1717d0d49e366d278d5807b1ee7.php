@@ -489,4 +489,4 @@
   <?php echo $__env->yieldContent('script'); ?>
 </body>
 
-</html><?php /**PATH C:\xampp\htdocs\Property_Laravel_Project\resources\views/backend/backend_template.blade.php ENDPATH**/ ?>
+</html><?php /**PATH /opt/lampp/htdocs/Property_Laravel_Project/resources/views/backend/backend_template.blade.php ENDPATH**/ ?>

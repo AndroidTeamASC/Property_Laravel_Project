@@ -676,7 +676,7 @@
             console.log(geojson);
             // add markers to map
             geojson.forEach(function (marker) {
-                // console.log(marker);
+                console.log(marker);
                 // make a marker for each feature and add to the map
                 new mapboxgl.Marker()
                     .setLngLat(marker)
@@ -689,7 +689,7 @@
             var lngLat = marker.getLngLat();
             document.getElementById("lat").value = lngLat.lat;
             document.getElementById("lng").value = lngLat.lng;
-            // console.log('lng: ' + lngLat.lng + '<br />lat: ' + lngLat.lat);
+            console.log('lng: ' + lngLat.lng + '<br />lat: ' + lngLat.lat);
         }
 
          
@@ -828,4 +828,4 @@
 <?php $__env->stopSection(); ?>
 
 
-<?php echo $__env->make('frontend/property_template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Property_Laravel_Project\resources\views/frontend/property_detail.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('frontend/property_template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /opt/lampp/htdocs/Property_Laravel_Project/resources/views/frontend/property_detail.blade.php ENDPATH**/ ?>

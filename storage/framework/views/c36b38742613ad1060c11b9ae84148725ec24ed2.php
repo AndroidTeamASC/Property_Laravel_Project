@@ -1,23 +1,22 @@
-@extends('frontend/blog_template')
-@section('context')
+<?php $__env->startSection('context'); ?>
     <div class="col-lg-8 col-md-12" id="search_blogs">
                 <!-- Blog box start -->
         <div class="blog-1 blog-big">
             <div class="blog-photo">
-                <img src="{{asset($post->image)}}" alt="blog-img" class="img-fluid" style="height: 350px">
+                <img src="<?php echo e(asset($post->image)); ?>" alt="blog-img" class="img-fluid" style="height: 350px">
             </div>
             <div class="detail">
                 <h2>
-                    <a href="#">{{$post->title}}</a>
+                    <a href="#"><?php echo e($post->title); ?></a>
                 </h2>
                 <div class="post-meta clearfix mb-20">
-                    <span><a href="#" tabindex="0"><i class="fa fa-user"></i>{{$post->user->name}}</a></span>
+                    <span><a href="#" tabindex="0"><i class="fa fa-user"></i><?php echo e($post->user->name); ?></a></span>
                     <span><a href="#" tabindex="0"><i class="fa fa-comment" id="total_comment_count"></i></a></span>
                     <span><a href="#" tabindex="0"><i class="fa fa-heart-o"></i>27</a></span>
                 </div>
-                <p class="text-justify">{{$post->context}}</p>
+                <p class="text-justify"><?php echo e($post->context); ?></p>
             </div>
-            @if(Auth::check())
+            <?php if(Auth::check()): ?>
             <h3 class="heading-2">Comments Here</h3>
             <div class="row clearfix">
                 <div class="alert alert-primary alertMessage d-none float-left col-md-4 col-sm-2 offset-4">
@@ -26,11 +25,11 @@
             </div>
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <textarea type="text" class="text-area form-control" id="comment" name="comment" autofocus rows="5" data-id="{{$post->id}}">
+                    <textarea type="text" class="text-area form-control" id="comment" name="comment" autofocus rows="5" data-id="<?php echo e($post->id); ?>">
                     </textarea>
                 </div>
             </div>
-            @endif
+            <?php endif; ?>
         </div>
         <!-- Heading 2 start -->
         <h3 class="heading-2">Comments Section</h3>
@@ -78,8 +77,8 @@
             </form>
         </div>
     </div>
-@endsection
-@section('blog_detail_script')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('blog_detail_script'); ?>
 <script type="text/javascript">
     $(document).ready(function(){
     getComment()
@@ -98,10 +97,10 @@
         var comments_count = 0;
         var reply_comments_count = 0;
         var post_id = $('#comment').data('id');
-        var url="{{route('get_comment')}}";
+        var url="<?php echo e(route('get_comment')); ?>";
         $.ajax({
           type:'get',
-          url: "{{route('get_comment')}}",
+          url: "<?php echo e(route('get_comment')); ?>",
           data: {'post_id':post_id},
           success: (data) => {
             var j=1;
@@ -114,7 +113,7 @@
                         <div class="comment">
                             <div class="comment-author">
                                 <a href="#">
-                                    <img src="{{asset('${v.image}')}}" alt="comments-user">
+                                    <img src="<?php echo e(asset('${v.image}')); ?>" alt="comments-user">
                                 </a>
                             </div>
                             <div class="comment-content" id="parent${v.c_id}">
@@ -139,7 +138,7 @@
                                 <div class="comment">
                                     <div class="comment-author">
                                         <a href="#">
-                                            <img src="{{asset('${k.image}')}}" alt="comments-user">
+                                            <img src="<?php echo e(asset('${k.image}')); ?>" alt="comments-user">
                                         </a>
                                     </div>
                                     <div class="comment-content">
@@ -179,7 +178,7 @@
             var post_id = $('#comment').data('id');
             $.ajax({
               data: {'comment':comment, 'post_id':post_id},
-              url: "{{ route('comment.store') }}",
+              url: "<?php echo e(route('comment.store')); ?>",
               type: "POST",
               success: function (data) {
                   console.log(data)
@@ -198,7 +197,7 @@
         var comment_id = $(this).data('id')
         var html = `<div class="row clearfix">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <textarea type="text" class="text-area form-control" id="comment${comment_id}" name="comment" autofocus rows="3" data-id="{{$post->id}}">
+                            <textarea type="text" class="text-area form-control" id="comment${comment_id}" name="comment" autofocus rows="3" data-id="<?php echo e($post->id); ?>">
                             </textarea>
                         </div>
                     </div>`
@@ -216,7 +215,7 @@
                 var comment = $(this).val();
                 $.ajax({
                   data: {'comment':comment, 'comment_id':comment_id},
-                  url: "{{ route('comment_reply.store') }}",
+                  url: "<?php echo e(route('comment_reply.store')); ?>",
                   type: "POST",
                   success: function (data) {
                       console.log(data)
@@ -234,4 +233,5 @@
     })
   });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('frontend/blog_template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /opt/lampp/htdocs/Property_Laravel_Project/resources/views/frontend/blog_detail.blade.php ENDPATH**/ ?>

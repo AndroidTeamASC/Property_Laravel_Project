@@ -266,4 +266,4 @@
     <?php echo $__env->yieldContent('script'); ?>
     <?php echo $__env->yieldContent('blog_detail_script'); ?>
 </body>
-</html><?php /**PATH C:\xampp\htdocs\Property_Laravel_Project\resources\views/frontend/frontend_template.blade.php ENDPATH**/ ?>
+</html><?php /**PATH /opt/lampp/htdocs/Property_Laravel_Project/resources/views/frontend/frontend_template.blade.php ENDPATH**/ ?>

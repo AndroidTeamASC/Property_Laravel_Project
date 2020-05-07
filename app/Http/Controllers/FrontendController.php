@@ -25,11 +25,31 @@ class FrontendController extends Controller
         $types = type::all();
         $statuses = Status::all();
         $properties = Property::all();
-
+        foreach ($types as $type) {
+            $type_name = $type->type;
+            $type_id = $type->id;
+            
+            if ($type_name == "House") {
+                $houses = Property::where('type_id', $type_id)->count();
+            }
+            if ($type_name == "Apartment") {
+                $apartments = Property::where('type_id', $type_id)->count();
+            }
+            if ($type_name == "Office") {
+                $offices = Property::where('type_id', $type_id)->count();
+            }
+            
+        }
+            
         // Sharing is caring
+      
         View::share('types', $types);
         View::share('statuses', $statuses);
-         View::share('properties', $properties);
+        View::share('properties', $properties);
+        View::share('phouses',$houses);
+        View::share('papartments',$apartments);
+        View::share('poffices',$offices);
+ 
       }
     public function index($value='')
     {

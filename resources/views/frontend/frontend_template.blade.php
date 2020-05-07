@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-    <title>Housy - Real Estate HTML5 Template</title>
+    <title>LuxCouch Thailand</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
@@ -146,7 +146,7 @@
     <footer class="footer">
         <div class="container footer-inner">
             <div class="row">
-                <div class="col-xl-4 col-lg-3 col-md-6 col-sm-6">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
                     <div class="footer-item">
                         <h4>Contact Us</h4>
                         <div class="s-border"></div>
@@ -174,7 +174,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
                     <div class="footer-item">
                         <h4>Useful Links</h4>
                         <div class="s-border"></div>
@@ -183,28 +183,20 @@
                             <li>
                                 <a href="#"><i class="fa fa-angle-right"></i>Home</a>
                             </li>
-                            <li>
-                                <a href="#"><i class="fa fa-angle-right"></i>About Us</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-angle-right"></i>Services</a>
+                                <a href="{{route('property')}}"><i class="fa fa-angle-right"></i>Properties</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-angle-right"></i>Properties Details</a>
+                                <a href="{{route('agent')}}"><i class="fa fa-angle-right"></i>Agents</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-angle-right"></i>My Account</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-angle-right"></i>Privacy Policy</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-angle-right"></i>Properties Details</a>
+                                <a href="{{route('blog')}}"><i class="fa fa-angle-right"></i>Blog Posts</a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
                     <div class="footer-item clearfix">
                         <h4>Popular Posts</h4>
                         <div class="s-border"></div>
@@ -226,30 +218,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                    <div class="footer-item clearfix">
-                        <h4>Subscribe</h4>
-                        <div class="s-border"></div>
-                        <div class="m-border"></div>
-                        <div class="Subscribe-box">
-                            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.</p>
-                            <form action="#" method="GET">
-                                <p>
-                                    <input type="text" class="form-contact" name="email" placeholder="Enter Address">
-                                </p>
-                                <p>
-                                    <button type="submit" name="submitNewsletter" class="btn btn-block button-theme">
-                                        Subscribe
-                                    </button>
-                                </p>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
             <div class="row">
                 <div class="col-xl-12">
-                    <p class="copy">© 2020 <a href="#">Theme Vessel.</a> Trademarks and brands are the property of their respective owners.</p>
+                    <p class="copy">© 2020 <a href="#">LuxCouch Thailand</a> Trademarks and brands are the property of their respective owners.</p>
                 </div>
             </div>
         </div>

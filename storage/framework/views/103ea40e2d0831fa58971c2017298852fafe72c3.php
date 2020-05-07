@@ -1,5 +1,4 @@
-@extends('backend.backend_template')
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="row">
   <div class="col-12">
     <div class="card">
@@ -47,43 +46,85 @@
                   <input type="hidden" name="role" value="agent">
                   <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
                   <div class="col-md-6">
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" autofocus required>
+                    <input type="text" class="form-control <?php $__errorArgs = ['name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="name" name="name" autofocus required>
                       <p class="error-message-name p-2 text-md-left text-danger"></p>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
                   <div class="col-md-6">
-                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" autofocus required>
+                    <input type="email" class="form-control <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="email" name="email" autofocus required>
                       <p class="error-message-email p-2 text-md-left text-danger"></p>
                   </div>
                 </div>
                  <div class="form-group row">
                   <label for="phone_no" class="col-md-4 col-form-label text-md-right">Phone No</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control @error('phone_no') is-invalid @enderror" id="phone_no" name="phone_no" autofocus required>
+                    <input type="number" class="form-control <?php $__errorArgs = ['phone_no'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="phone_no" name="phone_no" autofocus required>
                       <p class="error-message-phone_no p-2 text-md-left text-danger"></p>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="address" class="col-md-4 col-form-label text-md-right">Address</label>
                   <div class="col-md-6">
-                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" autofocus required>
+                    <input type="text" class="form-control <?php $__errorArgs = ['address'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="address" name="address" autofocus required>
                       <p class="error-message-address p-2 text-md-left text-danger"></p>
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="image" class="col-md-4 col-form-label text-md-right">{{ __(' Image') }}</label>
+                  <label for="image" class="col-md-4 col-form-label text-md-right"><?php echo e(__(' Image')); ?></label>
 
                   <div class="col-md-6">
-                      <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image" value="{{ old('image') }}" autocomplete="image" autofocus>
+                      <input id="image" type="file" class="form-control <?php $__errorArgs = ['image'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" name="image" value="<?php echo e(old('image')); ?>" autocomplete="image" autofocus>
                       <p class="error-message-image p-2 text-md-left text-danger"></p>
                   </div>
                 </div> 
                 <div class="form-group row">
                   <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
                   <div class="col-md-6">
-                    <input type="password" class="form-control @error('name') is-invalid @enderror" id="password" name="password" autofocus required>
+                    <input type="password" class="form-control <?php $__errorArgs = ['name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="password" name="password" autofocus required>
                       <p class="error-message-password p-2 text-md-left text-danger"></p>
                   </div>
                 </div>
@@ -124,37 +165,72 @@
                   <input type="hidden" name="role" value="agent">
                   <label for="edit_name" class="col-md-4 col-form-label text-md-right">Name</label>
                   <div class="col-md-6">
-                    <input type="text" class="form-control @error('edit_name') is-invalid @enderror" id="edit_name" name="edit_name" autofocus required>
+                    <input type="text" class="form-control <?php $__errorArgs = ['edit_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="edit_name" name="edit_name" autofocus required>
                       <p class="error-message-edit-name p-2 text-md-left text-danger"></p>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="edit_email" class="col-md-4 col-form-label text-md-right">Email</label>
                   <div class="col-md-6">
-                    <input type="email" class="form-control @error('edit_email') is-invalid @enderror" id="edit_email" name="edit_email" autofocus required>
+                    <input type="email" class="form-control <?php $__errorArgs = ['edit_email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="edit_email" name="edit_email" autofocus required>
                       <p class="error-message-edit-email p-2 text-md-left text-danger"></p>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="edit_phone_no" class="col-md-4 col-form-label text-md-right">Phone No</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control @error('edit_phone_no') is-invalid @enderror" id="edit_phone_no" name="edit_phone_no" autofocus required>
+                    <input type="number" class="form-control <?php $__errorArgs = ['edit_phone_no'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="edit_phone_no" name="edit_phone_no" autofocus required>
                       <p class="error-message-edit-phone_no p-2 text-md-left text-danger"></p>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="edit_address" class="col-md-4 col-form-label text-md-right">Address</label>
                   <div class="col-md-6">
-                    <input type="text" class="form-control @error('edit_address') is-invalid @enderror" id="edit_address" name="edit_address" autofocus required>
+                    <input type="text" class="form-control <?php $__errorArgs = ['edit_address'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="edit_address" name="edit_address" autofocus required>
                       <p class="error-message-edit-address p-2 text-md-left text-danger"></p>
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="edit_image" class="col-md-4 col-form-label text-md-right">{{ __('Profile Picture') }}</label>
+                  <label for="edit_image" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Profile Picture')); ?></label>
 
                   <div class="col-md-6">
                       <input type="hidden" name="agent_old_image" id="agent_old_image">
-                      <input id="edit_image" type="file" class="form-control @error('edit_image') is-invalid @enderror" name="edit_image" value="{{ old('edit_image') }}" autocomplete="edit_image" autofocus>
+                      <input id="edit_image" type="file" class="form-control <?php $__errorArgs = ['edit_image'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" name="edit_image" value="<?php echo e(old('edit_image')); ?>" autocomplete="edit_image" autofocus>
                       <p class="edit-error-message-image p-2 text-md-left text-danger"></p>
                       <img class="agent_old_image img-fluid pt-2" style="width: 50px">
                   </div>
@@ -173,7 +249,14 @@
                   <input type="hidden" name="old_password" id="old_password">
                   <label for="edit_password" class="col-md-4 col-form-label text-md-right">New assword</label>
                   <div class="col-md-6">
-                    <input type="edit_password" class="form-control @error('edit_password') is-invalid @enderror" name="edit_password" id="edit_password">
+                    <input type="edit_password" class="form-control <?php $__errorArgs = ['edit_password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" name="edit_password" id="edit_password">
                       <p class="error-message-edit-password p-2 text-md-left text-danger"></p>
                   </div>
                 </div>
@@ -188,10 +271,10 @@
       </div>
     </div>
   </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
 
-@section('script')
+<?php $__env->startSection('script'); ?>
 <script type="text/javascript">
 	$(document).ready(function(){    
     getAgent()
@@ -207,7 +290,7 @@
     }
 
     function getAgent(){
-      var url="{{route('admin.get_agent')}}";
+      var url="<?php echo e(route('admin.get_agent')); ?>";
         $.ajax({
           type:'get',
           url: url,
@@ -221,7 +304,7 @@
                         <td>${j++}</td>
                         <td>${v.name}</td>
                         <td>${v.address}</td>
-                        <td><img src="{{asset('${v.image}')}}" class="img-fluid" style="width:50px;height:50px" alt="No Profile Picture"></td>
+                        <td><img src="<?php echo e(asset('${v.image}')); ?>" class="img-fluid" style="width:50px;height:50px" alt="No Profile Picture"></td>
                         <td>
                           <button class="btn btn-primary btn-sm d-inline-block editAgent" data-id="${v.id}"><i class="fas fa-edit text-white"></i></button>
                           <button class="btn btn-danger btn-sm d-inline-block deleteAgent" data-id="${v.id}"> <i class="ni ni-fat-delete"></i></button>    
@@ -255,7 +338,7 @@
           }
         $.ajax({
           data: formData,
-          url: "{{ route('admin.agent.store') }}",
+          url: "<?php echo e(route('admin.agent.store')); ?>",
           type: "POST",
           dataType: 'json',
           cache:false,
@@ -283,7 +366,7 @@
                   $('.error-message-email').text(email)
                   $('.error-message-password').text(password)
                   $('.error-message-phone_no').text(phone_no)
-                  $('.error-message-address').text(address 
+                  $('.error-message-address').text(address)
               }
             $('#saveBtn').html('Save Changes');
           }
@@ -292,7 +375,7 @@
   $('tbody').on('click', '.editAgent', function () {
       $('.alertMessage').addClass('d-none');
       var agent_id = $(this).data('id');
-      var url="{{route('admin.agent.edit',':id')}}";
+      var url="<?php echo e(route('admin.agent.edit',':id')); ?>";
       url=url.replace(':id',agent_id);
         $.ajax({
           url: url,
@@ -312,7 +395,7 @@
               $('#edit_password').val('');
               console.log(data.image)
               $('#agent_old_image').val(data.image);
-              $('.agent_old_image').attr('src',`{{asset('${data.image}')}}`);
+              $('.agent_old_image').attr('src',`<?php echo e(asset('${data.image}')); ?>`);
           },
           error: function (error) {
           }
@@ -333,7 +416,7 @@
           }
         formData.append('_method', 'PUT');
         console.log(name);
-        var url="{{ route('admin.agent.update',':id') }}";
+        var url="<?php echo e(route('admin.agent.update',':id')); ?>";
         url=url.replace(':id',id);
         $.ajax({
           data: formData,
@@ -376,7 +459,7 @@
         var agent_id = $(this).data("id");
         var status = confirm("Are You sure want to delete !");
         if (status) {
-          var url="{{route('admin.agent.destroy',':id')}}";
+          var url="<?php echo e(route('admin.agent.destroy',':id')); ?>";
           url=url.replace(':id',agent_id);
           $.ajax({
               url: url,
@@ -395,4 +478,5 @@
     }); 
   });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('backend.backend_template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /opt/lampp/htdocs/Property_Laravel_Project/resources/views/backend/agent/index.blade.php ENDPATH**/ ?>

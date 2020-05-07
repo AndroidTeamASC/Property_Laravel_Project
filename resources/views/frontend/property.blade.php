@@ -29,7 +29,7 @@
                 <!-- Property section start -->
                 <div class="row property-section ">
                    @foreach($properties as $property)
-                    <div class="col-lg-6 col-md-6 col-sm-12" >
+                    <div class="col-lg-6 col-md-6 col-sm-12 filtr-item" >
                       
                         <div class="property-box">
                             <div class="property-thumbnail">
@@ -55,8 +55,10 @@
                                          $galleries = json_decode($gallery->gallery_image);
                                        @endphp
                                        @endforeach
-                                     {{  asset($galleries[0]) }}" alt="properties">
-                                     
+                                     {{  asset($galleries[0]) }}" alt="properties" style="height: 350px">
+                                     <h1 class="title overlay">
+                                        <a href="{{route('property_detail',$property->id)}}" class="hover-text">{{$property->title}}</a>
+                                    </h1>
                                 </a>
                             </div>
                             <div class="detail">
@@ -93,10 +95,10 @@
                             </div>
                             <div class="footer clearfix">
                                 <div class="pull-left days">
-                                    <a><i class="fa fa-user"></i> {{$property->agent->name}}</a>
+                                    <a><i class="fa fa-user icon"></i> {{$property->agent->name}}</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a><i class="flaticon-time"></i> {{$property->created_at->diffForHumans()}}</a>
+                                    <a><i class="flaticon-time icon"></i> {{$property->created_at->diffForHumans()}}</a>
                                 </div>
                             </div>
                         </div>
