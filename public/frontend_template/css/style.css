@@ -54,7 +54,7 @@ body {
 
 a {
     cursor: pointer;
-    color: white;
+    color: #e6e6e6;
 }
 
 a:hover {
@@ -65,7 +65,7 @@ a:hover {
 p {
     font-size: 14px;
     line-height: 26px;
-    color: white;
+    color: #e6e6e6;
 }
 
 strong {
@@ -891,7 +891,7 @@ input[type="checkbox"]:checked + label::before {
     line-height: 20px;
     font-size: 15px;
     font-weight: 400;
-    color: #555;
+    color: white;
     position: relative;
 }
 
@@ -2962,7 +2962,7 @@ input[type="checkbox"]:checked + label::before {
 
 .team-2 .team-details h6 {
     font-size: 11px;
-    color: white;
+    color: #e6e6e6;
     text-transform: uppercase;
     margin-bottom: 10px;
     font-weight: 400;
@@ -2987,7 +2987,7 @@ input[type="checkbox"]:checked + label::before {
 }
 
 .team-2 .team-details p a {
-    color: white;
+    color: #e6e6e6;
 }
 
 .team-2 .team-details p i {
@@ -3640,7 +3640,7 @@ footer {
     margin-bottom: 0;
     font-size: 13px;
     font-weight: 400;
-    color: white;
+    color: #e6e6e6;
 }
 
 .footer .s-border {
@@ -3670,7 +3670,7 @@ footer {
 }
 
 .footer .footer-inner .links li a {
-    color: white;
+    color: #e6e6e6;
 }
 
 .footer .footer-inner .links li a:hover {
@@ -3691,12 +3691,12 @@ footer {
 .footer .footer-inner .contact-info li {
     margin-bottom: 15px;
     font-size: 15px;
-    color: white;
+    color: #e6e6e6;
     font-weight: 400;
 }
 
 .footer .footer-inner .contact-info li a {
-    color: white;
+    color: #e6e6e6;
 }
 .footer .footer-inner .contact-info li a:hover {
     color: #b88f35;
@@ -3718,7 +3718,7 @@ footer {
     margin: 30px 0 0;
     text-align: center;
     font-size: 15px;
-    color: white !important;
+    color: #e6e6e6 !important;
     border-top: solid 1px #dcdcdc;
 }
 
@@ -3760,7 +3760,7 @@ footer {
 }
 
 .footer .popular-posts a {
-    color: white;
+    color: #e6e6e6;
 }
 
 .footer .popular-posts p {
@@ -3833,7 +3833,7 @@ footer {
 }
 
 .posts-by-category ul li a {
-    color: white;
+    color: #e6e6e6;
     font-size: 15px;
 }
 
@@ -3873,6 +3873,9 @@ footer {
     margin: 0 0 5px;
     font-weight: 400;
 }
+.latest-reviews .media-heading a:hover{
+    color: #b88f35;
+}
 
 .latest-reviews p {
     margin: 0;
@@ -3893,7 +3896,7 @@ footer {
 
 .tags-box ul li a {
     border: 1px solid #b88f35;
-    color: white;
+    color: #e6e6e6;
     display: inline-block;
     font-size: 13px;
     margin: 0 0 5px;
@@ -4295,7 +4298,7 @@ footer {
 }
 
 .property-box-5 .detail .location a {
-    color: white;
+    color: #e6e6e6;
 }
 
 .property-box-5 .detail .location i {
@@ -4308,7 +4311,7 @@ footer {
 }
 
 .property-box-5 .properties-listing span {
-    color: white;
+    color: #e6e6e6;
     float: left;
     line-height: 40px;
     text-align: center;
@@ -4382,7 +4385,7 @@ footer {
 }
 
 .property-box .detail .location a {
-    color: white;
+    color: #e6e6e6;
 }
 
 .property-box .detail .location i {
@@ -4396,7 +4399,7 @@ footer {
     font-weight: 400;
     line-height: 32px;
     font-size: 14px;
-    color: white;
+    color: #e6e6e6;
 }
 
 .property-box .facilities-list li i {
@@ -4412,7 +4415,7 @@ footer {
 }
 
 .property-box .footer a {
-    color: white;
+    color: #e6e6e6;
 }
 
 .property-box .footer a:hover {
@@ -6474,6 +6477,7 @@ blockquote {
     font-weight: 400;
     position: relative;
     padding-left: 25px;
+    color: #e6e6e6;
 }
 
 .properties-amenities ul li i {
@@ -6490,6 +6494,7 @@ blockquote {
     font-weight: 400;
     position: relative;
     padding-left: 25px;
+    color: #e6e6e6;
 }
 
 .properties-condition ul li i {
@@ -6608,6 +6613,7 @@ blockquote {
     margin-top: 0;
     font-weight: 600;
     font-size: 25px;
+    color: #b88f35;
 }
 
 .heading-properties-2 h3 span {
@@ -6633,7 +6639,7 @@ blockquote {
 
 .heading-properties-2 p {
     margin-bottom: 0;
-    color: #555;
+    color: #e6e6e6;
     font-size: 15px;
 }
 
@@ -6802,8 +6808,8 @@ blockquote {
 }
 
 .tabbing-box .nav-tabs {
-    background: #fff;
-    border-bottom: solid 1px #fff;
+    background: black;
+    border-bottom: solid 1px black;
 }
 
 .tabbing-box .nav-tabs li {
@@ -6823,14 +6829,15 @@ blockquote {
 }
 
 .tabbing-box .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-    color: #525252;
+    color: white;
     border-radius: 50px;
-    background: #eeeeef;
+    background: #b88f35;
 }
 
 .tabbing-box .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link:hover {
     border-radius: 50px;
-    background: #eeeeef;
+    background: #b88f35;
+    color: white;
 }
 
 .tabbing-box .nav-tabs .nav-link {
@@ -8042,7 +8049,7 @@ blockquote {
     }
 
     .blog-big .detail {
-        padding: 20px 0 40px;
+        padding: 20px 10px 40px;
     }
 
     .typography .mb-40 {
@@ -8810,7 +8817,7 @@ blockquote {
     }
 
     .partners h4 {
-        margin-bottom: 0;
+        margin-bottom: 20px;
     }
 
     .icon-lists {
@@ -9130,7 +9137,7 @@ blockquote {
     }
 
     .content-area {
-        padding: 60px 0 30px;
+        padding: 60px 0 0px;
     }
 
     .content-area-2 {

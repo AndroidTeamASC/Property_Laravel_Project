@@ -51,7 +51,7 @@
                     </div>
                 </div>
             </div>
-            <div class="clearfix"></div>
+            <div class="clearfix p-2"></div>
             <div class="row">
                 <?php $__currentLoopData = $agents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $agent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="col-lg-4 col-md-6 col-sm-12">

@@ -318,7 +318,7 @@ footer .footer-item .contact-info li label a:hover {
 }
 
 .main-header .navbar-expand-lg .navbar-nav .active .nav-link {
-    color: #274abb !important;
+    color: #b88f35 !important;
 }
 
 .main-header .navbar-expand-lg .user-account li a:hover {
@@ -415,8 +415,8 @@ li.active.btn.filtr-button.filtr {
 }
 
 .option-bar .change-view-btn:hover{
-    border: solid 1px #274abb;
-    background: #274abb;
+    border: solid 1px #b88f35;
+    background: #b88f35;
 }
 
 .option-bar .active-view-btn {
@@ -646,7 +646,7 @@ li.active.btn.filtr-button.filtr {
 
     .main-header .navbar-expand-lg .navbar-nav .nav-link:hover {
         border-bottom: solid 1px #274abb;
-        color: #274abb;
+        color: #b88f35;
     }
 
     .main-header .navbar-expand-lg .navbar-nav .active .nav-link:hover {

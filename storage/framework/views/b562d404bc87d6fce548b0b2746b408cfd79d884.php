@@ -63,7 +63,7 @@
     <!-- Main header start -->
     <header class="main-header mh-3 header-transparent">
         <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light">
+            <nav class="navbar navbar-expand-lg navbar-dark">
                 <a class="navbar-brand logos" href="index.html">
                     <img src="<?php echo e(asset('frontend_template/img/logo.png')); ?>" alt="logo" class="logo-none-2">
                     <img src="<?php echo e(asset('frontend_template/img/logo.png')); ?>" alt="logo" class="logo-none">
