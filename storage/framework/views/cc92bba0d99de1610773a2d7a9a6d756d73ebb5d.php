@@ -1,10 +1,9 @@
-@extends('frontend.frontend_template')
-@section('banner')
+<?php $__env->startSection('banner'); ?>
     <div class="banner" id="banner">
         <div id="bannerCarousole" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item banner-max-height active">
-                    <img class="d-block w-100 h-75" src="{{asset('frontend_template/img/banner 3.jpg')}}" alt="banner">
+                    <img class="d-block w-100 h-75" src="<?php echo e(asset('frontend_template/img/banner 3.jpg')); ?>" alt="banner">
                     <div class="carousel-caption banner-slider-inner d-flex h-100 text-center">
                         <div class="carousel-content container">
                             <div class="text-center">
@@ -17,17 +16,17 @@
                                         <div class="col-lg-2 col-md-4 col-sm-4 col-6 search-col">
                                             <select class="selectpicker search-fields" name="property-status" id="status">
                                                 <option>Status</option>
-                                                @foreach($statuses as $status)
-                                                <option value="{{$status->id}}">{{$status->status}}</option>
-                                                @endforeach
+                                                <?php $__currentLoopData = $statuses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $status): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($status->id); ?>"><?php echo e($status->status); ?></option>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
                                         </div>
                                         <div class="col-lg-2 col-md-4 col-sm-4 col-6 search-col middle-col-1">
                                             <select class="selectpicker search-fields" name="property-types" id="type">
                                                 <option>Type</option>
-                                                @foreach($types as $type)
-                                                <option value="{{$type->id}}">{{$type->type}}</option>
-                                                @endforeach
+                                                <?php $__currentLoopData = $types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($type->id); ?>"><?php echo e($type->type); ?></option>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
                                         </div>
                                         <div class="col-lg-2 col-md-4 col-sm-4 col-6 search-col middle-col-1">
@@ -65,9 +64,9 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('search_properties')
+<?php $__env->startSection('search_properties'); ?>
 <div class="our-team-2 content-area" id="search_properties">
     <div class="container">
         <!-- Main title -->
@@ -79,9 +78,9 @@
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('featured_properties')
+<?php $__env->startSection('featured_properties'); ?>
     <div class="featured-properties content-area">
         <div class="container">
             <!-- Main title -->
@@ -90,25 +89,26 @@
                 <div class="list-inline-listing">
                     <ul class="filters filteriz-navigation clearfix">
                         <li class="active btn filtr-button filtr" data-filter="all">All</li>
-                        @foreach($types as $type)
-                        <li data-filter="{{$type->id}}" class="btn btn-inline filtr-button filtr">{{$type->type}}</li>
-                        @endforeach
+                        <?php $__currentLoopData = $types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <li data-filter="<?php echo e($type->id); ?>" class="btn btn-inline filtr-button filtr"><?php echo e($type->type); ?></li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </ul>
                 </div>
             </div>
             <div class="row filter-portfolio">
                 <div class="cars">
-                    @foreach($properties as $property)
-                    <div class="col-lg-4 col-md-6 col-sm-12 filtr-item" data-category="{{$property->type_id}}">
+                    <?php $__currentLoopData = $properties; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $property): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="col-lg-4 col-md-6 col-sm-12 filtr-item" data-category="<?php echo e($property->type_id); ?>">
                         <div class="property-box">
                             <div class="property-thumbnail">
-                                <a href="{{route('property_detail',$property->id)}}" class="property-img">
+                                <a href="<?php echo e(route('property_detail',$property->id)); ?>" class="property-img">
                                     <div class="listing-badges">
                                         <span class="featured">Featured</span>
                                     </div>
                                     <div class="price-ratings-box">
                                         <p class="price">
-                                            ${{$property->price}}
+                                            $<?php echo e($property->price); ?>
+
                                         </p>
                                         <div class="ratings">
                                             <i class="fa fa-star"></i>
@@ -118,54 +118,53 @@
                                             <i class="fa fa-star-o"></i>
                                         </div>
                                     </div>
-                                    <div class="listing-time opening">{{$property->status->status}} </div>
-                                    {{-- @php
-                                        $gallery_images = json_decode($property->gallery->gallery_image);
-                                        $gallery_image = $gallery_images[0];
-                                    @endphp --}}
-                                    <img class="d-block w-100 image" src="@foreach($property->galleries as $gallery)
-                                       @php
+                                    <div class="listing-time opening"><?php echo e($property->status->status); ?> </div>
+                                    
+                                    <img class="d-block w-100 image" src="<?php $__currentLoopData = $property->galleries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gallery): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                       <?php
                                          $galleries = json_decode($gallery->gallery_image);
-                                       @endphp
-                                       @endforeach
-                                     {{  $galleries[0] }}" alt="properties" style="height: 350px">
+                                       ?>
+                                       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                     <?php echo e($galleries[0]); ?>" alt="properties" style="height: 350px">
                                      <h1 class="title overlay">
-                                    <a href="{{route('property_detail',$property->id)}}" class="hover-text">{{$property->title}}</a>
+                                    <a href="<?php echo e(route('property_detail',$property->id)); ?>" class="hover-text"><?php echo e($property->title); ?></a>
                                 </h1>
                                 </a>
                             </div>
                             <div class="detail">
                                 <h1 class="title">
-                                    <a href="{{route('property_detail',$property->id)}}">{{$property->title}}</a>
+                                    <a href="<?php echo e(route('property_detail',$property->id)); ?>"><?php echo e($property->title); ?></a>
                                 </h1>
                                 <div class="location">
-                                    <a href="{{route('property_detail',$property->id)}}">
-                                        <i class="fa fa-map-marker"></i>{{$property->location->address}}
+                                    <a href="<?php echo e(route('property_detail',$property->id)); ?>">
+                                        <i class="fa fa-map-marker"></i><?php echo e($property->location->address); ?>
+
                                     </a>
                                 </div>
                                 <ul class="facilities-list clearfix">
                                     <li>
-                                        <i class="flaticon-square"></i> {{$property->building_area}} sq ft
+                                        <i class="flaticon-square"></i> <?php echo e($property->building_area); ?> sq ft
                                     </li>
                                     <li>
-                                        <i class="flaticon-furniture"></i> {{$property->bedroom}} Beds
+                                        <i class="flaticon-furniture"></i> <?php echo e($property->bedroom); ?> Beds
                                     </li>
                                     <li>
-                                        <i class="flaticon-holidays"></i> {{$property->bathroom}} Baths
+                                        <i class="flaticon-holidays"></i> <?php echo e($property->bathroom); ?> Baths
                                     </li>
                                     <li>
                                         <i class="flaticon-vehicle"></i> 
-                                        @php
+                                        <?php
                                             $garage = $property->garage;
                                             if($garage == null){
                                                 $garage = 0;
                                             }
                                             
-                                        @endphp
-                                        {{$garage}} Garage
+                                        ?>
+                                        <?php echo e($garage); ?> Garage
                                     </li>
                                     <li>
-                                        <i class="flaticon-window"></i> {{$property->build_year}}
+                                        <i class="flaticon-window"></i> <?php echo e($property->build_year); ?>
+
                                     </li>
                                     <li>
                                         <i class="flaticon-monitor"></i> TV
@@ -174,22 +173,22 @@
                             </div>
                             <div class="footer clearfix">
                                 <div class="pull-left days">
-                                    <a><i class="fa fa-user icon"></i> {{$property->agent->name}}</a>
+                                    <a><i class="fa fa-user icon"></i> <?php echo e($property->agent->name); ?></a>
                                 </div>
                                 <div class="pull-right">
-                                    <a><i class="flaticon-time icon"></i> {{$property->created_at->diffForHumans()}} </a>
+                                    <a><i class="flaticon-time icon"></i> <?php echo e($property->created_at->diffForHumans()); ?> </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('services')
+<?php $__env->startSection('services'); ?>
     <div class="services-3 content-area-5 bg-grea-3">
         <div class="container">
             <!-- Main title -->
@@ -239,9 +238,9 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('recent_properties')
+<?php $__env->startSection('recent_properties'); ?>
     <div class="recently-properties content-area-12">
         <div class="container">
             <!-- Main title -->
@@ -250,44 +249,41 @@
             </div>
             <div class="slick-slider-area">
                 <div class="row slick-carousel" data-slick='{"slidesToShow": 3, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
-                    @foreach($recent_properties as $recent_property)
+                    <?php $__currentLoopData = $recent_properties; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $recent_property): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="slick-slide-item">
                         <div class="property-box-5">
                             <div class="property-photo">
-                                {{-- @php
-                                    $gallery_images = json_decode($property->gallery->gallery_image);
-
-                                    $gallery_image = $gallery_images[0];
-                                @endphp --}}
-                                <img class="img-fluid image" src="@foreach($recent_property->galleries as $gallery)
-                                       @php
+                                
+                                <img class="img-fluid image" src="<?php $__currentLoopData = $recent_property->galleries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gallery): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                       <?php
                                          $galleries = json_decode($gallery->gallery_image);
-                                       @endphp
-                                       @endforeach
-                                     {{  $galleries[0] }}" alt="properties" style="height: 300px">
+                                       ?>
+                                       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                     <?php echo e($galleries[0]); ?>" alt="properties" style="height: 300px">
                                      
-                                <div class="date-box">{{$recent_property->status->status}}</div>
+                                <div class="date-box"><?php echo e($recent_property->status->status); ?></div>
                             </div>
                             <div class="detail">
                                 <div class="heading">
                                     <h3>
-                                        <a href="{{route('property_detail',$property->id)}}">{{$recent_property->title}}</a>
+                                        <a href="<?php echo e(route('property_detail',$property->id)); ?>"><?php echo e($recent_property->title); ?></a>
                                     </h3>
                                     <div class="location">
-                                        <a href="{{route('property_detail',$property->id)}}">
-                                            <i class="fa fa-map-marker"></i>{{$recent_property->location->address}}
+                                        <a href="<?php echo e(route('property_detail',$property->id)); ?>">
+                                            <i class="fa fa-map-marker"></i><?php echo e($recent_property->location->address); ?>
+
                                         </a>
                                     </div>
                                 </div>
                                 <div class="properties-listing">
-                                    <span>{{$recent_property->bedroom}} Beds</span>
-                                    <span>{{$recent_property->bathroom}} Baths</span>
-                                    <span>{{$recent_property->building_area}} sqft</span>
+                                    <span><?php echo e($recent_property->bedroom); ?> Beds</span>
+                                    <span><?php echo e($recent_property->bathroom); ?> Baths</span>
+                                    <span><?php echo e($recent_property->building_area); ?> sqft</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
                 <div class="slick-btn">
                     <div class="slick-prev slick-arrow-buton-2"></div>
@@ -296,16 +292,16 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('counters')
+<?php $__env->startSection('counters'); ?>
     <div class="counters-2">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="counter-box">
                         <div class="icon"><i class="flaticon-tag"></i></div>
-                        <h1 class="counter">{{$listing_sale}}</h1>
+                        <h1 class="counter"><?php echo e($listing_sale); ?></h1>
                         <p>Listings For Sale</p>
                     </div>
                 </div>
@@ -314,7 +310,7 @@
                         <div class="icon">
                             <i class="flaticon-business"></i>
                         </div>
-                        <h1 class="counter">{{$listing_rent}}</h1>
+                        <h1 class="counter"><?php echo e($listing_rent); ?></h1>
                         <p>Listings For Rent</p>
                     </div>
                 </div>
@@ -323,17 +319,17 @@
                         <div class="icon">
                             <i class="flaticon-people"></i>
                         </div>
-                        <h1 class="counter">{{$agent}}</h1>
+                        <h1 class="counter"><?php echo e($agent); ?></h1>
                         <p>Agents</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
 
-@section('testimonial')
+<?php $__env->startSection('testimonial'); ?>
     <div class="testimonial-2 t2">
         <div class="container">
             <div class="row">
@@ -404,9 +400,9 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('partners')
+<?php $__env->startSection('partners'); ?>
     <div class="partners">
         <div class="container">
             <h4>Brands and Partners</h4>
@@ -430,8 +426,8 @@
             </div>
         </div>
     </div>
-@endsection
-@section('script')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
     <script type="text/javascript">
         $(document).ready(function (argument) {
             jQuery("time.timeago").timeago();
@@ -448,7 +444,7 @@
                 var bathroom = $('#bathroom').val()
                 var keyword = $('#keyword').val()
                 console.log(status,type,bedroom,bathroom,keyword)
-                var url="{{route('home_search')}}"
+                var url="<?php echo e(route('home_search')); ?>"
                 $.ajax({
                   type:'POST',
                   url: url,
@@ -490,7 +486,7 @@
                                     </div>
                                 </div>
                                 <div class="listing-time opening">${v.status}</div>
-                                <img class="d-block w-100" src="{{asset('${gallery_image}')}}" style="height:350px">
+                                <img class="d-block w-100" src="<?php echo e(asset('${gallery_image}')); ?>" style="height:350px">
                             </a>
                         </div>
                         <div class="detail">
@@ -544,4 +540,5 @@
             }) 
         })
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('frontend.frontend_template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /opt/lampp/htdocs/Property_Laravel_Project/resources/views/frontend/index.blade.php ENDPATH**/ ?>

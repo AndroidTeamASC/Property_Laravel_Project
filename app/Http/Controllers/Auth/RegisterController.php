@@ -69,13 +69,13 @@ class RegisterController extends Controller
         if ($data['image']) 
         {
             $image=$data['image'];
-            $upload_path=public_path().'/image/profile/';
+            $upload_path=public_path().'image/profile/';
             $name=uniqid().time().'.'.$image->getClientOriginalExtension();
             $image->move($upload_path,$name);
-            $path='/image/profile/'.$name;
+            $path='image/profile/'.$name;
         }else
         {
-            $path="/image/profile/avatar.png";
+            $path="image/profile/avatar.png";
         }
         $user =  User::create([
             'name' => $data['name'],

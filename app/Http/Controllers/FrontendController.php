@@ -29,7 +29,7 @@ class FrontendController extends Controller
         // Sharing is caring
         View::share('types', $types);
         View::share('statuses', $statuses);
-         View::share('properties', $properties);
+        View::share('properties', $properties);
       }
     public function index($value='')
     {

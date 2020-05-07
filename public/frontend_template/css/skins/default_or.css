@@ -1,9 +1,10 @@
+
 .button-theme {
-    background: #b88f34;
+    background: #274abb;
 }
 
 .button-theme:hover {
-    background: #bf962c;
+    background: #2238d8;
 }
 
 .top-header {
@@ -11,11 +12,11 @@
 }
 
 .contact-section .form-section .btn-theme {
-    background: #b88f35;
+    background: #274abb;
 }
 
 .active-view-btn {
-    background: #b88f35!important;
+    background: #274abb!important;
     border: solid 1px #274abb;
 }
 
@@ -30,11 +31,11 @@
 }
 
 .contact-section .form-section .btn-theme:hover {
-    background: black;
+    background: #2238d8;
 }
 
 .contact-section .btn-section .active-bg {
-    color: #b88f35;
+    color: #274abb;
 }
 
 .contact-section .form-section .checkbox-theme input[type="checkbox"]:checked + label::before {
@@ -43,7 +44,7 @@
 }
 
 #page_scroller {
-    background: #b88f35;
+    background: #274abb;
 }
 
 .checkbox-theme input[type="checkbox"]:checked + label::before {
@@ -51,7 +52,7 @@
 }
 
 .main-header .dropdown-menu a:hover {
-    color: #b88f35;
+    color: #274abb;
 }
 
 input[type=checkbox]:checked + label:before {
@@ -107,7 +108,7 @@ input[type=checkbox]:checked + label:before {
 }
 
 .properties-condition ul li i {
-    color: #b88f35;
+    color: #274abb;
 }
 
 .border-button-theme {
@@ -146,16 +147,16 @@ input[type=checkbox]:checked + label:before {
 }
 
 .search-button {
-    background: #b88f35;
+    background: #274abb;
 }
 
 .search-button:hover {
     color: #fff;
-    background: black;
+    background: #2238d8;
 }
 
 .service-info-2 i {
-    color: #b88f35;
+    color: #274abb;
 }
 
 .bootstrap-select.btn-group.show-tick .dropdown-menu li.selected a span.check-mark {
@@ -163,17 +164,17 @@ input[type=checkbox]:checked + label:before {
 }
 
 .bootstrap-select .dropdown-menu li a {
-    color: #b88f34;
+    color: #274abb;
 }
 
 .bootstrap-select .dropdown-menu li a:hover {
-    background: #b88f35;
+    background: #274abb;
 }
 
 .bootstrap-select .dropdown-menu > .active > a,
 .bootstrap-select .dropdown-menu > .active > a:focus,
 .bootstrap-select .dropdown-menu > .active > a:hover {
-    color: #b88f35;
+    color: #274abb;
 }
 
 .property-box .carousel-indicators .active {
@@ -185,7 +186,7 @@ blockquote {
 }
 
 .listing-badges .featured {
-    background-color: #b88f35;
+    background-color: #274abb;
 }
 
 .recent-properties-box .detail header::after {
@@ -221,7 +222,7 @@ blockquote {
 }
 
 .counters-2 .counter-box i{
-    color: #b88f35;
+    color: #274abb;
 }
 
 .testimonial-30::before {
@@ -233,7 +234,7 @@ blockquote {
 }
 
 .property-box-5 .date-box {
-    background:  #b88f35;
+    background:  #274abb;
 }
 
 .main-header .navbar-expand-lg .navbar-nav .link-btn{
@@ -244,10 +245,6 @@ blockquote {
 .main-header .navbar-expand-lg .navbar-nav .link-btn:hover{
     background: #274abb;
     border: solid 1px #274abb;
-}
-
-.property-box .footer ul li a {
-    color: #274abb;
 }
 
 .property-box .footer ul li a:hover {
@@ -263,7 +260,7 @@ blockquote {
 }
 
 .blog-2 .photo .date-box {
-    background: #b88f35;
+    background: #274abb;
 }
 
 .counters-3 {
@@ -271,7 +268,7 @@ blockquote {
 }
 
 .property-box .detail .location i {
-    color: #b88f35;
+    color: #274abb;
 }
 
 footer .footer-item .contact-info li label a:hover {
@@ -295,7 +292,7 @@ footer .footer-item .contact-info li label a:hover {
 }
 
 .btn-white{
-    color: #b88f35;
+    color: #274abb;
 }
 
 .service-box .heading .title h4 a:hover {
@@ -356,7 +353,7 @@ footer .footer-item .contact-info li label a:hover {
 }
 
 .heading-properties-2 h3 span {
-    color: #b88f35;
+    color: #274abb;
 }
 
 .leaflet-container a.leaflet-popup-close-button {
@@ -378,7 +375,7 @@ footer .footer-item .contact-info li label a:hover {
 }
 
 .blog-2 .detail .post-meta span a i{
-    color: #b88f35;
+    color: #274abb;
 }
 
 .blog-3 .date-box {
@@ -386,15 +383,15 @@ footer .footer-item .contact-info li label a:hover {
 }
 
 .property-box .detail .title a{
-    color: #b88f35;
+    color: #274abb;
 }
 
 .property-box .facilities-list li i{
-    color: #b88f35;
+    color: #274abb;
 }
 
 li.active.btn.filtr-button.filtr {
-    color: #b88f35;
+    color: #274abb;
 }
 
 .counters-31::before {
@@ -406,12 +403,12 @@ li.active.btn.filtr-button.filtr {
 }
 
 .filteriz-navigation li:hover{
-    color: #b88f35;
+    color: #274abb;
 }
 
 .option-bar .change-view-btn {
-    color: #b88f35;
-    border: solid 1px #b88f35;
+    color: #274abb;
+    border: solid 1px #274abb;
 }
 
 .option-bar .change-view-btn:hover{
@@ -421,11 +418,11 @@ li.active.btn.filtr-button.filtr {
 
 .option-bar .active-view-btn {
     background: #274abb;
-    border: solid 1px #b88f35;
+    border: solid 1px #274abb;
 }
 
 .option-bar .heading-icon {
-    background: #b88f35;
+    background: #274abb;
 }
 
 .sub-banner .page-info .breadcrumb-area ul li a:hover {
@@ -441,24 +438,16 @@ li.active.btn.filtr-button.filtr {
 }
 
 .pagination > li > a:hover {
-    background: #b88f35 !important;
+    background: #274abb !important;
     color: #fff;
 }
 
 .pagination > li > .active {
-    background: #b88f35;
+    background: #274abb;
 }
 
-.page-item.active .page-link {
-    background: #b88f35;
-    border-radius: 50px !important;
-}
-.page-item.disabled .page-link {
-    color: #b88f35;
-    border-radius: 50px !important;
-}
 .read-more {
-    color: #b88f35;
+    color: #274abb;
 }
 
 .partners .slick-arrow-buton:hover{
@@ -468,7 +457,7 @@ li.active.btn.filtr-button.filtr {
 }
 
 .blog-1 .date-box {
-    background: #b88f35;
+    background: #274abb;
 }
 
 .range-slider .ui-slider .ui-slider-handle {
@@ -484,12 +473,12 @@ li.active.btn.filtr-button.filtr {
 }
 
 .posts-by-category ul li a:hover {
-    color: #b88f35;
+    color: #274abb;
 }
 
 .tags-box ul li a:hover {
-    border: 1px solid #b88f35   ;
-    background: #b88f35 ;
+    border: 1px solid #274abb;
+    background: #274abb;
 }
 
 .latest-tweet a {
@@ -498,11 +487,11 @@ li.active.btn.filtr-button.filtr {
 
 
 .comment-meta a {
-    color: #b88f35;
+    color: #274abb;
 }
 
 .comment-meta a:hover {
-    color: white;
+    color: #2238d8;
 }
 
 .blog-tags a:hover {
@@ -516,11 +505,11 @@ li.active.btn.filtr-button.filtr {
 }
 
 .slick-btn .slick-arrow-buton-2:hover {
-    background: #b88f35;
+    background: #274abb;
 }
 
 .helping-center ul li i {
-    color: #b88f35;
+    color: #274abb;
 }
 
 .my-account-box ul li a:hover {

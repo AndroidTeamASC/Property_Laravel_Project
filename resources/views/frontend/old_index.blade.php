@@ -4,7 +4,7 @@
         <div id="bannerCarousole" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item banner-max-height active">
-                    <img class="d-block w-100 h-75" src="{{asset('frontend_template/img/banner 3.jpg')}}" alt="banner">
+                    <img class="d-block w-100" src="{{asset('frontend_template/img/banner-1.jpg')}}" alt="banner">
                     <div class="carousel-caption banner-slider-inner d-flex h-100 text-center">
                         <div class="carousel-content container">
                             <div class="text-center">
@@ -136,7 +136,7 @@
                             </div>
                             <div class="detail">
                                 <h1 class="title">
-                                    <a href="{{route('property_detail',$property->id)}}">{{$property->title}}</a>
+                                    <a href="{{route('property_detail',$property->id)}}" class="">{{$property->title}}</a>
                                 </h1>
                                 <div class="location">
                                     <a href="{{route('property_detail',$property->id)}}">
@@ -174,10 +174,10 @@
                             </div>
                             <div class="footer clearfix">
                                 <div class="pull-left days">
-                                    <a><i class="fa fa-user icon"></i> {{$property->agent->name}}</a>
+                                    <a><i class="fa fa-user"></i> {{$property->agent->name}}</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a><i class="flaticon-time icon"></i> {{$property->created_at->diffForHumans()}} </a>
+                                    <a><i class="flaticon-time"></i> {{$property->created_at->diffForHumans()}} </a>
                                 </div>
                             </div>
                         </div>
@@ -298,6 +298,79 @@
     </div>
 @endsection
 
+@section('categories')
+    <div class="categories content-area-8 bg-grea-3">
+        <div class="container">
+            <!-- Main title -->
+            <div class="main-title">
+                <h1>Most Popular Places</h1>
+            </div>
+            <div class="row wow">
+            <div class="col-lg-7 col-md-12 col-sm-12">
+                <div class="row">
+                    <div class="col-sm-6 col-pad">
+                        <div class="category">
+                            <div class="category_bg_box cat-2-bg">
+                                <div class="category-overlay">
+                                    <div class="category-content">
+                                        <h3 class="category-title">
+                                            <a href="#">House</a>
+                                        </h3>
+                                        <a href="properties-list-rightside.html" class="category-subtitle">{{$listing_houses}} Properties</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-pad">
+                        <div class="category">
+                            <div class="category_bg_box cat-1-bg">
+                                <div class="category-overlay">
+                                    <div class="category-content">
+                                        <h3 class="category-title">
+                                            <a href="#">Apartment</a>
+                                        </h3>
+                                        <a href="properties-list-rightside.html" class="category-subtitle">{{$listing_apartments}} Properties</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-pad">
+                        <div class="category">
+                            <div class="category_bg_box cat-3-bg">
+                                <div class="category-overlay">
+                                    <div class="category-content">
+                                        <h3 class="category-title">
+                                            <a href="#">Office</a>
+                                        </h3>
+                                        <a href="properties-list-rightside.html" class="category-subtitle">{{$listing_offices}} Properties</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-12 col-sm-12 col-pad d-none d-xl-block d-lg-block">
+                <div class="category">
+                    <div class="category_bg_box category_long_bg cat-4-bg">
+                        <div class="category-overlay">
+                            <div class="category-content">
+                                <h3 class="category-title">
+                                    <a href="#">Vialla</a>
+                                </h3>
+                                <a href="properties-list-rightside.html" class="category-subtitle">{{$listing_villas}} Properties</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+@endsection
+
 @section('counters')
     <div class="counters-2">
         <div class="container">
@@ -332,6 +405,68 @@
     </div>
 @endsection
 
+@section('team')
+    <div class="our-team-2 content-area">
+            <div class="container">
+                <!-- Main title -->
+                <div class="main-title">
+                    <h1>Our Agent</h1>
+                </div>
+                <div class="slick-slider-area">
+                    <div class="row slick-carousel" data-slick='{"slidesToShow": 2, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 1}}, {"breakpoint": 768,"settings":{"slidesToShow": 2}}]}'>
+                        @foreach($our_agents as $agent)
+                        @if($agent->hasRole('agent'))
+                        <div class="slick-slide-item">
+                            <div class="row team-4">
+                                <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-pad ">
+                                    <div class="photo">
+                                        <img src="{{asset($agent->image)}}" class="img-fluid" style="height: 300px">
+                                    </div>
+                                </div>
+                                <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-pad align-self-center">
+                                    <div class="detail">
+                                        <h5>Office Manager</h5>
+                                        <h4>
+                                            <a href="agent-detail.html">{{$agent->name}}</a>
+                                        </h4>
+
+                                        <div class="contact">
+                                            <ul>
+                                                <li>
+                                                    <span>Address:</span><a href="#"> {{$agent->address}}</a>
+                                                </li>
+                                                <li>
+                                                    <span>Email:</span><a href="mailto:{{$agent->email}}"> {{$agent->email}}</a>
+                                                </li>
+                                                <li>
+                                                    <span>Mobile:</span><a href="tel:+554XX-634-7071"> {{$agent->phone_no}}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <ul class="social-list clearfix">
+                                            <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>
+                                            <li><a href="#" class="linkedin-bg"><i class="fa fa-linkedin"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        @endforeach
+                    </div>
+                    <div class="slick-prev slick-arrow-buton">
+                        <i class="fa fa-angle-left"></i>
+                    </div>
+                    <div class="slick-next slick-arrow-buton">
+                        <i class="fa fa-angle-right"></i>
+                    </div>
+                </div>
+            </div>
+    </div>
+@endsection
 
 @section('testimonial')
     <div class="testimonial-2 t2">
@@ -400,6 +535,52 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('blog')
+    <div class="blog content-area-12">
+        <div class="container">
+            <!-- Main title -->
+            <div class="main-title">
+                <h1>Our Blog</h1>
+            </div>
+            <div class="slick-slider-area">
+                <div class="row slick-carousel" data-slick='{"slidesToShow": 2, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
+                    @foreach($posts as $post)
+                    <div class="slick-slide-item">
+                        <div class="row blog-2">
+                            <div class="col-lg-6 col-md-12 col-pad">
+                                <div class="photo">
+                                    <img src="{{asset($post->image)}}" alt="blog" class="img-fluid fit-cover" style="height: 350px">
+                                    <div class="date-box">
+                                        {{$post->created_at->diffForHumans()}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-pad align-self-center">
+                                <div class="detail">
+                                    <h3>
+                                        <a href="{{route('blog_detail',$post->id)}}">{{$post->title}}</a>
+                                    </h3>
+                                    <div class="post-meta">
+                                        <span><a href="#"><i class="fa fa-user"></i>{{$post->user->name}}</a></span>
+                                        <span><a href="#"><i class="fa fa-clock-o"></i>237</a></span>
+                                        <span><a href="#"><i class="fa fa-heart-o"></i>548</a></span>
+                                    </div>
+                                    <p>{{ Str::limit($post->context, 150) }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                <div class="slick-btn">
+                    <div class="slick-prev slick-arrow-buton-2"></div>
+                    <div class="slick-next slick-arrow-buton-2"></div>
                 </div>
             </div>
         </div>
