@@ -283,7 +283,7 @@
                   $('.error-message-email').text(email)
                   $('.error-message-password').text(password)
                   $('.error-message-phone_no').text(phone_no)
-                  $('.error-message-address').text(address)
+                  $('.error-message-address').text(address 
               }
             $('#saveBtn').html('Save Changes');
           }

@@ -50,7 +50,7 @@
   <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
   <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css' type='text/css' />
     <style type="text/css">
-     
+        #map { height:400 ;width:600; }
       .geocoder {
             position:relative;
         }
@@ -353,8 +353,14 @@
                             <div class="s-border"></div>
                             <div class="m-border"></div>
                             <ul class="list-unstyled list-cat">
-                                @foreach($types as $type)
-                                <li><a href="{{route('types',$type->id)}}">{{$type->type}} <span>(45)</span></a></li>
+                                 @foreach($types as $type)
+                                <li><a href="blog?type_id={{$type->id}}">{{$type->type}}<span>
+                                    @if($type->type =="House"){{$phouses}}
+                                    @elseif($type->type =="Apartment"){{$papartments}}
+                                    @elseif($type->type =="Office"){{$poffices}}
+                                    @elseif($type->type =="Villa"){{$pvillas}}
+                                    @endif
+                                </span></a></li>
                                 @endforeach
 
                             </ul>

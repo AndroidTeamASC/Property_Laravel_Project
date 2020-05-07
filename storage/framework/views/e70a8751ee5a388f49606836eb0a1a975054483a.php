@@ -50,7 +50,7 @@
   <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
   <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css' type='text/css' />
     <style type="text/css">
-       #map { position: relative; top: 0; bottom: 0; width: 100%; }
+        #map { height:400 ;width:600; }
       .geocoder {
             position:relative;
         }
@@ -355,8 +355,18 @@
                             <div class="s-border"></div>
                             <div class="m-border"></div>
                             <ul class="list-unstyled list-cat">
-                                <?php $__currentLoopData = $types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <li><a href="<?php echo e(route('types',$type->id)); ?>"><?php echo e($type->type); ?> <span>(45)</span></a></li>
+                                 <?php $__currentLoopData = $types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li><a href="blog?type_id=<?php echo e($type->id); ?>"><?php echo e($type->type); ?><span>
+                                    <?php if($type->type =="House"): ?><?php echo e($phouses); ?>
+
+                                    <?php elseif($type->type =="Apartment"): ?><?php echo e($papartments); ?>
+
+                                    <?php elseif($type->type =="Office"): ?><?php echo e($poffices); ?>
+
+                                    <?php elseif($type->type =="Villa"): ?><?php echo e($pvillas); ?>
+
+                                    <?php endif; ?>
+                                </span></a></li>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                             </ul>
