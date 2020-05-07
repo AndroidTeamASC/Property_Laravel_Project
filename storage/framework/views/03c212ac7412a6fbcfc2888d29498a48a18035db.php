@@ -3,33 +3,33 @@
         <div id="bannerCarousole" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item banner-max-height active">
-                    <img class="d-block w-100 h-75" src="<?php echo e(asset('frontend_template/img/banner-1.jpg')); ?>" alt="banner">
+                    <img class="d-block w-100 h-75" src="<?php echo e(asset('frontend_template/img/banner 3.jpg')); ?>" alt="banner">
                     <div class="carousel-caption banner-slider-inner d-flex h-100 text-center">
                         <div class="carousel-content container">
                             <div class="text-center">
                                 <h3 class="text-uppercase">Find Your Dream House</h3>
                                 <p class="none-mb-992-0">
-                                    This is real estate website template based on Bootstrap 4 framework.
+                                        
                                 </p>
                                 <div class="inline-search-area none-992">
                                     <div class="row">
-                                        <div class="col-lg-2 col-sm-4 col-6 search-col">
+                                        <div class="col-lg-2 col-md-4 col-sm-4 col-6 search-col">
                                             <select class="selectpicker search-fields" name="property-status" id="status">
-                                                <option>Property Status</option>
+                                                <option>Status</option>
                                                 <?php $__currentLoopData = $statuses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $status): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <option value="<?php echo e($status->id); ?>"><?php echo e($status->status); ?></option>
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
                                         </div>
-                                        <div class="col-lg-2 col-sm-3 col-6 search-col middle-col-1">
+                                        <div class="col-lg-2 col-md-4 col-sm-4 col-6 search-col middle-col-1">
                                             <select class="selectpicker search-fields" name="property-types" id="type">
-                                                <option>Property Type</option>
+                                                <option>Type</option>
                                                 <?php $__currentLoopData = $types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <option value="<?php echo e($type->id); ?>"><?php echo e($type->type); ?></option>
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
                                         </div>
-                                        <div class="col-lg-2 col-sm-3 col-6 search-col middle-col-1">
+                                        <div class="col-lg-2 col-md-4 col-sm-4 col-6 search-col middle-col-1">
                                             <select class="selectpicker search-fields" name="Bedrooms" id="bedroom">
                                                 <option>Bedrooms</option>
                                                 <option value="1">01</option>
@@ -38,7 +38,7 @@
                                                 <option value="above3">Above 03</option>
                                             </select>
                                         </div>
-                                        <div class="col-lg-2 col-sm-3 col-8 search-col middle-col-2">
+                                        <div class="col-lg-2 col-md-4 col-sm-4 col-6 search-col middle-col-2">
                                             <select class="selectpicker search-fields" name="Bathrooms" id="bathroom">
                                                 <option>Bathrooms</option>
                                                 <option value="1">01</option>
@@ -47,10 +47,10 @@
                                                 <option value="above3">Above 03</option>
                                             </select>
                                         </div>
-                                        <div class="col-lg-2 col-sm-3 col-8 search-col middle-col-2">
+                                        <div class="col-lg-2 col-md-4 col-sm-4 col-6 search-col middle-col-2">
                                             <input type="text" name="name" class="form-control selectpicker" placeholder="Keyword..." style="font-size: 14px;font-weight: 300;" id="keyword">
                                         </div>
-                                        <div class="col-lg-2 col-sm-2 col-4 search-col">
+                                        <div class="col-lg-2 col-md-4 col-sm-4 col-6 search-col">
                                             <button class="btn button-theme btn-search btn-block" id="search">
                                                 <i class="fa fa-search"></i><strong>Find</strong>
                                             </button>
@@ -133,7 +133,7 @@
                             </div>
                             <div class="detail">
                                 <h1 class="title">
-                                    <a href="<?php echo e(route('property_detail',$property->id)); ?>" class=""><?php echo e($property->title); ?></a>
+                                    <a href="<?php echo e(route('property_detail',$property->id)); ?>"><?php echo e($property->title); ?></a>
                                 </h1>
                                 <div class="location">
                                     <a href="<?php echo e(route('property_detail',$property->id)); ?>">
@@ -173,10 +173,10 @@
                             </div>
                             <div class="footer clearfix">
                                 <div class="pull-left days">
-                                    <a><i class="fa fa-user"></i> <?php echo e($property->agent->name); ?></a>
+                                    <a><i class="fa fa-user icon"></i> <?php echo e($property->agent->name); ?></a>
                                 </div>
                                 <div class="pull-right">
-                                    <a><i class="flaticon-time"></i> <?php echo e($property->created_at->diffForHumans()); ?> </a>
+                                    <a><i class="flaticon-time icon"></i> <?php echo e($property->created_at->diffForHumans()); ?> </a>
                                 </div>
                             </div>
                         </div>
@@ -294,79 +294,6 @@
     </div>
 <?php $__env->stopSection(); ?>
 
-<?php $__env->startSection('categories'); ?>
-    <div class="categories content-area-8 bg-grea-3">
-        <div class="container">
-            <!-- Main title -->
-            <div class="main-title">
-                <h1>Most Popular Places</h1>
-            </div>
-            <div class="row wow">
-            <div class="col-lg-7 col-md-12 col-sm-12">
-                <div class="row">
-                    <div class="col-sm-6 col-pad">
-                        <div class="category">
-                            <div class="category_bg_box cat-2-bg">
-                                <div class="category-overlay">
-                                    <div class="category-content">
-                                        <h3 class="category-title">
-                                            <a href="#">House</a>
-                                        </h3>
-                                        <a href="properties-list-rightside.html" class="category-subtitle"><?php echo e($listing_houses); ?> Properties</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-pad">
-                        <div class="category">
-                            <div class="category_bg_box cat-1-bg">
-                                <div class="category-overlay">
-                                    <div class="category-content">
-                                        <h3 class="category-title">
-                                            <a href="#">Apartment</a>
-                                        </h3>
-                                        <a href="properties-list-rightside.html" class="category-subtitle"><?php echo e($listing_apartments); ?> Properties</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-pad">
-                        <div class="category">
-                            <div class="category_bg_box cat-3-bg">
-                                <div class="category-overlay">
-                                    <div class="category-content">
-                                        <h3 class="category-title">
-                                            <a href="#">Office</a>
-                                        </h3>
-                                        <a href="properties-list-rightside.html" class="category-subtitle"><?php echo e($listing_offices); ?> Properties</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-5 col-md-12 col-sm-12 col-pad d-none d-xl-block d-lg-block">
-                <div class="category">
-                    <div class="category_bg_box category_long_bg cat-4-bg">
-                        <div class="category-overlay">
-                            <div class="category-content">
-                                <h3 class="category-title">
-                                    <a href="#">Vialla</a>
-                                </h3>
-                                <a href="properties-list-rightside.html" class="category-subtitle"><?php echo e($listing_villas); ?> Properties</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-    </div>
-<?php $__env->stopSection(); ?>
-
 <?php $__env->startSection('counters'); ?>
     <div class="counters-2">
         <div class="container">
@@ -401,68 +328,6 @@
     </div>
 <?php $__env->stopSection(); ?>
 
-<?php $__env->startSection('team'); ?>
-    <div class="our-team-2 content-area">
-            <div class="container">
-                <!-- Main title -->
-                <div class="main-title">
-                    <h1>Our Agent</h1>
-                </div>
-                <div class="slick-slider-area">
-                    <div class="row slick-carousel" data-slick='{"slidesToShow": 2, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 1}}, {"breakpoint": 768,"settings":{"slidesToShow": 2}}]}'>
-                        <?php $__currentLoopData = $our_agents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $agent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <?php if($agent->hasRole('agent')): ?>
-                        <div class="slick-slide-item">
-                            <div class="row team-4">
-                                <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-pad ">
-                                    <div class="photo">
-                                        <img src="<?php echo e(asset($agent->image)); ?>" class="img-fluid" style="height: 300px">
-                                    </div>
-                                </div>
-                                <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-pad align-self-center">
-                                    <div class="detail">
-                                        <h5>Office Manager</h5>
-                                        <h4>
-                                            <a href="agent-detail.html"><?php echo e($agent->name); ?></a>
-                                        </h4>
-
-                                        <div class="contact">
-                                            <ul>
-                                                <li>
-                                                    <span>Address:</span><a href="#"> <?php echo e($agent->address); ?></a>
-                                                </li>
-                                                <li>
-                                                    <span>Email:</span><a href="mailto:<?php echo e($agent->email); ?>"> <?php echo e($agent->email); ?></a>
-                                                </li>
-                                                <li>
-                                                    <span>Mobile:</span><a href="tel:+554XX-634-7071"> <?php echo e($agent->phone_no); ?></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                        <ul class="social-list clearfix">
-                                            <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>
-                                            <li><a href="#" class="linkedin-bg"><i class="fa fa-linkedin"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <?php endif; ?>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </div>
-                    <div class="slick-prev slick-arrow-buton">
-                        <i class="fa fa-angle-left"></i>
-                    </div>
-                    <div class="slick-next slick-arrow-buton">
-                        <i class="fa fa-angle-right"></i>
-                    </div>
-                </div>
-            </div>
-    </div>
-<?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('testimonial'); ?>
     <div class="testimonial-2 t2">
@@ -531,53 +396,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php $__env->stopSection(); ?>
-
-<?php $__env->startSection('blog'); ?>
-    <div class="blog content-area-12">
-        <div class="container">
-            <!-- Main title -->
-            <div class="main-title">
-                <h1>Our Blog</h1>
-            </div>
-            <div class="slick-slider-area">
-                <div class="row slick-carousel" data-slick='{"slidesToShow": 2, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
-                    <?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="slick-slide-item">
-                        <div class="row blog-2">
-                            <div class="col-lg-6 col-md-12 col-pad">
-                                <div class="photo">
-                                    <img src="<?php echo e(asset($post->image)); ?>" alt="blog" class="img-fluid fit-cover" style="height: 350px">
-                                    <div class="date-box">
-                                        <?php echo e($post->created_at->diffForHumans()); ?>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-12 col-pad align-self-center">
-                                <div class="detail">
-                                    <h3>
-                                        <a href="<?php echo e(route('blog_detail',$post->id)); ?>"><?php echo e($post->title); ?></a>
-                                    </h3>
-                                    <div class="post-meta">
-                                        <span><a href="#"><i class="fa fa-user"></i><?php echo e($post->user->name); ?></a></span>
-                                        <span><a href="#"><i class="fa fa-clock-o"></i>237</a></span>
-                                        <span><a href="#"><i class="fa fa-heart-o"></i>548</a></span>
-                                    </div>
-                                    <p><?php echo e(Str::limit($post->context, 150)); ?></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </div>
-                <div class="slick-btn">
-                    <div class="slick-prev slick-arrow-buton-2"></div>
-                    <div class="slick-next slick-arrow-buton-2"></div>
                 </div>
             </div>
         </div>

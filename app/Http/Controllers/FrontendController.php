@@ -49,7 +49,7 @@ class FrontendController extends Controller
         View::share('phouses',$houses);
         View::share('papartments',$apartments);
         View::share('poffices',$offices);
-        
+ 
       }
     public function index($value='')
     {

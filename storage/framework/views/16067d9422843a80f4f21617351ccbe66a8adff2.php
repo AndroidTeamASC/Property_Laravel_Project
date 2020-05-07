@@ -1,5 +1,4 @@
-@extends('backend.backend_template')
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="row">
   <div class="col-xl-8">
     <div class="card">
@@ -12,7 +11,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           </div>
           <div class="col-4 text-right float-right">
-            <a href="{{route('agent.property.edit', $property->id)}}" class="btn btn-sm btn-primary">Edit Property</a>
+            <a href="<?php echo e(route('agent.property.edit', $property->id)); ?>" class="btn btn-sm btn-primary">Edit Property</a>
           </div>
         </div>
       </div>
@@ -24,7 +23,8 @@
                 Property Title
               </div>
               <div class="col-lg-6 h4 font-weight-300">
-                {{$property->title}}
+                <?php echo e($property->title); ?>
+
               </div>
             </div>
             <div class="row">
@@ -32,7 +32,8 @@
                 Status
               </div>
               <div class="col-lg-6 h4 font-weight-300">
-                {{$property->status->status}}
+                <?php echo e($property->status->status); ?>
+
               </div>
             </div>
             <div class="row">
@@ -40,7 +41,8 @@
                 Type
               </div>
               <div class="col-lg-6 h4 font-weight-300">
-                {{$property->type->type}}
+                <?php echo e($property->type->type); ?>
+
               </div>
             </div>
             <div class="row">
@@ -48,7 +50,7 @@
                 Bedroom
               </div>
               <div class="col-lg-6 h4 font-weight-300">
-                {{$property->bedroom}} rooms
+                <?php echo e($property->bedroom); ?> rooms
               </div>
             </div>
             <div class="row">
@@ -56,7 +58,7 @@
                 Bathroom
               </div>
               <div class="col-lg-6 h4 font-weight-300">
-                {{$property->bathroom}} rooms
+                <?php echo e($property->bathroom); ?> rooms
               </div>
             </div>
             <div class="row">
@@ -64,7 +66,7 @@
                 Garage
               </div>
               <div class="col-lg-6 h4 font-weight-300">
-                {{$property->garage}} garage
+                <?php echo e($property->garage); ?> garage
               </div>
             </div>
             <div class="row">
@@ -72,7 +74,8 @@
                 Build Year
               </div>
               <div class="col-lg-6 h4 font-weight-300">
-                {{$property->build_year}}
+                <?php echo e($property->build_year); ?>
+
               </div>
             </div>
             <div class="row">
@@ -80,7 +83,7 @@
                 Land Area
               </div>
               <div class="col-lg-6 h4 font-weight-300">
-                {{$property->land_area}} sqft
+                <?php echo e($property->land_area); ?> sqft
               </div>
             </div>
             <div class="row">
@@ -88,7 +91,7 @@
                 Building Area
               </div>
               <div class="col-lg-6 h4 font-weight-300">
-                {{$property->building_area}} sqft
+                <?php echo e($property->building_area); ?> sqft
               </div>
             </div>
             <div class="row">
@@ -96,7 +99,8 @@
                 Price
               </div>
               <div class="col-lg-6 h4 font-weight-300">
-                $ {{$property->price}}
+                $ <?php echo e($property->price); ?>
+
               </div>
             </div>
             <div class="row">
@@ -104,7 +108,8 @@
                 Descrption
               </div>
               <div class="col-lg-6 h4 font-weight-300">
-                {{$property->description}}
+                <?php echo e($property->description); ?>
+
               </div>
             </div>
             <div class="row">
@@ -112,7 +117,8 @@
                 Keyword
               </div>
               <div class="col-lg-6 h4 font-weight-300">
-                {{$property->keyword}}
+                <?php echo e($property->keyword); ?>
+
               </div>
             </div>
           </div>
@@ -120,71 +126,76 @@
           <!-- Address -->
           <h6 class="heading-small text-muted mb-4">Neighborhoods</h6>
           <div class="pl-lg-4">
-            @if($property->neighborhoods != "null")
-              @php
+            <?php if($property->neighborhoods != "null"): ?>
+              <?php
                 $custom_neighborhoods = json_decode($property->neighborhoods)
-              @endphp
-              @foreach($custom_neighborhoods as $neighborhood)
+              ?>
+              <?php $__currentLoopData = $custom_neighborhoods; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $neighborhood): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 h4 font-weight-300">
-                  {{$neighborhood->place}}
+                  <?php echo e($neighborhood->place); ?>
+
                 </div>
-                @foreach($transportations as $transportation)
-                  @if($neighborhood->transportation_id == $transportation->id)
+                <?php $__currentLoopData = $transportations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $transportation): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <?php if($neighborhood->transportation_id == $transportation->id): ?>
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 h4 font-weight-300">
-                      @php echo $transportation->transportation_type; @endphp
+                      <?php echo $transportation->transportation_type; ?>
                   </div>
-                  @endif
-                @endforeach
+                  <?php endif; ?>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 h4 font-weight-300">
-                  {{$neighborhood->duration}} min
+                  <?php echo e($neighborhood->duration); ?> min
                 </div>
               </div>
-              @endforeach 
-            @endif
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
+            <?php endif; ?>
           </div>
           <hr class="my-4" />
 
           <h6 class="heading-small text-muted mb-4">Schools</h6>
           <div class="pl-lg-4">
-            @if($property->schools != "null")
-              @php
+            <?php if($property->schools != "null"): ?>
+              <?php
                 $schools = json_decode($property->schools)
-              @endphp
-              @foreach($schools as $school)
+              ?>
+              <?php $__currentLoopData = $schools; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $school): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 h4 font-weight-300">
-                  {{$school->school_name}}
+                  <?php echo e($school->school_name); ?>
+
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 h4 font-weight-300">
-                  Grade {{$school->grade}}
+                  Grade <?php echo e($school->grade); ?>
+
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 h4 font-weight-300">
-                  Rating : {{$school->rating}}
+                  Rating : <?php echo e($school->rating); ?>
+
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 h4 font-weight-300">
-                  {{$school->distance}} m
+                  <?php echo e($school->distance); ?> m
                 </div>
               </div>
-              @endforeach 
-            @endif
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
+            <?php endif; ?>
           </div>
 
           <hr class="my-4" />
           <h6 class="heading-small text-muted mb-4">Facts</h6>
           <div class="pl-lg-4">
             <div class="row">
-            @if($property->facts != "null")
-              @php
+            <?php if($property->facts != "null"): ?>
+              <?php
                 $facts = json_decode($property->facts)
-              @endphp
-              @foreach($facts as $fact)
+              ?>
+              <?php $__currentLoopData = $facts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $fact): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 h4 font-weight-300">
-                  {{$fact->fact}}
+                  <?php echo e($fact->fact); ?>
+
                 </div>
-              @endforeach 
-            @endif
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
+            <?php endif; ?>
             </div>
           </div>
           <hr class="my-4" />
@@ -193,11 +204,11 @@
           <div class="pl-lg-4">
             <div class="row">
               <div class="col-lg-12">
-                @if($property->embed_code != null)
-                  @php
+                <?php if($property->embed_code != null): ?>
+                  <?php
                     echo "$property->embed_code";
-                  @endphp
-                @endif
+                  ?>
+                <?php endif; ?>
               </div>
             </div>
           </div>
@@ -215,23 +226,23 @@
           </div>
         </div>
         <div class="row">
-          @if($property->feature_id != "null")
-            @php
+          <?php if($property->feature_id != "null"): ?>
+            <?php
               $custom_features = json_decode($property->feature_id)
-            @endphp
-            @foreach($features as $feature)
+            ?>
+            <?php $__currentLoopData = $features; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $feature): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <ul class="amenities">
                   
-                  @if(in_array($feature->id, $custom_features))
+                  <?php if(in_array($feature->id, $custom_features)): ?>
                   <li class="h4 font-weight-300">
-                      @php echo $feature->feature; @endphp
+                      <?php echo $feature->feature; ?>
                   </li>
-                  @endif
+                  <?php endif; ?>
                 </ul>
               </div>
-            @endforeach 
-          @endif
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
+          <?php endif; ?>
         </div>
       </div>
    </div>
@@ -245,22 +256,22 @@
           </div>
         </div>
         <div class="row">
-          @if($property->tag_id != "null")
-            @php
+          <?php if($property->tag_id != "null"): ?>
+            <?php
               $custom_tags = json_decode($property->tag_id)
-            @endphp
-            @foreach($tags as $tag)
+            ?>
+            <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <ul class="amenities"> 
-                  @if(in_array($tag->id, $custom_tags))
+                  <?php if(in_array($tag->id, $custom_tags)): ?>
                   <li class="h4 font-weight-300">
-                      @php echo $tag->tag; @endphp
+                      <?php echo $tag->tag; ?>
                   </li>
-                  @endif
+                  <?php endif; ?>
                 </ul>
               </div>
-            @endforeach 
-          @endif
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
+          <?php endif; ?>
         </div>
       </div>
    </div> 
@@ -273,22 +284,22 @@
           <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
-            @foreach($property->galleries as $gallery)
-             @php
+            <?php $__currentLoopData = $property->galleries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gallery): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+             <?php
                $galleries = json_decode($gallery->gallery_image);
-             @endphp
-             @endforeach
-             @php $i=0;
-             @endphp
-             @foreach($galleries as $gallery)
-             <div class="carousel-item{{$i}}">
-              <img src="{{asset($gallery)}}" class="d-block w-100" alt="..." style="height: 150px">
+             ?>
+             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+             <?php $i=0;
+             ?>
+             <?php $__currentLoopData = $galleries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gallery): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+             <div class="carousel-item<?php echo e($i); ?>">
+              <img src="<?php echo e(asset($gallery)); ?>" class="d-block w-100" alt="..." style="height: 150px">
               <div class="carousel-caption d-none d-md-block">
                 <h5>Galleries</h5>
               </div>
              </div>
-             @php $i++; @endphp
-             @endforeach     
+             <?php $i++; ?>
+             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>     
         </div>
         <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -317,27 +328,27 @@
           <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
-          @php
+          <?php
             if(count($property->floors) >0){
-          @endphp 
-          @foreach($property->floors as $floor)
-           @php
+          ?> 
+          <?php $__currentLoopData = $property->floors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $floor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+           <?php
              $floors = json_decode($floor->floor_image);
-           @endphp
-          @endforeach
-          @if($floors != "null")
-           @foreach($floors as $floor)
-             <div class="carousel-item{{$i}}">
-              <img src="{{asset($floor)}}" class="d-block w-100" alt="..." style="height: 150px">
+           ?>
+          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+          <?php if($floors != "null"): ?>
+           <?php $__currentLoopData = $floors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $floor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+             <div class="carousel-item<?php echo e($i); ?>">
+              <img src="<?php echo e(asset($floor)); ?>" class="d-block w-100" alt="..." style="height: 150px">
               <div class="carousel-caption d-none d-md-block">
                 <h5>Floor</h5>
               </div>
              </div>
-           @endforeach
-          @endif
-         @php
+           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+          <?php endif; ?>
+         <?php
          }
-         @endphp     
+         ?>     
         </div>
         <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -360,25 +371,25 @@
    <div class="row mt-3">
      <div class="card card-profile col-12">
       <div class="row">
-        @php
+        <?php
           if(count($property->attachments) >0){
-        @endphp
-        @foreach($property->attachments as $attachment)
-         @php
+        ?>
+        <?php $__currentLoopData = $property->attachments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $attachment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+         <?php
            $attachments = json_decode($attachment->file);
-         @endphp
-         @endforeach
-         @php $i=0;
-         @endphp
-         @foreach($attachments as $attachment)
-         <div class="carousel-item{{$i}} col-6 mt-3">
-          <a href="{{asset($attachment)}}" download="download" class="btn btn-primary">Download File</a>
+         ?>
+         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+         <?php $i=0;
+         ?>
+         <?php $__currentLoopData = $attachments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $attachment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+         <div class="carousel-item<?php echo e($i); ?> col-6 mt-3">
+          <a href="<?php echo e(asset($attachment)); ?>" download="download" class="btn btn-primary">Download File</a>
          </div>
-         @php $i++; @endphp
-         @endforeach
-        @php
+         <?php $i++; ?>
+         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        <?php
           }
-        @endphp
+        ?>
       </div>
       <div class="card-body pt-0">
         <div class="text-center">
@@ -392,11 +403,12 @@
    
   </div>
 </div>
-@endsection
-@section('script')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
   <script type="text/javascript">
     $(document).ready(function() {
       $(".carousel-item0").addClass('active')
         });
   </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('backend.backend_template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /opt/lampp/htdocs/Property_Laravel_Project/resources/views/backend/property/detail.blade.php ENDPATH**/ ?>

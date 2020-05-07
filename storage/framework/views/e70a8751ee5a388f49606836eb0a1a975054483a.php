@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-    <title>Housy - Real Estate HTML5 Template</title>
+    <title>LuxCouch Thailand</title>
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
@@ -32,6 +32,7 @@
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('frontend_template/css/ie10-viewport-bug-workaround.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('frontend_template/css/custom.css')); ?>">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -325,7 +326,7 @@
                                 </div> -->
 
                                 <div class="form-group mb-0">
-                                    <button class="search-button "   style="background-color: #0C070B">Search</button>
+                                    <button class="search-button ">Search</button>
                                 </div>
                             </form>
                         </div>
@@ -439,7 +440,7 @@
     <footer class="footer">
         <div class="container footer-inner">
             <div class="row">
-                <div class="col-xl-4 col-lg-3 col-md-6 col-sm-6">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
                     <div class="footer-item">
                         <h4>Contact Us</h4>
                         <div class="s-border"></div>
@@ -467,7 +468,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
                     <div class="footer-item">
                         <h4>Useful Links</h4>
                         <div class="s-border"></div>
@@ -476,28 +477,20 @@
                             <li>
                                 <a href="#"><i class="fa fa-angle-right"></i>Home</a>
                             </li>
-                            <li>
-                                <a href="#"><i class="fa fa-angle-right"></i>About Us</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-angle-right"></i>Services</a>
+                                <a href="<?php echo e(route('property')); ?>"><i class="fa fa-angle-right"></i>Properties</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-angle-right"></i>Properties Details</a>
+                                <a href="<?php echo e(route('agent')); ?>"><i class="fa fa-angle-right"></i>Agents</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-angle-right"></i>My Account</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-angle-right"></i>Privacy Policy</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-angle-right"></i>Properties Details</a>
+                                <a href="<?php echo e(route('blog')); ?>"><i class="fa fa-angle-right"></i>Blog Posts</a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
                     <div class="footer-item clearfix">
                         <h4>Popular Posts</h4>
                         <div class="s-border"></div>
@@ -519,26 +512,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                    <div class="footer-item clearfix">
-                        <h4>Subscribe</h4>
-                        <div class="s-border"></div>
-                        <div class="m-border"></div>
-                        <div class="Subscribe-box">
-                            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.</p>
-                            <form action="#" method="GET">
-                                <p>
-                                    <input type="text" class="form-contact" name="email" placeholder="Enter Address">
-                                </p>
-                                <p>
-                                    <button type="submit" name="submitNewsletter" class="btn btn-block button-theme">
-                                        Subscribe
-                                    </button>
-                                </p>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
             <div class="row">
                 <div class="col-xl-12">
