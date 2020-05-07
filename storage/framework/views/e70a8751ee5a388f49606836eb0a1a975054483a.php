@@ -50,7 +50,7 @@
   <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
   <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css' type='text/css' />
     <style type="text/css">
-       #map { position: relative; top: 0; bottom: 0; width: 100%; }
+     
       .geocoder {
             position:relative;
         }

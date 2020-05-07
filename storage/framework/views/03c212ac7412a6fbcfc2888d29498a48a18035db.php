@@ -127,7 +127,7 @@
                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                      <?php echo e($galleries[0]); ?>" alt="properties" style="height: 350px">
                                      <h1 class="title overlay">
-                                    <a href="<?php echo e(route('property_detail',$property->id)); ?>" class="text"><?php echo e($property->title); ?></a>
+                                    <a href="<?php echo e(route('property_detail',$property->id)); ?>" class="hover-text"><?php echo e($property->title); ?></a>
                                 </h1>
                                 </a>
                             </div>
