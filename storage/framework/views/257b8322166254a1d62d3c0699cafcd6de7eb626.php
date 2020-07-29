@@ -100,9 +100,7 @@
                                 </ul>
                             </div>
                             <div class="footer clearfix">
-                                <div class="pull-left days">
-                                    <a><i class="fa fa-user icon"></i> <?php echo e($property->agent->name); ?></a>
-                                </div>
+                                
                                 <div class="pull-right">
                                     <a><i class="flaticon-time icon"></i> <?php echo e($property->created_at->diffForHumans()); ?></a>
                                 </div>

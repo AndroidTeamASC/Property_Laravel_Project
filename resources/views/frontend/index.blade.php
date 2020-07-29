@@ -173,9 +173,10 @@
                                 </ul>
                             </div>
                             <div class="footer clearfix">
-                                <div class="pull-left days">
-                                    <a><i class="fa fa-user icon"></i> {{$property->agent->name}}</a>
+                                {{-- <div class="pull-left days">
+                                    <a><i class="fa fa-user icon"></i> {{$property->agent->name}}</a> 
                                 </div>
+                                --}}
                                 <div class="pull-right">
                                     <a><i class="flaticon-time icon"></i> {{$property->created_at->diffForHumans()}} </a>
                                 </div>

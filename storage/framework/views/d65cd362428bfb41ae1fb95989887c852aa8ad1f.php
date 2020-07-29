@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('frontend_template/css/bootstrap-submenu.css')); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('frontend_template/css/bootstrap-select.min.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('frontend_template/css/leaflet.css')); ?>" type="text/css">
-    <link rel="stylesheet" href="<?php echo e(asset('frontend_template/css/map.css" type="text/css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('frontend_template/css/map.css')); ?>" type="text/css">
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('frontend_template/fonts/font-awesome/css/font-awesome.min.css')); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('frontend_template/fonts/flaticon/font/flaticon.css')); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('frontend_template/fonts/linearicons/style.css')); ?>">
